@@ -14,13 +14,51 @@ import org.springframework.stereotype.Component;
 public class ValidationFailureStatusCodes {
 
 	@Value("${validation.project.AlreadyExists}")
-	private String proNameAlreadyExists;
+	private String projectNameAlreadyExists;
+	
+	@Value("${validation.employee.AlreadyExists}")
+	private String employeeEmailAlreadyExists;
+	
+	@Value("${validation.gender.AlreadyExists}")
+	private String genderNameAlreadyExists;
 
-	public void setProNameAlreadyExists(String proNameAlreadyExists) {
-		this.proNameAlreadyExists = proNameAlreadyExists;
+	@Value("${validation.employee.AlreadyExistsId}")
+	private String existsById;
+	
+	public String getProjectNameAlreadyExists() {
+		return projectNameAlreadyExists;
 	}
 
-	public String getProNameAlreadyExists() {
-		return proNameAlreadyExists;
+	public void setProjectNameAlreadyExists(String projectNameAlreadyExists) {
+		this.projectNameAlreadyExists = projectNameAlreadyExists;
 	}
+
+	public String getEmployeeEmailAlreadyExists() {
+		return employeeEmailAlreadyExists;
+	}
+
+	public void setEmployeeEmailAlreadyExists(String employeeEmailAlreadyExists) {
+		this.employeeEmailAlreadyExists = employeeEmailAlreadyExists;
+	}
+
+	public String getGenderNameAlreadyExists() {
+		return genderNameAlreadyExists;
+	}
+
+	public void setGenderNameAlreadyExists(String genderNameAlreadyExists) {
+		this.genderNameAlreadyExists = genderNameAlreadyExists;
+	}
+
+	public String getExistsById() {
+		return existsById;
+	}
+
+	public void setExistsById(String existsById) {
+		this.existsById = existsById;
+	}
+
+	
+
+	
+	
 }
