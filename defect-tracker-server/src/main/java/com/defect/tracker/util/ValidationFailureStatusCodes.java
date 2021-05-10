@@ -12,15 +12,28 @@ import org.springframework.stereotype.Component;
 @Component
 @PropertySource("classpath:ValidationMessages.properties")
 public class ValidationFailureStatusCodes {
-
+	
 	@Value("${validation.project.AlreadyExists}")
-	private String proNameAlreadyExists;
+	private String projectNameAlreadyExists;
+	
+	@Value("${validation.project.existsById}")
+	private String existsById;
 
-	public void setProNameAlreadyExists(String proNameAlreadyExists) {
-		this.proNameAlreadyExists = proNameAlreadyExists;
+	public String getProjectNameAlreadyExists() {
+		return projectNameAlreadyExists;
 	}
 
-	public String getProNameAlreadyExists() {
-		return proNameAlreadyExists;
+	public void setProjectNameAlreadyExists(String projectNameAlreadyExists) {
+		this.projectNameAlreadyExists = projectNameAlreadyExists;
 	}
+
+	public String getExistsById() {
+		return existsById;
+	}
+
+	public void setExistsById(String existsById) {
+		this.existsById = existsById;
+	}
+
+	
 }
