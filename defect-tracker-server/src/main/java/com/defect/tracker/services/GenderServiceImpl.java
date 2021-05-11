@@ -29,5 +29,14 @@ public class GenderServiceImpl implements GenderService {
 	public List<Gender> getAllGender() {
 		return genderRepository.findAll();
 	}
-
+	
+	@Override
+	public boolean existsById(Long id) {
+		return genderRepository.existsById(id);
+	}
+	
+	@Override
+	public Object getByIdGender(Long id) {
+		return genderRepository.findById(id);
+	}
 }

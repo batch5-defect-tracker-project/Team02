@@ -18,4 +18,8 @@ public interface EmployeeService {
 	
 	public void deleteById(Long id);
 	
+	public void updateEmployee(Employee employee);
+	
+	public Object getByIdEmployee(Long id);
+	
 }

@@ -14,6 +14,7 @@ public final class EndpointURI {
 	public static final String EMPLOYEE = BASE_API_PATH + "employee";
 	public static final String EMPLOYEE_BY_ID = BASE_API_PATH + "employee"+ ID;
 	public static final String GENDER = BASE_API_PATH + "gender";
+	public static final String GENDER_BY_ID = BASE_API_PATH + "gender"+ ID;
 
 	private EndpointURI() {
 
