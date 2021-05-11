@@ -21,8 +21,19 @@ public class ValidationFailureStatusCodes {
 	
 	@Value("${validation.module.existsById}")
 	private String existsById;
+	
+	@Value("${validation.designation.AlreadyExists}")
+	private String designationNameAlreadyExists;
 
 	
+	public String getDesignationNameAlreadyExists() {
+		return designationNameAlreadyExists;
+	}
+
+	public void setDesignationNameAlreadyExists(String designationNameAlreadyExists) {
+		this.designationNameAlreadyExists = designationNameAlreadyExists;
+	}
+
 	public String getExistsById() {
 		return existsById;
 	}
@@ -45,6 +56,7 @@ public class ValidationFailureStatusCodes {
 
 	public void setModuleNameAlreadyExists(String moduleNameAlreadyExists) {
 		this.moduleNameAlreadyExists = moduleNameAlreadyExists;
+	
 	}
 
 	
