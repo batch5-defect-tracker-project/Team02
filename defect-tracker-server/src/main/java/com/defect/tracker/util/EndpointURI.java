@@ -16,6 +16,8 @@ public final class EndpointURI {
 	public static final String GENDER = BASE_API_PATH + "gender";
 	public static final String GENDER_BY_ID = BASE_API_PATH + "gender"+ ID;
 
+	public static final String MODULE = BASE_API_PATH + "module";
+
 	private EndpointURI() {
 
 	}

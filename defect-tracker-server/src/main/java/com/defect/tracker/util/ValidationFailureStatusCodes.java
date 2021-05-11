@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 public class ValidationFailureStatusCodes {
 
 	@Value("${validation.project.AlreadyExists}")
+
 	private String projectNameAlreadyExists;
 	
 	@Value("${validation.employee.AlreadyExists}")
@@ -21,6 +22,24 @@ public class ValidationFailureStatusCodes {
 	
 	@Value("${validation.gender.AlreadyExists}")
 	private String genderNameAlreadyExists;
+
+	private String proNameAlreadyExists;
+	
+	@Value("${validation.module.AlreadyExists}")
+	private String moduleNameAlreadyExists;
+	
+	@Value("${validation.module.existsById}")
+	private String existsById;
+
+	
+	public String getExistsById() {
+		return existsById;
+	}
+
+	public void setExistsById(String existsById) {
+		this.existsById = existsById;
+	}
+
 
 	@Value("${validation.employee.AlreadyExistsId}")
 	private String existsById;
@@ -32,6 +51,7 @@ public class ValidationFailureStatusCodes {
 	public void setProjectNameAlreadyExists(String projectNameAlreadyExists) {
 		this.projectNameAlreadyExists = projectNameAlreadyExists;
 	}
+
 
 	public String getEmployeeEmailAlreadyExists() {
 		return employeeEmailAlreadyExists;
@@ -55,10 +75,17 @@ public class ValidationFailureStatusCodes {
 
 	public void setExistsById(String existsById) {
 		this.existsById = existsById;
+
+	public String getModuleNameAlreadyExists() {
+		return moduleNameAlreadyExists;
+	}
+
+	public void setModuleNameAlreadyExists(String moduleNameAlreadyExists) {
+		this.moduleNameAlreadyExists = moduleNameAlreadyExists;
+
 	}
 
 	
 
-	
-	
+
 }
