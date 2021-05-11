@@ -35,6 +35,22 @@ public class ValidationFailureStatusCodes {
 
 	private String proNameAlreadyExists;
 	
+
+	@Value("${validation.subModule.AlreadyExists}")
+	private String subModuleAlreadyExists;
+	
+	@Value("${validation.subModule.existsById}")
+	private String existsById;
+
+
+
+	public String getSubModuleAlreadyExists() {
+		return subModuleAlreadyExists;
+	}
+
+	public void setSubModuleAlreadyExists(String subModuleAlreadyExists) {
+		this.subModuleAlreadyExists = subModuleAlreadyExists;
+
 	@Value("${validation.module.AlreadyExists}")
 	private String moduleNameAlreadyExists;
 	
@@ -54,10 +70,16 @@ public class ValidationFailureStatusCodes {
 
 	public void setProjectNameAlreadyExists(String projectNameAlreadyExists) {
 		this.projectNameAlreadyExists = projectNameAlreadyExists;
+
 	}
 
 	public String getExistsById() {
 		return existsById;
+	}
+
+
+	public void setExistsById(String existsById) {
+		this.existsById = existsById;
 	}
 
 
@@ -72,6 +94,7 @@ public class ValidationFailureStatusCodes {
 	public void setProjectById(String projectById) {
 		this.projectById = projectById;
 	}
+
 
 
 	
@@ -100,6 +123,13 @@ public class ValidationFailureStatusCodes {
 	public String getGenderNameAlreadyExists() {
 		return genderNameAlreadyExists;
 	}
+
+
+	public String getProNameAlreadyExists() {
+		return proNameAlreadyExists;
+	
+	}
+
 
 	public void setGenderNameAlreadyExists(String genderNameAlreadyExists) {
 		this.genderNameAlreadyExists = genderNameAlreadyExists;
