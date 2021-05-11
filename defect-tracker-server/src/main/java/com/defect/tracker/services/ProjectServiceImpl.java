@@ -1,5 +1,7 @@
 package com.defect.tracker.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,12 +14,18 @@ public class ProjectServiceImpl implements ProjectService {
 	private ProjectRepository projectRepository;
 
 	@Override
-	public boolean isProNameAlreadyExist(String proName) {
-		return projectRepository.existsByName(proName);
+	public boolean isProjectNameAlreadyExist(String projectName) {
+		return projectRepository.existsByName(projectName);
 	}
 
 	@Override
 	public void createProject(Project project) {
 		projectRepository.save(project);
 	}
+
+	@Override
+	public List<Project> getAllProjects() {
+		return projectRepository.findAll();
+	}
+
 }
