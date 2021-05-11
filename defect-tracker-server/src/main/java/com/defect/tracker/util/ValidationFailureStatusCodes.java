@@ -12,16 +12,26 @@ import org.springframework.stereotype.Component;
 @Component
 @PropertySource("classpath:ValidationMessages.properties")
 public class ValidationFailureStatusCodes {
-
+	
 	@Value("${validation.project.AlreadyExists}")
 
 	private String projectNameAlreadyExists;
 	
+
+	@Value("${validation.project.existsById}")
+	private String existsById;
+	@Value("${validation.project.projectById}")
+	private String projectById;
+
+	public String getProjectNameAlreadyExists() {
+		return projectNameAlreadyExists;
+
 	@Value("${validation.employee.AlreadyExists}")
 	private String employeeEmailAlreadyExists;
 	
 	@Value("${validation.gender.AlreadyExists}")
 	private String genderNameAlreadyExists;
+
 
 	private String proNameAlreadyExists;
 	
@@ -38,7 +48,33 @@ public class ValidationFailureStatusCodes {
 
 	public void setExistsById(String existsById) {
 		this.existsById = existsById;
+
 	}
+
+
+	public void setProjectNameAlreadyExists(String projectNameAlreadyExists) {
+		this.projectNameAlreadyExists = projectNameAlreadyExists;
+	}
+
+	public String getExistsById() {
+		return existsById;
+	}
+
+
+	public void setExistsById(String existsById) {
+		this.existsById = existsById;
+	}
+
+	public String getProjectById() {
+		return projectById;
+	}
+
+	public void setProjectById(String projectById) {
+		this.projectById = projectById;
+	}
+
+
+	
 
 
 	@Value("${validation.employee.AlreadyExistsId}")
@@ -75,6 +111,7 @@ public class ValidationFailureStatusCodes {
 
 	public void setExistsById(String existsById) {
 		this.existsById = existsById;
+
 
 	public String getModuleNameAlreadyExists() {
 		return moduleNameAlreadyExists;
