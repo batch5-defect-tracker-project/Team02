@@ -5,6 +5,12 @@ public class Constants {
 	// project
 	public static final String PROJECT_ADDED_SUCCESS = "Project added successfully ";
 
+
+	// project update
+	public static final String UPDATED_SUCCESS = "Project updated successfully";
+	//project delete
+	public static final String DELETED_SUCCESS = "Project deleted successfully";
+
 	
 	//employee
 	public static final String EMPLOYEE_ADDED_SUCCESS = "Employee added successfully ";
@@ -15,6 +21,7 @@ public class Constants {
 	
 	//gender
 	public static final String GENDER_ADDED_SUCCESS = "Gender added successfully ";
+
 
 	//module
 	public static final String MODULE_ADDED_SUCCESS = "Module added successfully";
