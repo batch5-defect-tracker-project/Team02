@@ -1,6 +1,7 @@
 package com.defect.tracker.services;
 
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +24,7 @@ public class ProjectServiceImpl implements ProjectService {
 	}
 
 	@Override
+
 	public List<Project> getAllProject() {
 		return projectRepository.findAll();
 	}
@@ -46,5 +48,11 @@ public class ProjectServiceImpl implements ProjectService {
 	public Object getProjectById(Long id) {
 		return projectRepository.findById(id);
 	}
+
+
+	public List<Project> getAllProjects() {
+		return projectRepository.findAll();
+	}
+
 
 }

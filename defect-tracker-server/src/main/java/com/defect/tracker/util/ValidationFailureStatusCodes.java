@@ -17,6 +17,7 @@ public class ValidationFailureStatusCodes {
 
 	private String projectNameAlreadyExists;
 	
+
 	@Value("${validation.project.existsById}")
 	private String existsById;
 	@Value("${validation.project.projectById}")
@@ -24,6 +25,13 @@ public class ValidationFailureStatusCodes {
 
 	public String getProjectNameAlreadyExists() {
 		return projectNameAlreadyExists;
+
+	@Value("${validation.employee.AlreadyExists}")
+	private String employeeEmailAlreadyExists;
+	
+	@Value("${validation.gender.AlreadyExists}")
+	private String genderNameAlreadyExists;
+
 
 	private String proNameAlreadyExists;
 	
@@ -42,6 +50,7 @@ public class ValidationFailureStatusCodes {
 		this.existsById = existsById;
 
 	}
+
 
 	public void setProjectNameAlreadyExists(String projectNameAlreadyExists) {
 		this.projectNameAlreadyExists = projectNameAlreadyExists;
@@ -67,12 +76,50 @@ public class ValidationFailureStatusCodes {
 
 	
 
+
+	@Value("${validation.employee.AlreadyExistsId}")
+	private String existsById;
+	
+	public String getProjectNameAlreadyExists() {
+		return projectNameAlreadyExists;
+	}
+
+	public void setProjectNameAlreadyExists(String projectNameAlreadyExists) {
+		this.projectNameAlreadyExists = projectNameAlreadyExists;
+	}
+
+
+	public String getEmployeeEmailAlreadyExists() {
+		return employeeEmailAlreadyExists;
+	}
+
+	public void setEmployeeEmailAlreadyExists(String employeeEmailAlreadyExists) {
+		this.employeeEmailAlreadyExists = employeeEmailAlreadyExists;
+	}
+
+	public String getGenderNameAlreadyExists() {
+		return genderNameAlreadyExists;
+	}
+
+	public void setGenderNameAlreadyExists(String genderNameAlreadyExists) {
+		this.genderNameAlreadyExists = genderNameAlreadyExists;
+	}
+
+	public String getExistsById() {
+		return existsById;
+	}
+
+	public void setExistsById(String existsById) {
+		this.existsById = existsById;
+
+
 	public String getModuleNameAlreadyExists() {
 		return moduleNameAlreadyExists;
 	}
 
 	public void setModuleNameAlreadyExists(String moduleNameAlreadyExists) {
 		this.moduleNameAlreadyExists = moduleNameAlreadyExists;
+
 	}
 
 	
