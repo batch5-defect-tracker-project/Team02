@@ -12,6 +12,8 @@ public final class EndpointURI {
 	public static final String PROJECT = BASE_API_PATH + "project";
 	public static final String PROJECT_BY_ID = BASE_API_PATH + "project" + ID;
 
+	public static final String MODULE = BASE_API_PATH + "module";
+
 	private EndpointURI() {
 
 	}
