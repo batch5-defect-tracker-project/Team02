@@ -18,6 +18,8 @@ public class ValidationFailureStatusCodes {
 	
 	@Value("${validation.project.existsById}")
 	private String existsById;
+	@Value("${validation.project.projectById}")
+	private String projectById;
 
 	public String getProjectNameAlreadyExists() {
 		return projectNameAlreadyExists;
@@ -34,6 +36,15 @@ public class ValidationFailureStatusCodes {
 	public void setExistsById(String existsById) {
 		this.existsById = existsById;
 	}
+
+	public String getProjectById() {
+		return projectById;
+	}
+
+	public void setProjectById(String projectById) {
+		this.projectById = projectById;
+	}
+
 
 	
 }

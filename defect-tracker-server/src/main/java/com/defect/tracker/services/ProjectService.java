@@ -1,7 +1,6 @@
 package com.defect.tracker.services;
 
 import java.util.List;
-
 import com.defect.tracker.data.entities.Project;
 
 public interface ProjectService {
@@ -17,5 +16,7 @@ public interface ProjectService {
 	public boolean existsById(Long id);
 
 	public void deleteById(Long id);
+
+	public Object getProjectById(Long id);
 
 }
