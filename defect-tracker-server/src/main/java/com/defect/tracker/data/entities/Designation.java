@@ -14,7 +14,6 @@ public class Designation {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private String name;
-	private Long employeeId;
 	
 	public Long getId() {
 		return id;
@@ -28,11 +27,4 @@ public class Designation {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Long getEmployeeId() {
-		return employeeId;
-	}
-	public void setEmployeeId(Long employeeId) {
-		this.employeeId = employeeId;
-	}
-
 }

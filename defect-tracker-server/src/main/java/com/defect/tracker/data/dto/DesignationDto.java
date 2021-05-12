@@ -9,7 +9,6 @@ public class DesignationDto {
 	@NotNull(message = "{designationDto.designationName.null}")
 	@NotEmpty(message = "{designationDto.designationName.empty}")
 	private String name;
-	private Long employeeId;
 	
 	
 	public Long getId() {
@@ -23,12 +22,6 @@ public class DesignationDto {
 	}
 	public void setName(String name) {
 		this.name = name;
-	}
-	public Long getEmployeeId() {
-		return employeeId;
-	}
-	public void setEmployeeId(Long employeeId) {
-		this.employeeId = employeeId;
 	}
 	
 
