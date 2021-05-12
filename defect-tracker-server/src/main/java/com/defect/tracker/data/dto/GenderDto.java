@@ -13,9 +13,9 @@ import com.defect.tracker.data.entities.Employee;
 public class GenderDto {
 	private Long id;
 
-	@NotNull(message = "{employeeDto.employeeName.null}")
-	@NotEmpty(message = "{employeeDto.employeeName.empty}")
-	private String name;
+	@NotNull(message = "{genderDto.genderName.null}")
+	@NotEmpty(message = "{genderDto.genderName.empty}")
+	private String gender;
 	
 	@OneToOne(fetch = FetchType.LAZY, mappedBy = "gender") 
 	private Employee employee;
@@ -27,12 +27,19 @@ public class GenderDto {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getName() {
-		return name;
+	public String getGender() {
+		return gender;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
+	public Employee getEmployee() {
+		return employee;
+	}
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
+	}
+	
 	
 	
 	

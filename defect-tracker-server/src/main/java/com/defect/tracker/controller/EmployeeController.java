@@ -63,7 +63,7 @@ public class EmployeeController {
 		return new ResponseEntity<Object>(Constants.EMPLOYEE_UPDATED_SUCCESS, HttpStatus.OK);
 	}
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_EXISTS_BY_ID,
-				validationFailureStatusCodes.getExistsById()), HttpStatus.BAD_REQUEST);	
+				validationFailureStatusCodes.getEmployeeExistsById()), HttpStatus.BAD_REQUEST);	
 	
 	}
 	
@@ -71,7 +71,7 @@ public class EmployeeController {
 	public ResponseEntity<Object> deleteEmployee(@PathVariable Long id) {
 		if (!employeeService.existsById(id)) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.NOT_EXISTS_BY_ID,
-					validationFailureStatusCodes.getExistsById()), HttpStatus.BAD_REQUEST);
+					validationFailureStatusCodes.getEmployeeExistsById()), HttpStatus.BAD_REQUEST);
 		}
 		employeeService.deleteById(id);
 		return new ResponseEntity<Object>(Constants.EMPLOYEE_DELETED_SUCCESS, HttpStatus.OK);
@@ -84,7 +84,7 @@ public class EmployeeController {
 			
 		}
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.NOT_EXISTS_BY_ID,
-				validationFailureStatusCodes.getExistsById()), HttpStatus.BAD_REQUEST);
+				validationFailureStatusCodes.getEmployeeExistsById()), HttpStatus.BAD_REQUEST);
 	}
 
 }

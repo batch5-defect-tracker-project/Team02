@@ -16,6 +16,7 @@ public class Employee {
 	private String contactNo;
 	private String email;
 	private Long genderId;
+	private String gender;
 	
 	public Long getId() {
 		return id;
@@ -47,6 +48,12 @@ public class Employee {
 	public void setGenderId(Long genderId) {
 		this.genderId = genderId;
 	}
-
+	public String getGender() {
+		return gender;
+	}
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+	
 	
 }

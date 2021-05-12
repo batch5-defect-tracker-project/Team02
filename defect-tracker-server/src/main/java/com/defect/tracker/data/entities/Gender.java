@@ -9,7 +9,7 @@ import javax.persistence.Table;
 public class Gender {
 	@Id
 	private Long id;
-	private String name;
+	private String gender;
 	
 	public Long getId() {
 		return id;
@@ -17,11 +17,11 @@ public class Gender {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getName() {
-		return name;
+	public String getGender() {
+		return gender;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
 	
 	
