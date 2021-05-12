@@ -40,4 +40,15 @@ public class ModuleServiceImpl implements ModuleService {
 		return moduleRepository.findAll();
 	}
 
+	@Override
+	public void deleteById(Long id) {
+		moduleRepository.deleteById(id);
+		
+	}
+
+	@Override
+	public Object getModuleById(Long id) {
+		return moduleRepository.findById(id);
+	}
+
 }

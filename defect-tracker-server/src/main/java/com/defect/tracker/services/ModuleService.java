@@ -16,4 +16,8 @@ public interface ModuleService {
 
 	public List<Module> getAllModule();
 
+	public void deleteById(Long id);
+	
+	public Object getModuleById(Long id);
+
 }
