@@ -22,7 +22,7 @@ public class ValidationFailureStatusCodes {
 	@Value("${validation.gender.AlreadyExists}")
 	private String genderNameAlreadyExists;
 
-	@Value("${validation.employee.AlreadyExistsId}")
+	@Value("${validation.employee.ExistsId}")
 	private String existsById;
 	
 	public String getProjectNameAlreadyExists() {
