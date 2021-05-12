@@ -9,8 +9,13 @@ public final class EndpointURI {
 
 	// Project
 	public static final String PROJECT = BASE_API_PATH + "project";
+	public static final String PROJECT_ALLOCATER = BASE_API_PATH + "projectAllocator";
 
 	private EndpointURI() {
 
 	}
 }
+
+
+
+

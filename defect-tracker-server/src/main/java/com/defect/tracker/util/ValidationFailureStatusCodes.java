@@ -13,14 +13,20 @@ import org.springframework.stereotype.Component;
 @PropertySource("classpath:ValidationMessages.properties")
 public class ValidationFailureStatusCodes {
 
-	@Value("${validation.project.AlreadyExists}")
-	private String proNameAlreadyExists;
+	@Value("${validation.projectAllocator.EmployeeIdAlreadyExists}")
+	private String EmployeeIdAlreadyExists;
 
-	public void setProNameAlreadyExists(String proNameAlreadyExists) {
-		this.proNameAlreadyExists = proNameAlreadyExists;
+	public String getEmployeeIdAlreadyExists() {
+		return EmployeeIdAlreadyExists;
 	}
 
-	public String getProNameAlreadyExists() {
-		return proNameAlreadyExists;
+	public void setEmployeeIdAlreadyExists(String employeeIdAlreadyExists) {
+		EmployeeIdAlreadyExists = employeeIdAlreadyExists;
 	}
+	
+	
 }
+	
+
+
+
