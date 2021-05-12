@@ -16,6 +16,18 @@ public class ValidationFailureStatusCodes {
 	@Value("${validation.project.AlreadyExists}")
 	private String proNameAlreadyExists;
 
+	@Value("${validation.type.AlreadyExists}")
+	private String typeNameAlreadyExists;
+
+	@Value("${validation.type.AlreadyExists}")
+	private String typeById;
+	
+
+	@Value("${validation.defect.AlreadyExists}")
+	private String defectIdAlreadyExists;
+	
+	
+
 	public void setProNameAlreadyExists(String proNameAlreadyExists) {
 		this.proNameAlreadyExists = proNameAlreadyExists;
 	}
@@ -23,4 +35,31 @@ public class ValidationFailureStatusCodes {
 	public String getProNameAlreadyExists() {
 		return proNameAlreadyExists;
 	}
-}
+
+	public void setTypeNameAlreadyExists(String typeNameAlreadyExists) {
+		this.typeNameAlreadyExists = typeNameAlreadyExists;
+	}
+
+	public String getTypeNameAlreadyExists() {
+		return typeNameAlreadyExists;
+	}
+
+	public String getTypeById() {
+		return typeById;
+	}
+
+	public void setTypeById(String typeById) {
+		this.typeById = typeById;
+	}
+
+	public String getDefectIdAlreadyExists() {
+
+		return defectIdAlreadyExists;
+		
+	}
+
+	public void setDefectIdAlreadyExists(String defectIdAlreadyExists) {
+		this.defectIdAlreadyExists = defectIdAlreadyExists;
+	}
+
+} 

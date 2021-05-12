@@ -7,4 +7,4 @@ public interface ProjectService {
 	public boolean isProNameAlreadyExist(String proName);
 
 	public void createProject(Project project);
-}
+} 
