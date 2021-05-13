@@ -15,38 +15,45 @@ public class ValidationFailureStatusCodes {
 
 	@Value("${validation.project.AlreadyExists}")
 	private String proNameAlreadyExists;
-	
+
 	@Value("${validation.subModule.AlreadyExists}")
-	private String subModuleAlreadyExists;
-	
+	private String subModuleNameAlreadyExists;
+
 	@Value("${validation.subModule.existsById}")
-	private String existsById;
+	private String subModuleExistsById;
 
-
-
-	public String getSubModuleAlreadyExists() {
-		return subModuleAlreadyExists;
+	public String getSubModuleExistsById() {
+		return subModuleExistsById;
 	}
 
-	public void setSubModuleAlreadyExists(String subModuleAlreadyExists) {
-		this.subModuleAlreadyExists = subModuleAlreadyExists;
+	public void setSubModuleExistsById(String subModuleExistsById) {
+		this.subModuleExistsById = subModuleExistsById;
 	}
 
-	public String getExistsById() {
-		return existsById;
-	}
+	@Value("${validation.subModule.SubModuleById}")
+	private String SubModuleById;
 
-	public void setExistsById(String existsById) {
-		this.existsById = existsById;
+	public String getProNameAlreadyExists() {
+		return proNameAlreadyExists;
 	}
 
 	public void setProNameAlreadyExists(String proNameAlreadyExists) {
 		this.proNameAlreadyExists = proNameAlreadyExists;
 	}
 
-	public String getProNameAlreadyExists() {
-		return proNameAlreadyExists;
-	
+	public String getSubModuleNameAlreadyExists() {
+		return subModuleNameAlreadyExists;
 	}
 
+	public void setSubModuleNameAlreadyExists(String subModuleNameAlreadyExists) {
+		this.subModuleNameAlreadyExists = subModuleNameAlreadyExists;
+	}
+
+	public String getSubModuleById() {
+		return SubModuleById;
+	}
+
+	public void setSubModuleById(String subModuleById) {
+		SubModuleById = subModuleById;
+	}
 }
