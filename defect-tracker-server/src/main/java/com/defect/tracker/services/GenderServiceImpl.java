@@ -16,7 +16,7 @@ public class GenderServiceImpl implements GenderService {
 	private GenderRepository genderRepository;
 
 	@Override
-	public boolean isGenderNameAlreadyExist(String genderName) {
+	public boolean isGenderAlreadyExist(String genderName) {
 		return genderRepository.existsByName(genderName);
 	}
 

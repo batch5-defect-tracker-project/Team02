@@ -52,11 +52,11 @@ public class SubModuleController {
 			}
 			SubModule subModule=mapper.map(subModuleDto, SubModule.class);
 			subModuleService.createSubModule(subModule);
-			return new ResponseEntity<Object>(Constants.UPDATED_SUCCESS,HttpStatus.OK);
+			return new ResponseEntity<Object>(Constants.SUB_MODULE_UPDATED_SUCCESS,HttpStatus.OK);
 			
 		}
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SUBMODULE_EXISTS,
-						validationFailureStatusCodes.getExistsById()),HttpStatus.BAD_REQUEST);
+						validationFailureStatusCodes.getSubModuleExistsById()),HttpStatus.BAD_REQUEST);
 		   
 		
 	}

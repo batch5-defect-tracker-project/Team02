@@ -21,10 +21,8 @@ public interface ProjectService {
 	public void deleteById(Long id);
 
 	public Object getProjectById(Long id);
-
-}
-
 	
-	public List<Project> getAllProjects();
+	
+
 }
 

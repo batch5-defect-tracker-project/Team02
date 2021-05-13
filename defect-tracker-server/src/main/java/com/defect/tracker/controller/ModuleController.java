@@ -52,17 +52,17 @@ public class ModuleController {
 			if (moduleService.isModuleNameAlreadyExist(moduleDto.getName())) {
 				return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_EXISTS,
 						validationFailureStatusCodes.getModuleNameAlreadyExists()), HttpStatus.BAD_REQUEST);
-
 			}
 			Module module = mapper.map(moduleDto, Module.class);
 			moduleService.createModule(module);
-			return new ResponseEntity<Object>(Constants.UPDATED_SUCCESS, HttpStatus.OK);
-
+			return new ResponseEntity<Object>(Constants.MODULE_UPDATED_SUCCESS,HttpStatus.OK);
+			
 		}
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_EXISTS,
-				validationFailureStatusCodes.getExistsById()), HttpStatus.BAD_REQUEST);
+						validationFailureStatusCodes.getModuleExistsById()),HttpStatus.BAD_REQUEST);
 
-	}
+		}
+	
 
 	@GetMapping(value = EndpointURI.MODULE)
 	public ResponseEntity<Object> getAllModule() {
@@ -76,16 +76,16 @@ public class ModuleController {
 		if (moduleService.existsById(id)) {
 			return new ResponseEntity<Object>(moduleService.getModuleById(id), HttpStatus.OK);
 		}
-		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_NOT_EXISTS,
+		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_NOT_EXISTS_BY_ID,
 				validationFailureStatusCodes.getModuleById()), HttpStatus.BAD_REQUEST);
 
-	}
+	} 
 
 	@DeleteMapping(value = EndpointURI.MODULE_BY_ID)
 	public ResponseEntity<Object> deleteModule(@PathVariable Long id) {
 		if (!moduleService.existsById(id)) {
-			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_DELETE_EXISTS_BY_ID,
-					validationFailureStatusCodes.getExistsById()), HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_NOT_EXISTS_BY_ID,
+					validationFailureStatusCodes.getModuleExistsById()), HttpStatus.BAD_REQUEST);
 		}
 		moduleService.deleteById(id);
 		return new ResponseEntity<Object>(Constants.MODULE_DELETED_SUCCESS, HttpStatus.OK);
