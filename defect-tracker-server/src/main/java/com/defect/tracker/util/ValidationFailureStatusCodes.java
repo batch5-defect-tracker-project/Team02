@@ -21,7 +21,30 @@ public class ValidationFailureStatusCodes {
 	private String existsById;
 	@Value("${validation.projectAllocator.ProjectAllocatorById}")
 	private String ProjectAllocatorById;
-    
+	@Value("${validation.severity.SeverityNameAlreadyExists}")
+	private String SeverityNameAlreadyExists;
+	@Value("${validation.severity.SeverityById}")
+	private String SeverityById;
+	
+	
+
+	
+
+	public String getSeverityNameAlreadyExists() {
+		return SeverityNameAlreadyExists;
+	}
+
+	public void setSeverityNameAlreadyExists(String severityNameAlreadyExists) {
+		SeverityNameAlreadyExists = severityNameAlreadyExists;
+	}
+
+	public String getSeverityById() {
+		return SeverityById;
+	}
+
+	public void setSeverityById(String severityById) {
+		SeverityById = severityById;
+	}
 
 	public String getProjectAllocatorById() {
 		return ProjectAllocatorById;
@@ -57,12 +80,11 @@ public class ValidationFailureStatusCodes {
 
 	
 
+
+	}
+
 	
-	
-	
-	
-}
-	
+
 
 
 
