@@ -73,7 +73,7 @@ public class ProjectController {
 	@DeleteMapping(value = EndpointURI.PROJECT_BY_ID)
 	public ResponseEntity<Object> deleteProject(@PathVariable Long id) {
 		if (!projectService.existsById(id)) {
-			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_DELETE_EXISTS_BY_ID,
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_NOT_EXISTS_BY_ID,
 					validationFailureStatusCodes.getProjectExistsById()), HttpStatus.BAD_REQUEST);
 		}
 

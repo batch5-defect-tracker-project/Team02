@@ -5,16 +5,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
 @Entity
-@Table(name = "designation")
-public class Designation {
-
+@Table(name = "subModule")
+public class SubModule {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private String name;
-	
+	private Long moduleId;
 	public Long getId() {
 		return id;
 	}
@@ -27,4 +25,13 @@ public class Designation {
 	public void setName(String name) {
 		this.name = name;
 	}
+	public Long getModuleId() {
+		return moduleId;
+	}
+	public void setModuleId(Long moduleId) {
+		this.moduleId = moduleId;
+	}
+	
+	
+
 }

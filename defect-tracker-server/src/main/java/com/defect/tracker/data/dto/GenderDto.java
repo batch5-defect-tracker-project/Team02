@@ -3,6 +3,7 @@ package com.defect.tracker.data.dto;
 
 import javax.persistence.FetchType;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -13,8 +14,9 @@ import com.defect.tracker.data.entities.Employee;
 public class GenderDto {
 	private Long id;
 
-	@NotNull(message = "{genderDto.genderName.null}")
-	@NotEmpty(message = "{genderDto.genderName.empty}")
+	@NotNull(message = "{genderDto.gender.null}")
+	@NotEmpty(message = "{genderDto.gender.empty}")
+	@NotBlank(message = "{genderDto.gender.blank}")
 	private String gender;
 	
 	@OneToOne(fetch = FetchType.LAZY, mappedBy = "gender") 

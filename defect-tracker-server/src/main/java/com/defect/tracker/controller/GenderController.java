@@ -55,7 +55,7 @@ public class GenderController {
 			return new ResponseEntity<Object>(genderService.getByIdGender(id), HttpStatus.OK);
 			
 		}
-		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.NOT_EXISTS_BY_ID,
+		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.GENDER_NOT_EXISTS_BY_ID,
 				validationFailureStatusCodes.getGenderExistsById()), HttpStatus.BAD_REQUEST);
 	}
 }

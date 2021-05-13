@@ -70,7 +70,7 @@ public class EmployeeController {
 	@DeleteMapping(value = EndpointURI.EMPLOYEE_BY_ID)
 	public ResponseEntity<Object> deleteEmployee(@PathVariable Long id) {
 		if (!employeeService.existsById(id)) {
-			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.NOT_EXISTS_BY_ID,
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_NOT_EXISTS_BY_ID,
 					validationFailureStatusCodes.getEmployeeExistsById()), HttpStatus.BAD_REQUEST);
 		}
 		employeeService.deleteById(id);
@@ -83,7 +83,7 @@ public class EmployeeController {
 			return new ResponseEntity<Object>(employeeService.getByIdEmployee(id), HttpStatus.OK);
 			
 		}
-		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.NOT_EXISTS_BY_ID,
+		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_NOT_EXISTS_BY_ID,
 				validationFailureStatusCodes.getEmployeeExistsById()), HttpStatus.BAD_REQUEST);
 	}
 

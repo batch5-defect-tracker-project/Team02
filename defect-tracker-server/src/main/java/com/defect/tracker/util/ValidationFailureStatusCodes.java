@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 @PropertySource("classpath:ValidationMessages.properties")
 public class ValidationFailureStatusCodes {
 
+	//Project
 	@Value("${validation.project.AlreadyExists}")
 	private String projectNameAlreadyExists;
 
@@ -21,7 +22,8 @@ public class ValidationFailureStatusCodes {
 
 	@Value("${validation.project.projectById}")
 	private String projectById;
-
+	
+	//Employee
 	@Value("${validation.employee.AlreadyExists}")
 	private String employeeEmailAlreadyExists;
 
@@ -30,19 +32,37 @@ public class ValidationFailureStatusCodes {
 
 	@Value("${validation.employee.AlreadyExistsId}")
 	private String employeeExistsById;
-
+	
+	//Gender
 	@Value("${validation.gender.AlreadyExists}")
 	private String genderAlreadyExists;
 	
 	@Value("${validation.gender.AlreadyExistsId}")
 	private String genderExistsById;
 
+	//Module
 	@Value("${validation.module.AlreadyExists}")
 	private String moduleNameAlreadyExists;
 
+	@Value("${validation.module.moduleById}")
+	private String moduleById;
+
 	@Value("${validation.module.existsById}")
 	private String moduleExistsById;
-
+	
+	//SubModule
+	@Value("${validation.subModule.AlreadyExists}")
+	private String subModuleAlreadyExists;
+	
+	@Value("${validation.subModule.existsById}")
+	private String subModuleExistsById;
+	
+	//Designation
+	@Value("${validation.designation.AlreadyExists}")
+	private String designationNameAlreadyExists;
+	
+	
+	//Getters Setters
 	public String getProjectNameAlreadyExists() {
 		return projectNameAlreadyExists;
 	}
@@ -115,6 +135,14 @@ public class ValidationFailureStatusCodes {
 		this.moduleNameAlreadyExists = moduleNameAlreadyExists;
 	}
 
+	public String getModuleById() {
+		return moduleById;
+	}
+
+	public void setModuleById(String moduleById) {
+		this.moduleById = moduleById;
+	}
+
 	public String getModuleExistsById() {
 		return moduleExistsById;
 	}
@@ -123,7 +151,31 @@ public class ValidationFailureStatusCodes {
 		this.moduleExistsById = moduleExistsById;
 	}
 
-	
-	
+	public String getSubModuleAlreadyExists() {
+		return subModuleAlreadyExists;
+	}
 
+	public void setSubModuleAlreadyExists(String subModuleAlreadyExists) {
+		this.subModuleAlreadyExists = subModuleAlreadyExists;
+	}
+
+	public String getSubModuleExistsById() {
+		return subModuleExistsById;
+	}
+
+	public void setSubModuleExistsById(String subModuleExistsById) {
+		this.subModuleExistsById = subModuleExistsById;
+	}
+
+	public String getDesignationNameAlreadyExists() {
+		return designationNameAlreadyExists;
+	}
+
+	public void setDesignationNameAlreadyExists(String designationNameAlreadyExists) {
+		this.designationNameAlreadyExists = designationNameAlreadyExists;
+	}
+	
+	
+	
+			
 }
