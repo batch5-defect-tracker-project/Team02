@@ -6,6 +6,6 @@ import com.defect.tracker.data.entities.Priority;
 
 public interface PriorityReposistory extends JpaRepository<Priority, Long> {
 
-	boolean existsByPriority(String priority);
+	boolean existsByName(String priorityName);
 
 }

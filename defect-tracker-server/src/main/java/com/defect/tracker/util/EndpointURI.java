@@ -16,6 +16,14 @@ public final class EndpointURI {
 	// Priority
 	public static final String PRIORITY = BASE_API_PATH + "priority";
 	public static final String PRIORITY_BY_ID = BASE_API_PATH + "priority" + ID;
+	//employee
+	public static final String EMPLOYEE = BASE_API_PATH + "employee";
+	public static final String EMPLOYEE_BY_ID = BASE_API_PATH + "employee"+ ID;
+	//gender
+	public static final String GENDER = BASE_API_PATH + "gender";
+	public static final String GENDER_BY_ID = BASE_API_PATH + "gender"+ ID;
+	//module
+	public static final String MODULE = BASE_API_PATH + "module";
 
 	private EndpointURI() {
 

@@ -8,10 +8,10 @@ public class PriorityDto {
 
 	private Long id;
 
-	@NotNull(message = "{priorityDto.projectName.null}")
-	@NotEmpty(message = "{priorityDto.projectName.empty}")
-	@NotBlank(message = "{priorityDto.projectName.blank}")
-	private String priority;
+	@NotNull(message = "{priorityDto.priorityName.null}")
+	@NotEmpty(message = "{priorityDto.priorityName.empty}")
+	@NotBlank(message = "{priorityDto.priorityName.blank}")
+	private String name;
 
 	public Long getId() {
 		return id;
@@ -21,12 +21,12 @@ public class PriorityDto {
 		this.id = id;
 	}
 
-	public String getPriority() {
-		return priority;
+	public String getName() {
+		return name;
 	}
 
-	public void setPriority(String priority) {
-		this.priority = priority;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 }

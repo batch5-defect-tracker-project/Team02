@@ -32,7 +32,7 @@ public class PriorityController {
 
 	@PostMapping(value = EndpointURI.PRIORITY)
 	public ResponseEntity<Object> addProject(@Valid @RequestBody PriorityDto priorityDto) {
-		if (priorityService.isPriorityAlreadyExist(priorityDto.getPriority())) {
+		if (priorityService.isPriorityAlreadyExist(priorityDto.getName())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PRIORITY_EXISTS,
 					validationFailureStatusCodes.getPriorityAlreadyExists()), HttpStatus.BAD_REQUEST);
 		}

@@ -6,7 +6,7 @@ public interface PriorityService {
 
 	public void createPriority(Priority priority);
 
-	public boolean isPriorityAlreadyExist(String priority);
+	public boolean isPriorityAlreadyExist(String priorityName);
 
 	public boolean existsById(Long id);
 

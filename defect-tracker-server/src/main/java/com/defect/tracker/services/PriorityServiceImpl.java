@@ -17,8 +17,8 @@ public class PriorityServiceImpl implements PriorityService {
 	}
 
 	@Override
-	public boolean isPriorityAlreadyExist(String priority) {
-		return priorityReposistory.existsByPriority(priority);
+	public boolean isPriorityAlreadyExist(String priorityName) {
+		return priorityReposistory.existsByName(priorityName);
 	}
 
 	@Override

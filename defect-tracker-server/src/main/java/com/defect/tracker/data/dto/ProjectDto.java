@@ -11,7 +11,7 @@ public class ProjectDto {
 	@NotBlank(message = "{projectDto.projectName.blank}")
 	private String name;
 	
-	@NotNull(message = "{projectDto.projectName.null}")
+	@NotNull(message = "{projectDto.abbrevation.null}")
 	private String abbrevation;
 
 	public Long getId() {
