@@ -1,5 +1,6 @@
 package com.defect.tracker.data.dto;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -7,7 +8,10 @@ public class ProjectDto {
 	private Long id;
 	@NotNull(message = "{projectDto.projectName.null}")
 	@NotEmpty(message = "{projectDto.projectName.empty}")
+	@NotBlank(message = "{projectDto.projectName.blank}")
 	private String name;
+	
+	@NotNull(message = "{projectDto.projectName.null}")
 	private String abbrevation;
 
 	public Long getId() {
