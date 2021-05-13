@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.defect.tracker.data.dto.EmployeeDto;
+import com.defect.tracker.data.dto.EmployeeResponseDto;
 import com.defect.tracker.data.entities.Employee;
 import com.defect.tracker.data.mapper.Mapper;
 import com.defect.tracker.data.response.ValidationFailureResponse;
@@ -47,7 +48,7 @@ public class EmployeeController {
 	
 	@GetMapping(value = EndpointURI.EMPLOYEE)
 	public ResponseEntity<Object> getAllEmployee() {
-		List<EmployeeDto> employeeList = mapper.map(employeeService.getAllEmployee(), EmployeeDto.class);
+		List<EmployeeResponseDto> employeeList = mapper.map(employeeService.getAllEmployee(), EmployeeResponseDto.class);
 		return new ResponseEntity<Object>(employeeList, HttpStatus.OK);
 	}
 	

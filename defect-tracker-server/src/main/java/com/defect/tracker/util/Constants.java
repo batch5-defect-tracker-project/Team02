@@ -4,9 +4,13 @@ public class Constants {
 
 	// Project
 	public static final String PROJECT_ADDED_SUCCESS = "Project Added Successfully ";
-		
 	public static final String PROJECT_UPDATED_SUCCESS = "Project Updated Successfully";
 	
+	//Project Allocation
+	public static final String PROJECT_ALLOCATOR_ADDED_SUCCESS = "ProjectAllocator added successfully ";
+	public static final String PROJECT_ALLOCATOR_DELETED_SUCCESS = "ProjectAllocator Deleted Succesfully";
+	public static final String PROJECT_ALLOCATOR_UPDATED_SUCCESS = "ProjectAllocator updated successfully ";
+
 	public static final String DELETED_SUCCESS = "Project Deleted Successfully";
 	
 	
@@ -45,3 +49,8 @@ public class Constants {
 	private Constants() {
 	}
 }
+
+
+
+
+

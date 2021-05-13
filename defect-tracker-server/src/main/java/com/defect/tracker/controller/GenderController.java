@@ -34,7 +34,7 @@ public class GenderController {
 
 	@PostMapping(value = EndpointURI.GENDER)
 	public ResponseEntity<Object> addGender(@Valid @RequestBody GenderDto genderDto) {
-		if (genderService.isGenderAlreadyExist(genderDto.getGender())) {
+		if (genderService.isGenderAlreadyExist(genderDto.getName())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.GENDER_EXISTS,
 					validationFailureStatusCodes.getGenderAlreadyExists()), HttpStatus.BAD_REQUEST);
 		}

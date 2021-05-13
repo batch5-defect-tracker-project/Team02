@@ -16,7 +16,13 @@ public class ValidationFailureStatusCodes {
 	//Project
 	@Value("${validation.project.AlreadyExists}")
 	private String projectNameAlreadyExists;
-
+	@Value("${validation.projectAllocator.EmployeeIdAlreadyExists}")
+	private String EmployeeIdAlreadyExists;
+	@Value("${validation.projectAllocator.ExistsById}")
+	private String existsById;
+	@Value("${validation.projectAllocator.ProjectAllocatorById}")
+	private String ProjectAllocatorById;
+    
 	@Value("${validation.project.existsById}")
 	private String projectExistsById;
 
@@ -171,6 +177,30 @@ public class ValidationFailureStatusCodes {
 		return designationNameAlreadyExists;
 	}
 
+	public String getProjectAllocatorById() {
+		return ProjectAllocatorById;
+	}
+
+	public void setProjectAllocatorById(String projectAllocatorById) {
+		ProjectAllocatorById = projectAllocatorById;
+	}
+
+	public String getExistsById() {
+		return existsById;
+	}
+
+	public void setExistsById(String existsById) {
+		this.existsById = existsById;
+	}
+
+	public String getEmployeeIdAlreadyExists() {
+		return EmployeeIdAlreadyExists;
+	}
+
+	public void setEmployeeIdAlreadyExists(String employeeIdAlreadyExists) {
+		EmployeeIdAlreadyExists = employeeIdAlreadyExists;
+	}
+
 	public void setDesignationNameAlreadyExists(String designationNameAlreadyExists) {
 		this.designationNameAlreadyExists = designationNameAlreadyExists;
 	}
@@ -179,3 +209,7 @@ public class ValidationFailureStatusCodes {
 	
 			
 }
+	
+
+
+

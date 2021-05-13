@@ -8,7 +8,7 @@ import com.defect.tracker.data.entities.Gender;
 
 public interface GenderService {
 
-	public boolean isGenderAlreadyExist(String gender);
+	public boolean isGenderAlreadyExist(String genderName);
 
 	public void createGender(Gender gender);
 	
