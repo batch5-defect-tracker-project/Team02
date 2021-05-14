@@ -21,6 +21,7 @@ import com.defect.tracker.util.ValidationFailureStatusCodes;
 
 @RestController
 public class ProjectController {
+	
 	@Autowired
 	ProjectService projectService;
 	@Autowired
@@ -30,7 +31,7 @@ public class ProjectController {
 
 	@PostMapping(value = EndpointURI.PROJECT)
 	public ResponseEntity<Object> addProject(@Valid @RequestBody ProjectDto projectDto) {
-		if (projectService.isProNameAlreadyExist(projectDto.getName())) {
+		if (projectService.isProjectNameAlreadyExist(projectDto.getName())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_EXISTS,
 					validationFailureStatusCodes.getProjectNameAlreadyExists()), HttpStatus.BAD_REQUEST);
 		}
