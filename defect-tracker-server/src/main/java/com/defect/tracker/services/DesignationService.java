@@ -5,7 +5,7 @@ import java.util.List;
 import com.defect.tracker.data.entities.Designation;
 
 public interface DesignationService {
-	
+
 	public void createDesignation(Designation designation);
 
 	public boolean isDesignationNameAlreadyExist(String designationName);
@@ -19,7 +19,5 @@ public interface DesignationService {
 	public void deleteById(Long id);
 	
 	public Object getDesignationById(Long id);
-	
-	
 
 }

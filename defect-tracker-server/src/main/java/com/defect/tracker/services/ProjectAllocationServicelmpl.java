@@ -16,7 +16,11 @@ public class ProjectAllocationServicelmpl implements ProjectAllocationService {
 
 	@Override
 	public boolean isEmployeeIdAlreadyExist(Long EmployeeId) {
+
+		return projectAllocationRepository.existsById(EmployeeId);
+
        return projectAllocationRepository.existsById(EmployeeId);
+
 	}
 
 	@Override

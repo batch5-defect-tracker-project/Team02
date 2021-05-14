@@ -11,6 +11,12 @@ public interface ProjectAllocationService {
 	public void createProjectAllocation(ProjectAllocation projectAllocation);
 
 	public List<ProjectAllocation> getAllProjectAllocation();
+
+	public void updateProjectAllocation(ProjectAllocation projectAllocation);
+
+	public boolean existsById(Long id);
+
+	public void deleteById(Long id);
 	
 	public void updateProjectAllocation(ProjectAllocation projectAllocation);
 	

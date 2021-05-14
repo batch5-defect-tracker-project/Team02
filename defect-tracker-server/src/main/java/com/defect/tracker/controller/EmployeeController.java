@@ -45,29 +45,30 @@ public class EmployeeController {
 		employeeService.createEmployee(employee);
 		return new ResponseEntity<Object>(Constants.EMPLOYEE_ADDED_SUCCESS, HttpStatus.OK);
 	}
-	
+
 	@GetMapping(value = EndpointURI.EMPLOYEE)
 	public ResponseEntity<Object> getAllEmployee() {
-		List<EmployeeResponseDto> employeeList = mapper.map(employeeService.getAllEmployee(), EmployeeResponseDto.class);
+		List<EmployeeResponseDto> employeeList = mapper.map(employeeService.getAllEmployee(),
+				EmployeeResponseDto.class);
 		return new ResponseEntity<Object>(employeeList, HttpStatus.OK);
 	}
-	
+
 	@PutMapping(value = EndpointURI.EMPLOYEE)
 	public ResponseEntity<Object> updateEmployee(@Valid @RequestBody EmployeeDto employeeDto) {
 		if (employeeService.existsById(employeeDto.getId())) {
-		if (employeeService.isEmployeeEmailAlreadyExist(employeeDto.getEmail())) {
-			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_EXISTS,
-					validationFailureStatusCodes.getEmployeeEmailAlreadyExists()), HttpStatus.BAD_REQUEST);
+			if (employeeService.isEmployeeEmailAlreadyExist(employeeDto.getEmail())) {
+				return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_EXISTS,
+						validationFailureStatusCodes.getEmployeeEmailAlreadyExists()), HttpStatus.BAD_REQUEST);
+			}
+			Employee employee = mapper.map(employeeDto, Employee.class);
+			employeeService.createEmployee(employee);
+			return new ResponseEntity<Object>(Constants.EMPLOYEE_UPDATED_SUCCESS, HttpStatus.OK);
 		}
-		Employee employee = mapper.map(employeeDto, Employee.class);
-		employeeService.createEmployee(employee);
-		return new ResponseEntity<Object>(Constants.EMPLOYEE_UPDATED_SUCCESS, HttpStatus.OK);
-	}
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_EXISTS_BY_ID,
-				validationFailureStatusCodes.getEmployeeExistsById()), HttpStatus.BAD_REQUEST);	
-	
+				validationFailureStatusCodes.getEmployeeExistsById()), HttpStatus.BAD_REQUEST);
+
 	}
-	
+
 	@DeleteMapping(value = EndpointURI.EMPLOYEE_BY_ID)
 	public ResponseEntity<Object> deleteEmployee(@PathVariable Long id) {
 		if (!employeeService.existsById(id)) {
@@ -77,12 +78,12 @@ public class EmployeeController {
 		employeeService.deleteById(id);
 		return new ResponseEntity<Object>(Constants.EMPLOYEE_DELETED_SUCCESS, HttpStatus.OK);
 	}
-	
+
 	@GetMapping(value = EndpointURI.EMPLOYEE_BY_ID)
 	public ResponseEntity<Object> getByIdEmployee(@PathVariable Long id) {
 		if (employeeService.existsById(id)) {
 			return new ResponseEntity<Object>(employeeService.getByIdEmployee(id), HttpStatus.OK);
-			
+
 		}
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_NOT_EXISTS_BY_ID,
 				validationFailureStatusCodes.getEmployeeExistsById()), HttpStatus.BAD_REQUEST);

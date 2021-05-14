@@ -9,15 +9,15 @@ import com.defect.tracker.data.entities.Designation;
 import com.defect.tracker.data.repositories.DesignationRepository;
 
 @Service
-public class DesignationServiceImpl implements DesignationService{
-	
+public class DesignationServiceImpl implements DesignationService {
+
 	@Autowired
 	private DesignationRepository designationRepository;
 
 	@Override
 	public void createDesignation(Designation designation) {
 		designationRepository.save(designation);
-		
+
 	}
 
 	@Override
@@ -51,6 +51,4 @@ public class DesignationServiceImpl implements DesignationService{
 	public Object getDesignationById(Long id) {
 		return designationRepository.findById(id);
 	}
-
-
 }

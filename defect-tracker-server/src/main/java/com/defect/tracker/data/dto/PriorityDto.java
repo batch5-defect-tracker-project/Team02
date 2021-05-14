@@ -4,13 +4,14 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-public class SubModuleDto {
+public class PriorityDto {
+
 	private Long id;
-	@NotNull(message = "{subModuleDto.subModuleName.null}")
-	@NotEmpty(message = "{subModuleDto.subModuleName.empty}")
-	@NotBlank(message = "{subModuleDto.subModuleName.blank}")
+
+	@NotNull(message = "{priorityDto.priorityName.null}")
+	@NotEmpty(message = "{priorityDto.priorityName.empty}")
+	@NotBlank(message = "{priorityDto.priorityName.blank}")
 	private String name;
-	private Long moduleId;
 
 	public Long getId() {
 		return id;
@@ -26,14 +27,6 @@ public class SubModuleDto {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public Long getModuleId() {
-		return moduleId;
-	}
-
-	public void setModuleId(Long moduleId) {
-		this.moduleId = moduleId;
 	}
 
 }

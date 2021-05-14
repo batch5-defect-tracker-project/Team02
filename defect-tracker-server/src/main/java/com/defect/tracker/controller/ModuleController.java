@@ -55,14 +55,13 @@ public class ModuleController {
 			}
 			Module module = mapper.map(moduleDto, Module.class);
 			moduleService.createModule(module);
-			return new ResponseEntity<Object>(Constants.MODULE_UPDATED_SUCCESS,HttpStatus.OK);
-			
-		}
-		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_EXISTS,
-						validationFailureStatusCodes.getModuleExistsById()),HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<Object>(Constants.MODULE_UPDATED_SUCCESS, HttpStatus.OK);
 
 		}
-	
+		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_EXISTS,
+				validationFailureStatusCodes.getModuleExistsById()), HttpStatus.BAD_REQUEST);
+
+	}
 
 	@GetMapping(value = EndpointURI.MODULE)
 	public ResponseEntity<Object> getAllModule() {
@@ -79,7 +78,7 @@ public class ModuleController {
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_NOT_EXISTS_BY_ID,
 				validationFailureStatusCodes.getModuleById()), HttpStatus.BAD_REQUEST);
 
-	} 
+	}
 
 	@DeleteMapping(value = EndpointURI.MODULE_BY_ID)
 	public ResponseEntity<Object> deleteModule(@PathVariable Long id) {
