@@ -61,7 +61,7 @@ public class DesignationController {
 
 		}
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DESIGNATION_EXISTS,
-				validationFailureStatusCodes.getExistsById()), HttpStatus.BAD_REQUEST);
+				validationFailureStatusCodes.getDesignationExistsById()), HttpStatus.BAD_REQUEST);
 	}
 
 	@GetMapping(value = EndpointURI.DESIGNATION)
@@ -76,7 +76,7 @@ public class DesignationController {
 		if (designationService.existsById(id)) {
 			return new ResponseEntity<Object>(designationService.getDesignationById(id), HttpStatus.OK);
 		}
-		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DESIGNATION_NOT_EXISTS,
+		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DESIGNATION_NOT_EXISTS_BY_ID,
 				validationFailureStatusCodes.getDesignationById()), HttpStatus.BAD_REQUEST);
 
 	}
@@ -85,9 +85,8 @@ public class DesignationController {
 	public ResponseEntity<Object> deleteDesignation(@PathVariable Long id) {
 		if (!designationService.existsById(id)) {
 			return new ResponseEntity<>(
-					new ValidationFailureResponse(ValidationConstance.DESIGNATION_DELETE_EXISTS_BY_ID,
-							validationFailureStatusCodes.getExistsById()),
-					HttpStatus.BAD_REQUEST);
+					new ValidationFailureResponse(ValidationConstance.DESIGNATION_NOT_EXISTS_BY_ID,
+							validationFailureStatusCodes.getDesignationExistsById()),HttpStatus.BAD_REQUEST);
 		}
 		designationService.deleteById(id);
 		return new ResponseEntity<Object>(Constants.DESIGNATION_DELETED_SUCCESS, HttpStatus.OK);
