@@ -29,7 +29,7 @@ public class DefectServiceImpl implements DefectService {
 
 	@Override
 	public void deleteById(Long id) {
-		defectRepository.existsById(id);
+		defectRepository.deleteById(id);
 		
 	}
 
@@ -46,9 +46,9 @@ public class DefectServiceImpl implements DefectService {
 	}
 
 	@Override
-	public boolean getByIdDefect(Long id) {
+	public Object getByIdDefect(Long id) {
 		
-		return defectRepository.existsById(id);
+		return defectRepository.findById(id);
 	}
 
 	@Override

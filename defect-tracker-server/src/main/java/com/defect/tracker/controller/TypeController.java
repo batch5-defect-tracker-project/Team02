@@ -34,7 +34,7 @@ public class TypeController {
 	public ResponseEntity<Object> addType(@Valid @RequestBody TypeDto typeDto) {
 		if (typeService.isTypeNameAlreadyExist(typeDto.getName())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.TYPE_EXISTS,
-					validationFailureStatusCodes.getProNameAlreadyExists()), HttpStatus.BAD_REQUEST);
+					validationFailureStatusCodes.getTypeNameAlreadyExists()), HttpStatus.BAD_REQUEST);
 		}
 		Type type = mapper.map(typeDto, Type.class);
 		typeService.createType(type);
