@@ -17,6 +17,12 @@ public interface ProjectAllocationService {
 	public boolean existsById(Long id);
 
 	public void deleteById(Long id);
-
+	
+	public void updateProjectAllocation(ProjectAllocation projectAllocation);
+	
+	public boolean existsById(Long id);
+	
+	public void deleteById(Long id);
+	
 	public Object getProjectAllocationById(Long id);
 }
