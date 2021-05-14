@@ -85,7 +85,7 @@ public class ProjectController {
 
 		}
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_NOT_EXISTS_BY_ID,
-				validationFailureStatusCodes.getProjectById()), HttpStatus.BAD_REQUEST);
+				validationFailureStatusCodes.getProjectExistsById()), HttpStatus.BAD_REQUEST);
 	}
 
 }

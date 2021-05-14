@@ -1,18 +1,24 @@
 package com.defect.tracker.util;
 
+
+
 public class Constants {
+	//Type
+	public static final String TYPE_ADDED_SUCCESS = "Type added sucessfully";
 
-	// designation
+	//Defect
+	public static final String DEFECT_ADDED_SUCCESS = "Defect added sucessfully";
+	public static final String DEFECT_DELETED_SUCCESS = "Defect deleted sucessfully";
+	public static final String DEFECT_UPDATED_SUCCESS = "Defect updated sucessfully";
+	
+
+	// Designation
 	public static final String DESIGNATION_ADDED_SUCCESS = "Designation added successfully";
-
     public static final String DESIGNATION_UPDATED_SUCCESS = "Designation updated successfully";
-
 	public static final String DESIGNATION_DELETED_SUCCESS = "Designation deleted successfully";
 	// Project
 	public static final String PROJECT_UPDATED_SUCCESS = "Project Updated Successfully";
 	public static final String PROJECT_DELETED_SUCCESS = "Project Deleted Successfully";
-
-	// Project Allocation
 	public static final String PROJECT_ADDED_SUCCESS="Project Added Successfully";
 	//Project Allocation
 
@@ -36,22 +42,12 @@ public class Constants {
 	// SubModule
 	public static final String SUB_MODULE_ADDED_SUCCESS = "SubModule Added Successfully";
 	public static final String SUB_MODULE_UPDATED_SUCCESS = "SubModule Update Successfully";
-
-	// Designation
-	public static final String DESIGNATION_ADDED_SUCCESS = "Designation Added Successfully";
-
-	// login
+	
+  	// login
 	public static final String LOGIN_ADDED_SUCCESS = "Login Added Successfully";
-
-  public static final String MODULE_DELETED_SUCCESS = "Module deleted successfully";
-	
-	//SubModule
-	public static final String SUB_MODULE_ADDED_SUCCESS ="SubModule Added Successfully";
-	
-	public static final String SUB_MODULE_UPDATED_SUCCESS = "SubModule Update Successfully";
 
 	// encaptulate constructor to restrict modification from outside
 
 	private Constants() {
 	}
-}
+} 

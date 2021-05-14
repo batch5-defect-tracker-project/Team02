@@ -15,12 +15,10 @@ public class ValidationFailureStatusCodes {
 	// project
 	@Value("${validation.project.AlreadyExists}")
 	private String projectNameAlreadyExists;
-	@Value("${validation.project.existsById}")
+	@Value("${validation.project.ExistsById}")
 	private String existsByProjectId;
-	@Value("${validation.project.projectById}")
-	private String projectById;
 	@Value("${validation.project.projectExistsById}")
-	private String ProjectExistsById;
+	private String projectExistsById;
 
 	// login
 	@Value("${validation.login.exixtsByEmail}")
@@ -36,67 +34,35 @@ public class ValidationFailureStatusCodes {
 	@Value("${validation.projectAllocation.employeeIdAlreadyExists}")
 	private String EmployeeIdAlreadyExists;
 	@Value("${validation.projectAllocation.projectAllocationById}")
-	private String ProjectAllocationById;
-	@Value("${validation.projectAllocation.existsById}")
-	private String ExistsById;
-
-	// Designation
-	@Value("${validation.designation.designationNameAlreadyExists}")
-	private String designationNameAlreadyExists;
-
-	// Employee
-	@Value("${validation.employee.employeeEmailAlreadyExists}")
-	private String employeeEmailAlreadyExists;
-	@Value("${validation.employee.employeeExistsById}")
-	private String employeeExistsById;
+	private String projectAllocationById;
+	@Value("${validation.projectAllocation.ExistsById}")
+	private String projectAllocationExistsById;
 
 	// Gender
-	@Value("${validation.gender.genderAlreadyExists}")
-
-	@Value("${validation.project.ExistsById}")
-	private String projectExistsById;
-
-	@Value("${validation.project.projectById}")
-	private String projectById;
-
-    //Gender
 	@Value("${validation.gender.AlreadyExists}")
 	private String genderAlreadyExists;
-  
+
 	@Value("${validation.gender.genderExistsById}")
 	private String genderExistsById;
 
-	// module
-	@Value("${validation.module.moduleNameAlreadyExists}")
-	private String moduleNameAlreadyExists;
-	@Value("${validation.module.moduleExistsById}")
-	private String moduleExistsById;
-	@Value("${validation.module.moduleById}")
-	private String moduleById;
-
-	// subModule
-	@Value("${validation.subModule.subModuleAlreadyExists}")
-	private String subModuleAlreadyExists;
-	@Value("${validation.subModule.subModuleExistsById}")
-	private String subModuleExistsById;
-	//Module
+	// Module
 	@Value("${validation.module.AlreadyExists}")
-	private String moduleNameAlreadyExists;                       
+	private String moduleNameAlreadyExists;
 
 	@Value("${validation.module.ModuleById}")
 	private String moduleById;
 
 	@Value("${validation.module.ExistsById}")
 	private String moduleExistsById;
-	
-	//SubModule
+
+	// SubModule
 	@Value("${validation.subModule.AlreadyExists}")
 	private String subModuleAlreadyExists;
-	
+
 	@Value("${validation.subModule.ExistsById}")
 	private String subModuleExistsById;
-	
-	//Designation
+
+	// Designation
 	@Value("${validation.designation.AlreadyExists}")
 	private String designationNameAlreadyExists;
 
@@ -106,29 +72,30 @@ public class ValidationFailureStatusCodes {
 	@Value("${validation.designation.designationById}")
 	public String designationById;
 
-	//ProjectAllocation 
-	@Value("${validation.projectAllocation.EmployeeIdAlreadyExists}")
-	private String employeeIdAlreadyExists;
-
-	@Value("${validation.projectAllocation.ExistsById}")
-	private String existsById;
-
-	@Value("${validation.projectAllocation.ProjectAllocationById}")
-    private String ProjectAllocationById;
-	
-	//Employee
+	// Employee
 	@Value("${validation.employee.AlreadyExists}")
 	private String employeeEmailAlreadyExists;
 
-	@Value("${validation.employee.ExistsId}")
+	@Value("${validation.employee.ExistsById}")
 	private String employeeAlreadyExists;
 
 	@Value("${validation.employee.AlreadyExistsId}")
 	private String employeeExistsById;
-	
-	
-	//Getters Setters
+	// Type
+	@Value("${validation.type.AlreadyExists}")
+	private String typeNameAlreadyExists;
 
+	@Value("${validation.type.IdAlreadyExists}")
+	private String typeById;
+	// Defect
+	@Value("${validation.defect.AlreadyExists}")
+	private String defectIdAlreadyExists;
+
+	@Value("${validation.defect.moduleAlreadyExists}")
+	private String moduleIdAlreadyExists;
+
+	@Value("${validation.defect.ExistsDefectById}")
+	private String ExistsDefectById;
 
 	public String getProjectNameAlreadyExists() {
 		return projectNameAlreadyExists;
@@ -146,12 +113,12 @@ public class ValidationFailureStatusCodes {
 		this.existsByProjectId = existsByProjectId;
 	}
 
-	public String getProjectById() {
-		return projectById;
+	public String getProjectExistsById() {
+		return projectExistsById;
 	}
 
-	public void setProjectById(String projectById) {
-		this.projectById = projectById;
+	public void setProjectExistsById(String projectExistsById) {
+		this.projectExistsById = projectExistsById;
 	}
 
 	public String getExistsByEmail() {
@@ -187,43 +154,19 @@ public class ValidationFailureStatusCodes {
 	}
 
 	public String getProjectAllocationById() {
-		return ProjectAllocationById;
+		return projectAllocationById;
 	}
 
 	public void setProjectAllocationById(String projectAllocationById) {
-		ProjectAllocationById = projectAllocationById;
+		this.projectAllocationById = projectAllocationById;
 	}
 
-	public String getExistsById() {
-		return ExistsById;
+	public String getProjectAllocationExistsById() {
+		return projectAllocationExistsById;
 	}
 
-	public void setExistsById(String existsById) {
-		ExistsById = existsById;
-	}
-
-	public String getDesignationNameAlreadyExists() {
-		return designationNameAlreadyExists;
-	}
-
-	public void setDesignationNameAlreadyExists(String designationNameAlreadyExists) {
-		this.designationNameAlreadyExists = designationNameAlreadyExists;
-	}
-
-	public String getEmployeeEmailAlreadyExists() {
-		return employeeEmailAlreadyExists;
-	}
-
-	public void setEmployeeEmailAlreadyExists(String employeeEmailAlreadyExists) {
-		this.employeeEmailAlreadyExists = employeeEmailAlreadyExists;
-	}
-
-	public String getEmployeeExistsById() {
-		return employeeExistsById;
-	}
-
-	public void setEmployeeExistsById(String employeeExistsById) {
-		this.employeeExistsById = employeeExistsById;
+	public void setProjectAllocationExistsById(String projectAllocationExistsById) {
+		this.projectAllocationExistsById = projectAllocationExistsById;
 	}
 
 	public String getGenderAlreadyExists() {
@@ -250,14 +193,6 @@ public class ValidationFailureStatusCodes {
 		this.moduleNameAlreadyExists = moduleNameAlreadyExists;
 	}
 
-	public String getModuleExistsById() {
-		return moduleExistsById;
-	}
-
-	public void setModuleExistsById(String moduleExistsById) {
-		this.moduleExistsById = moduleExistsById;
-	}
-
 	public String getModuleById() {
 		return moduleById;
 	}
@@ -266,12 +201,12 @@ public class ValidationFailureStatusCodes {
 		this.moduleById = moduleById;
 	}
 
-	public String getProjectExistsById() {
-		return ProjectExistsById;
+	public String getModuleExistsById() {
+		return moduleExistsById;
 	}
 
-	public void setProjectExistsById(String projectExistsById) {
-		ProjectExistsById = projectExistsById;
+	public void setModuleExistsById(String moduleExistsById) {
+		this.moduleExistsById = moduleExistsById;
 	}
 
 	public String getSubModuleAlreadyExists() {
@@ -314,30 +249,6 @@ public class ValidationFailureStatusCodes {
 		this.designationById = designationById;
 	}
 
-	public String getEmployeeIdAlreadyExists() {
-		return employeeIdAlreadyExists;
-	}
-
-	public void setEmployeeIdAlreadyExists(String employeeIdAlreadyExists) {
-		this.employeeIdAlreadyExists = employeeIdAlreadyExists;
-	}
-
-	public String getExistsById() {
-		return existsById;
-	}
-
-	public void setExistsById(String existsById) {
-		this.existsById = existsById;
-	}
-
-	public String getProjectAllocationById() {
-		return ProjectAllocationById;
-	}
-
-	public void setProjectAllocationById(String projectAllocationById) {
-		ProjectAllocationById = projectAllocationById;
-	}
-
 	public String getEmployeeEmailAlreadyExists() {
 		return employeeEmailAlreadyExists;
 	}
@@ -361,8 +272,45 @@ public class ValidationFailureStatusCodes {
 	public void setEmployeeExistsById(String employeeExistsById) {
 		this.employeeExistsById = employeeExistsById;
 	}
-	
-	
-	
-	
+
+	public String getTypeNameAlreadyExists() {
+		return typeNameAlreadyExists;
+	}
+
+	public void setTypeNameAlreadyExists(String typeNameAlreadyExists) {
+		this.typeNameAlreadyExists = typeNameAlreadyExists;
+	}
+
+	public String getTypeById() {
+		return typeById;
+	}
+
+	public void setTypeById(String typeById) {
+		this.typeById = typeById;
+	}
+
+	public String getDefectIdAlreadyExists() {
+		return defectIdAlreadyExists;
+	}
+
+	public void setDefectIdAlreadyExists(String defectIdAlreadyExists) {
+		this.defectIdAlreadyExists = defectIdAlreadyExists;
+	}
+
+	public String getModuleIdAlreadyExists() {
+		return moduleIdAlreadyExists;
+	}
+
+	public void setModuleIdAlreadyExists(String moduleIdAlreadyExists) {
+		this.moduleIdAlreadyExists = moduleIdAlreadyExists;
+	}
+
+	public String getExistsDefectById() {
+		return ExistsDefectById;
+	}
+
+	public void setExistsDefectById(String existsDefectById) {
+		ExistsDefectById = existsDefectById;
+	}
+
 }
