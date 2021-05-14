@@ -7,8 +7,11 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -33,7 +36,7 @@ public class DefectController {
 
 	@PostMapping(value = EndpointURI.DEFECT)
 	public ResponseEntity<Object> addDefect(@Valid @RequestBody DefectDto defectDto) {
-		if (defectService.isDefectIdAlreadyExist(defectDto.getId())) {
+		if (defectService.isModuleIdAlreadyExist(defectDto.getModuleId())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_EXISTS,
 					validationFailureStatusCodes.getDefectIdAlreadyExists()), HttpStatus.BAD_REQUEST);
 		}
@@ -46,6 +49,42 @@ public class DefectController {
 	public ResponseEntity<Object> getAllDefect() {
 		List<DefectDto> defectList = mapper.map(defectService.getAllDefect(), DefectDto.class);
 		return new ResponseEntity<Object>(defectList, HttpStatus.OK);
+	}
+
+	@DeleteMapping(value = EndpointURI.DEFECT_BY_ID)
+	public ResponseEntity<Object> deleteDefect(@PathVariable Long id) {
+		if (defectService.existsByDefectId(id)) {
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.NOT_EXISTS_BY_ID,
+					validationFailureStatusCodes.getExistsDefectById()), HttpStatus.BAD_REQUEST);
+		}
+
+		defectService.deleteById(id);
+		return new ResponseEntity<Object>(Constants.DEFECT_DELETED_SUCCESS, HttpStatus.OK);
+	}
+
+	@GetMapping(value = EndpointURI.DEFECT_BY_ID)
+	public ResponseEntity<Object> getByIdDefect(@PathVariable Long id) {
+		if (defectService.existsById(id)) {
+			return new ResponseEntity<Object>(defectService.getByIdDefect(id), HttpStatus.OK);
+		}
+		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.NOT_EXISTS_BY_ID,
+				validationFailureStatusCodes.getExistsDefectById()), HttpStatus.BAD_REQUEST);
+	}
+
+	@PutMapping(value = EndpointURI.DEFECT)
+	public ResponseEntity<Object> updateDefect(@Valid @RequestBody DefectDto defectDto) {
+		if (defectService.existsById(defectDto.getId())) {
+			if (defectService.isModuleIdAlreadyExist(defectDto.getModuleId())) {
+				return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_EXISTS,
+						validationFailureStatusCodes.getModuleIdAlreadyExists()), HttpStatus.BAD_REQUEST);
+			}
+			Defect defect = mapper.map(defectDto, Defect.class);
+			defectService.createDefect(defect);
+			return new ResponseEntity<Object>(Constants.DEFECT_UPDATED_SUCCESS, HttpStatus.OK);
+		}
+		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_EXISTS_BY_ID,
+				validationFailureStatusCodes.getDefectIdAlreadyExists()), HttpStatus.BAD_REQUEST);
+
 	}
 
 }

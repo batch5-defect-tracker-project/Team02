@@ -29,7 +29,7 @@ public class TypeController {
 	ValidationFailureStatusCodes validationFailureStatusCodes;
 	@Autowired
 	private Mapper mapper;
-	
+
 	@PostMapping(value = EndpointURI.TYPE)
 	public ResponseEntity<Object> addType(@Valid @RequestBody TypeDto typeDto) {
 		if (typeService.isTypeNameAlreadyExist(typeDto.getName())) {
@@ -40,17 +40,14 @@ public class TypeController {
 		typeService.createType(type);
 		return new ResponseEntity<Object>(Constants.TYPE_ADDED_SUCCESS, HttpStatus.OK);
 	}
-	
+
 	@GetMapping(value = EndpointURI.TYPE_BY_ID)
 	public ResponseEntity<Object> findTypeById(@PathVariable Long id) {
 		if (typeService.existsById(id)) {
 			return new ResponseEntity<Object>(typeService.getTypeById(id), HttpStatus.OK);
 		}
-			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.TYPE_EXISTS_BY_ID,
-					validationFailureStatusCodes.getTypeById()), HttpStatus.BAD_REQUEST);
-		}
-	
-	
+		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.TYPE_EXISTS_BY_ID,
+				validationFailureStatusCodes.getTypeById()), HttpStatus.BAD_REQUEST);
+	}
 
-
-} 
+}

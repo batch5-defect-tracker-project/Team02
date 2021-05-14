@@ -6,10 +6,18 @@ import com.defect.tracker.data.entities.Defect;
 
 public interface DefectService {
 
-	boolean isDefectIdAlreadyExist(Long id);
-
 	void createDefect(Defect defect);
 
 	public List<Defect> getAllDefect();
+
+	void deleteById(Long id);
+
+	boolean existsByDefectId(Long id);
+
+	boolean existsById(Long id);
+
+	boolean getByIdDefect(Long id);
+
+	boolean isModuleIdAlreadyExist(Long moduleId);
 
 }

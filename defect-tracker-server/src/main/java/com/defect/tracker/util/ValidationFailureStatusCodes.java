@@ -21,12 +21,23 @@ public class ValidationFailureStatusCodes {
 
 	@Value("${validation.type.AlreadyExists}")
 	private String typeById;
-	
 
 	@Value("${validation.defect.AlreadyExists}")
 	private String defectIdAlreadyExists;
 	
+	@Value("${validation.defect.moduleAlreadyExists}")
+	private String moduleIdAlreadyExists;
 	
+	@Value("${validation.defect.ExistsDefectById}")
+	private String ExistsDefectById;
+
+	public String getModuleIdAlreadyExists() {
+		return moduleIdAlreadyExists;
+	}
+
+	public void setModuleIdAlreadyExists(String moduleIdAlreadyExists) {
+		this.moduleIdAlreadyExists = moduleIdAlreadyExists;
+	}
 
 	public void setProNameAlreadyExists(String proNameAlreadyExists) {
 		this.proNameAlreadyExists = proNameAlreadyExists;
@@ -55,11 +66,19 @@ public class ValidationFailureStatusCodes {
 	public String getDefectIdAlreadyExists() {
 
 		return defectIdAlreadyExists;
-		
+
 	}
 
 	public void setDefectIdAlreadyExists(String defectIdAlreadyExists) {
 		this.defectIdAlreadyExists = defectIdAlreadyExists;
 	}
 
-} 
+	public String getExistsDefectById() {
+		return ExistsDefectById;
+	}
+
+	public void setExistsDefectById(String existsDefectById) {
+		ExistsDefectById = existsDefectById;
+	}
+
+}
