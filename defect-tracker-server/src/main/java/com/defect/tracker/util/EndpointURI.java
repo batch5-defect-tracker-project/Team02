@@ -6,7 +6,7 @@ package com.defect.tracker.util;
 public final class EndpointURI {
 
 	private static final String BASE_API_PATH = "/api/v1/";
-	private static final String ID = "/{id}";
+    private static final String ID = "/{id}";
 	
 	// Project
 	public static final String PROJECT = BASE_API_PATH + "project";
@@ -14,8 +14,8 @@ public final class EndpointURI {
 
 
 	//Project Allocation
-	public static final String PROJECT_ALLOCATER = BASE_API_PATH + "projectAllocator";
-	public static final String PROJECT_ALLOCATOR_BY_ID =  BASE_API_PATH + "projectAllocator"+ID;
+	public static final String PROJECT_ALLOCATION = BASE_API_PATH + "projectAllocation";
+	public static final String PROJECT_ALLOCATION_BY_ID =  BASE_API_PATH + "projectAllocation"+ID;
 
 	//Employee
 	public static final String EMPLOYEE = BASE_API_PATH + "employee";
@@ -27,13 +27,16 @@ public final class EndpointURI {
 	
 	//Designation
 	public static final String DESIGNATION = BASE_API_PATH +"designation";
-	
+	public static final String DESIGNATION_BY_ID = BASE_API_PATH + "designation" + ID;
+
 	//Module
 	public static final String MODULE = BASE_API_PATH + "module";
-	
+	public static final String MODULE_BY_ID = BASE_API_PATH + "module" + ID;
+
 	//SubModule
    	public static final String SUBMODULE = BASE_API_PATH +"subModule";
-    public static final String MODULE_BY_ID = BASE_API_PATH +"module" + ID;
+    public static final String SUBMODULE_BY_ID = BASE_API_PATH +"subModule" + ID;
+
 
 	private EndpointURI() {
 

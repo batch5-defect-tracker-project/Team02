@@ -3,13 +3,13 @@ package com.defect.tracker.data.dto;
 
 	import javax.validation.constraints.NotNull;
 
-	public class ProjectAllocatorDto {
+	public class ProjectAllocationDto {
 		private Long id;
-		@NotNull(message = "{projectAllocatorDto.projectId.null}")
+		@NotNull(message = "{projectAllocatationDto.projectId.null}")
 		private Long projectId;
-		@NotNull(message = "{projectAllocatorDto.EmployeeId.null}")
+		@NotNull(message = "{projectAllocationDto.EmployeeId.null}")
 		private Long employeeId;
-		@NotNull(message = "{projectAllocatorDto.ModuleId.null}")
+		@NotNull(message = "{projectAllocationDto.ModuleId.null}")
 		private Long moduleId;
 		private Long subModuleId;
 		public Long getProjectId() {

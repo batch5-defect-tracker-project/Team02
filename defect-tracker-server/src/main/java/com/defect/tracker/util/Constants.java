@@ -2,16 +2,22 @@ package com.defect.tracker.util;
 
 public class Constants {
 
-	// Project
-	public static final String PROJECT_ADDED_SUCCESS = "Project Added Successfully ";
-	public static final String PROJECT_UPDATED_SUCCESS = "Project Updated Successfully";
-	
-	//Project Allocation
-	public static final String PROJECT_ALLOCATOR_ADDED_SUCCESS = "ProjectAllocator added successfully ";
-	public static final String PROJECT_ALLOCATOR_DELETED_SUCCESS = "ProjectAllocator Deleted Succesfully";
-	public static final String PROJECT_ALLOCATOR_UPDATED_SUCCESS = "ProjectAllocator updated successfully ";
+	// designation
+	public static final String DESIGNATION_ADDED_SUCCESS = "Designation added successfully";
 
-	public static final String DELETED_SUCCESS = "Project Deleted Successfully";
+    public static final String DESIGNATION_UPDATED_SUCCESS = "Designation updated successfully";
+
+	public static final String DESIGNATION_DELETED_SUCCESS = "Designation deleted successfully";
+	// Project
+	public static final String PROJECT_UPDATED_SUCCESS = "Project Updated Successfully";
+	public static final String PROJECT_DELETED_SUCCESS = "Project Deleted Successfully";
+	public static final String PROJECT_ADDED_SUCCESS="Project Added Successfully";
+	//Project Allocation
+	public static final String PROJECT_ALLOCATION_ADDED_SUCCESS = "ProjectAllocation added successfully ";
+	public static final String PROJECT_ALLOCATION_DELETED_SUCCESS = "ProjectAllocation Deleted Succesfully";
+	public static final String PROJECT_ALLOCATION_UPDATED_SUCCESS = "ProjectAllocation updated successfully ";
+
+	
 	
 	
 	//Employee
@@ -30,7 +36,8 @@ public class Constants {
 	public static final String MODULE_ADDED_SUCCESS = "Module Added Successfully";
 
 	public static final String MODULE_UPDATED_SUCCESS = "Module Updated Successfully";
-	
+
+	public static final String MODULE_DELETED_SUCCESS = "Module deleted successfully";
 	
 	//SubModule
 	public static final String SUB_MODULE_ADDED_SUCCESS ="SubModule Added Successfully";
@@ -38,10 +45,7 @@ public class Constants {
 	public static final String SUB_MODULE_UPDATED_SUCCESS = "SubModule Update Successfully";
 
 	
-	//Designation
-	public static final String DESIGNATION_ADDED_SUCCESS = "Designation Added Successfully";
 	
-	public static final String MODULE_DELETED_SUCCESS = "Module Deleted Successfully";
 	
 	
 	// encaptulate constructor to restrict modification from outside
