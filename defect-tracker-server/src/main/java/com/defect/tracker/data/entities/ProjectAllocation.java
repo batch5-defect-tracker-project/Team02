@@ -7,11 +7,11 @@ package com.defect.tracker.data.entities;
 	import javax.persistence.Table;
 
 	@Entity
-	@Table(name = "projectallocator")
-	public class ProjectAllocator {
+	@Table(name = "projectAllocation")
+	public class ProjectAllocation {
 		
 			@Id
-			@GeneratedValue(strategy = GenerationType.AUTO)
+			@GeneratedValue(strategy = GenerationType.IDENTITY)
 			private Long id;
 			private Long projectId;
 			private Long employeeId;
