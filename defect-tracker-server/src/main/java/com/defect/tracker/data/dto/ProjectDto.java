@@ -6,12 +6,13 @@ import javax.validation.constraints.NotNull;
 
 public class ProjectDto {
 	private Long id;
+
 	@NotNull(message = "{projectDto.projectName.null}")
 	@NotEmpty(message = "{projectDto.projectName.empty}")
 	@NotBlank(message = "{projectDto.projectName.blank}")
 	private String name;
-	
-	@NotNull(message = "{projectDto.abbrevation.null}")
+
+	@NotNull(message = "{projectDto.projectAbbrevation.null}")
 	private String abbrevation;
 
 	public Long getId() {

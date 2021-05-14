@@ -4,13 +4,13 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-public class ModuleDto {
+public class SubModuleDto {
 	private Long id;
-	@NotNull(message = "{moduleDto.moduleName.null}")
-	@NotEmpty(message = "{moduleDto.moduleName.empty}")
-	@NotBlank(message = "{moduleDto.moduleName.blank}")
+	@NotNull(message = "{subModuleDto.subModuleName.null}")
+	@NotEmpty(message = "{subModuleDto.subModuleName.empty}")
+	@NotBlank(message = "{subModuleDto.subModuleName.blank}")
 	private String name;
-	private Long projectId;
+	private Long moduleId;
 
 	public Long getId() {
 		return id;
@@ -28,12 +28,12 @@ public class ModuleDto {
 		this.name = name;
 	}
 
-	public Long getProjectId() {
-		return projectId;
+	public Long getModuleId() {
+		return moduleId;
 	}
 
-	public void setProjectId(Long projectId) {
-		this.projectId = projectId;
+	public void setModuleId(Long moduleId) {
+		this.moduleId = moduleId;
 	}
 
 }

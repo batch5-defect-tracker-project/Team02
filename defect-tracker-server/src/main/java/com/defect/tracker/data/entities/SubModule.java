@@ -7,12 +7,13 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "gender")
-public class Gender {
+@Table(name = "subModule")
+public class SubModule {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private String name;
+	private Long moduleId;
 
 	public Long getId() {
 		return id;
@@ -28,6 +29,14 @@ public class Gender {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public Long getModuleId() {
+		return moduleId;
+	}
+
+	public void setModuleId(Long moduleId) {
+		this.moduleId = moduleId;
 	}
 
 }

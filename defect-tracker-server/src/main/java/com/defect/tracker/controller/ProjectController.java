@@ -7,16 +7,13 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.defect.tracker.data.dto.ProjectDto;
 import com.defect.tracker.data.entities.Project;
 import com.defect.tracker.data.mapper.Mapper;
@@ -67,18 +64,18 @@ public class ProjectController {
 		}
 
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_EXISTS,
-				validationFailureStatusCodes.getExistsByProjectId()), HttpStatus.BAD_REQUEST);
+				validationFailureStatusCodes.getProjectExistsById()), HttpStatus.BAD_REQUEST);
 	}
 
 	@DeleteMapping(value = EndpointURI.PROJECT_BY_ID)
 	public ResponseEntity<Object> deleteProject(@PathVariable Long id) {
 		if (!projectService.existsById(id)) {
-			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_DELETE_EXISTS_BY_ID,
-					validationFailureStatusCodes.getExistsByProjectId()), HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_NOT_EXISTS_BY_ID,
+					validationFailureStatusCodes.getProjectExistsById()), HttpStatus.BAD_REQUEST);
 		}
 
 		projectService.deleteById(id);
-		return new ResponseEntity<Object>(Constants.DELETED_SUCCESS, HttpStatus.OK);
+		return new ResponseEntity<Object>(Constants.PROJECT_DELETED_SUCCESS, HttpStatus.OK);
 	}
 
 	@GetMapping(value = EndpointURI.PROJECT_BY_ID)

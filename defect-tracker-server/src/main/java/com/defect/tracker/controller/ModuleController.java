@@ -1,10 +1,15 @@
 package com.defect.tracker.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -47,7 +52,6 @@ public class ModuleController {
 			if (moduleService.isModuleNameAlreadyExist(moduleDto.getName())) {
 				return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_EXISTS,
 						validationFailureStatusCodes.getModuleNameAlreadyExists()), HttpStatus.BAD_REQUEST);
-
 			}
 			Module module = mapper.map(moduleDto, Module.class);
 			moduleService.createModule(module);
@@ -55,8 +59,35 @@ public class ModuleController {
 
 		}
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_EXISTS,
-				validationFailureStatusCodes.getExistsByModuleId()), HttpStatus.BAD_REQUEST);
+				validationFailureStatusCodes.getModuleExistsById()), HttpStatus.BAD_REQUEST);
 
+	}
+
+	@GetMapping(value = EndpointURI.MODULE)
+	public ResponseEntity<Object> getAllModule() {
+		List<ModuleDto> moduleList = mapper.map(moduleService.getAllModule(), ModuleDto.class);
+		return new ResponseEntity<Object>(moduleList, HttpStatus.OK);
+
+	}
+
+	@GetMapping(value = EndpointURI.MODULE_BY_ID)
+	public ResponseEntity<Object> findModuleById(@PathVariable Long id) {
+		if (moduleService.existsById(id)) {
+			return new ResponseEntity<Object>(moduleService.getModuleById(id), HttpStatus.OK);
+		}
+		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_NOT_EXISTS_BY_ID,
+				validationFailureStatusCodes.getModuleById()), HttpStatus.BAD_REQUEST);
+
+	}
+
+	@DeleteMapping(value = EndpointURI.MODULE_BY_ID)
+	public ResponseEntity<Object> deleteModule(@PathVariable Long id) {
+		if (!moduleService.existsById(id)) {
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_NOT_EXISTS_BY_ID,
+					validationFailureStatusCodes.getModuleExistsById()), HttpStatus.BAD_REQUEST);
+		}
+		moduleService.deleteById(id);
+		return new ResponseEntity<Object>(Constants.MODULE_DELETED_SUCCESS, HttpStatus.OK);
 	}
 
 }
