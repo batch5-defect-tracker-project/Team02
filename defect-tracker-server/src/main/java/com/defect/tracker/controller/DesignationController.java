@@ -84,9 +84,10 @@ public class DesignationController {
 	@DeleteMapping(value = EndpointURI.DESIGNATION_BY_ID)
 	public ResponseEntity<Object> deleteDesignation(@PathVariable Long id) {
 		if (!designationService.existsById(id)) {
-			return new ResponseEntity<>(
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DESIGNATION_NOT_EXISTS_BY_ID,
 					new ValidationFailureResponse(ValidationConstance.DESIGNATION_NOT_EXISTS_BY_ID,
-							validationFailureStatusCodes.getDesignationExistsById()),HttpStatus.BAD_REQUEST);
+					validationFailureStatusCodes.getDesignationExistsById()), HttpStatus.BAD_REQUEST);
+					
 		}
 		designationService.deleteById(id);
 		return new ResponseEntity<Object>(Constants.DESIGNATION_DELETED_SUCCESS, HttpStatus.OK);

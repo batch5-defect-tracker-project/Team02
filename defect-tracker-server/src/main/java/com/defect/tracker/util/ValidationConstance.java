@@ -4,17 +4,17 @@ public class ValidationConstance {
 
 	// Project
 	public static final String PROJECT_EXISTS = "Project  Already Exists";
-
+	public static final String PROJECT_DELETE_EXISTS_BY_ID = "Project Id Not Exists";
 	public static final String PROJECT_NOT_EXISTS_BY_ID = "Project Id Not Exists";
 
-	//Project Allocation
-	public static final String PROJECT_ALLOCATOR_EXISTS = "ProjectAllocator  Already Exists";
-	public static final String PROJECT_ALLOCATOR_NOT_EXISTS_BY_ID = "ProjectAllocator Not Exists";
-	
-	
-	//Employee
+	// Project Allocation
+	public static final String PROJECT_ALLOCATION_EXISTS = "ProjectAllocation  Already Exists";
+	public static final String PROJECT_ALLOCATION_NOT_EXISTS_BY_ID = "ProjectAllocation Id Not Exists";
 
-	public static final String PROJECT_NOT_EXISTS_BY_ID = "Project  Already Exists";
+	// Severity
+	public static final String SEVERITY_EXISTS = "Severity  Already Exists";
+	public static final String SEVERITY_NOT_EXISTS_BY_ID = "Severity Id Not Exists";
+	public static final String PROJECT_NOT_EXISTS_BY_ID = "Project Id Not Exists";
 
 	// Type
 	public static final String TYPE_EXISTS = "Type Already Exists";
@@ -29,20 +29,22 @@ public class ValidationConstance {
 	public static final String LOGIN_EXISTS = "Login  Already Exists";
 
 	// priority
-	public static final String PRIORITY_EXISTS = "Priority Already Exists";
-	public static final String PRIORITY_NOT_EXISTS_BY_ID = "Priority is not Exists";
+
+	public static final String PRIORITY_EXISTS = "Priority  Already Exists";
+	public static final String PRIORITY_NOT_EXISTS_BY_ID = "Priority Id Not Exists";
+
+	// Employee
+	public static final String EMPLOYEE_ID_EXISTS = "EmployeeId  Already Exists";
 
 	// Project Allocation
 	public static final String PROJECT_ALLOCATION_EXISTS = "ProjectAllocation  Already Exists";
 	public static final String PROJECT_ALLOCATION_NOT_EXISTS_BY_ID = "ProjectAllocation Not Exists";
 
 	// Employee
-
 	public static final String EMPLOYEE_EXISTS = "Employee Already Exists";
 	public static final String EMPLOYEE_ID_EXISTS = "EmployeeId  Already Exists";
 	public static final String EMPLOYEE_EXISTS_BY_ID = "Employee Id Already Exists";
 	public static final String EMPLOYEE_NOT_EXISTS_BY_ID = "Employee Id Not Exists";
-	public static final String EMPLOYEE_ID_EXISTS = "EmployeeId  Already Exists";
 
 	// Gender
 	public static final String GENDER_EXISTS = "Gender Already Exists";
@@ -62,5 +64,4 @@ public class ValidationConstance {
 
 	private ValidationConstance() {
 	}
-
 }

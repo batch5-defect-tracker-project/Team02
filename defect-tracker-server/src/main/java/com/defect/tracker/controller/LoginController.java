@@ -40,5 +40,4 @@ public class LoginController {
 				"Conformation");
 		return new ResponseEntity<Object>(Constants.LOGIN_ADDED_SUCCESS, HttpStatus.OK);
 	}
-
 }

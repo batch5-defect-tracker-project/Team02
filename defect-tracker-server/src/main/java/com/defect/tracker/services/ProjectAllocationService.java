@@ -19,4 +19,5 @@ public interface ProjectAllocationService {
 	public void deleteById(Long id);
 
 	public Object getProjectAllocationById(Long id);
+
 }

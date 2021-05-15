@@ -41,6 +41,7 @@ public class ProjectAllocationController {
 					new ValidationFailureResponse(ValidationConstance.PROJECT_ALLOCATION_EXISTS,
 							validationFailureStatusCodes.getEmployeeIdAlreadyExists()),
 					(HttpStatus) HttpStatus.BAD_REQUEST);
+
 		}
 		ProjectAllocation projectAllocation = mapper.map(projectAllocationDto, ProjectAllocation.class);
 		projectAllocationService.createProjectAllocation(projectAllocation);
@@ -64,6 +65,7 @@ public class ProjectAllocationController {
 								validationFailureStatusCodes.getEmployeeIdAlreadyExists()),
 						(HttpStatus) HttpStatus.BAD_REQUEST);
 			}
+
 			ProjectAllocation projectAllocation = mapper.map(projectAllocationDto, ProjectAllocation.class);
 			projectAllocationService.createProjectAllocation(projectAllocation);
 			return new ResponseEntity<Object>(Constants.PROJECT_ALLOCATION_UPDATED_SUCCESS, HttpStatus.OK);
@@ -93,6 +95,9 @@ public class ProjectAllocationController {
 		}
 		return new ResponseEntity<>(
 				new ValidationFailureResponse(ValidationConstance.PROJECT_ALLOCATION_NOT_EXISTS_BY_ID,
+
+						validationFailureStatusCodes.getProjectAllocationById()),
+
 						validationFailureStatusCodes.getProjectAllocationExistsById()),
 				HttpStatus.BAD_REQUEST);
 

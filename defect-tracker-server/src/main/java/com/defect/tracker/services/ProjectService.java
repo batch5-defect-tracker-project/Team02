@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.defect.tracker.data.entities.Project;
 
-public interface ProjectService {
+	public interface ProjectService {
 
 	public boolean isProjectNameAlreadyExist(String projectName);
 

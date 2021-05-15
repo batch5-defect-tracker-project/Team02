@@ -26,6 +26,7 @@ import com.defect.tracker.util.ValidationFailureStatusCodes;
 
 @RestController
 public class ProjectController {
+
 	@Autowired
 	ProjectService projectService;
 	@Autowired
