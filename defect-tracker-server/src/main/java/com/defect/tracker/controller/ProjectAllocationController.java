@@ -72,15 +72,16 @@ public class ProjectAllocationController {
 		}
 
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_ALLOCATION_EXISTS,
-				validationFailureStatusCodes.getExistsById()), HttpStatus.BAD_REQUEST);
+				validationFailureStatusCodes.getProjectAllocationExistsById()), HttpStatus.BAD_REQUEST);
 	}
 
 	@DeleteMapping(value = EndpointURI.PROJECT_ALLOCATION_BY_ID)
+
 	public ResponseEntity<Object> deleteProjectAllocation(@PathVariable Long id) {
 		if (!projectAllocationService.existsById(id)) {
 			return new ResponseEntity<>(
 					new ValidationFailureResponse(ValidationConstance.PROJECT_ALLOCATION_NOT_EXISTS_BY_ID,
-							validationFailureStatusCodes.getExistsById()),
+							validationFailureStatusCodes.getProjectAllocationExistsById()),
 					HttpStatus.BAD_REQUEST);
 		}
 		projectAllocationService.deleteById(id);
@@ -92,10 +93,12 @@ public class ProjectAllocationController {
 		if (projectAllocationService.existsById(id)) {
 			return new ResponseEntity<Object>(projectAllocationService.getProjectAllocationById(id), HttpStatus.OK);
 		}
-
 		return new ResponseEntity<>(
 				new ValidationFailureResponse(ValidationConstance.PROJECT_ALLOCATION_NOT_EXISTS_BY_ID,
+
 						validationFailureStatusCodes.getProjectAllocationById()),
+
+						validationFailureStatusCodes.getProjectAllocationExistsById()),
 				HttpStatus.BAD_REQUEST);
 
 	}

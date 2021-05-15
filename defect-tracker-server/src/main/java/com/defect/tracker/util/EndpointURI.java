@@ -12,9 +12,23 @@ public final class EndpointURI {
 	public static final String SEVERITY_BY_ID = BASE_API_PATH + "severity" + ID;
 	public static final String SEVERITY = BASE_API_PATH + "severity";
 
+	// Type
+	public static final String TYPE = BASE_API_PATH + "type";
+	public static final String TYPE_BY_ID = BASE_API_PATH + "type" + ID;
+
+	// Defect
+	public static final String DEFECT = BASE_API_PATH + "defect";
+	public static final String DEFECT_BY_ID = BASE_API_PATH + "defect" + ID;
+
+
 	// Project
 	public static final String PROJECT = BASE_API_PATH + "project";
 	public static final String PROJECT_BY_ID = BASE_API_PATH + "project" + ID;
+
+	// Project Allocation
+	public static final String PROJECT_ALLOCATION = BASE_API_PATH + "projectAllocation";
+	public static final String PROJECT_ALLOCATION_BY_ID = BASE_API_PATH + "projectAllocation" + ID;
+
 
 	// Employee
 	public static final String EMPLOYEE = BASE_API_PATH + "employee";
@@ -31,6 +45,7 @@ public final class EndpointURI {
 	// Designation
 	public static final String DESIGNATION = BASE_API_PATH + "designation";
 	public static final String DESIGNATION_BY_ID = BASE_API_PATH + "designation" + ID;
+
 
 	// Module
 	public static final String MODULE = BASE_API_PATH + "module";

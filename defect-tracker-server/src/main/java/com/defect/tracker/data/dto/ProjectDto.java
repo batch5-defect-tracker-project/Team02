@@ -38,4 +38,4 @@ public class ProjectDto {
 	public void setAbbrevation(String abbrevation) {
 		this.abbrevation = abbrevation;
 	}
-}
+} 

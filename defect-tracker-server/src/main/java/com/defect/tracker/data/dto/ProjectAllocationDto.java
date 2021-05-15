@@ -4,7 +4,7 @@ import javax.validation.constraints.NotNull;
 
 public class ProjectAllocationDto {
 	private Long id;
-	@NotNull(message = "{projectAllocationDto.projectId.null}")
+	@NotNull(message = "{projectAllocatationDto.projectId.null}")
 	private Long projectId;
 	@NotNull(message = "{projectAllocationDto.EmployeeId.null}")
 	private Long employeeId;
@@ -51,4 +51,5 @@ public class ProjectAllocationDto {
 	public void setId(Long id) {
 		this.id = id;
 	}
+
 }
