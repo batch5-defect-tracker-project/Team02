@@ -55,11 +55,11 @@ public class ModuleController {
 			}
 			Module module = mapper.map(moduleDto, Module.class);
 			moduleService.createModule(module);
-			return new ResponseEntity<Object>(Constants.MODULE_UPDATED_SUCCESS, HttpStatus.OK);
-
+			return new ResponseEntity<Object>(Constants.M0DULE_UPDATED_SUCCESS,HttpStatus.OK);
+			
 		}
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_EXISTS,
-				validationFailureStatusCodes.getModuleExistsById()), HttpStatus.BAD_REQUEST);
+						validationFailureStatusCodes.getModuleExistsById()),HttpStatus.BAD_REQUEST);
 
 	}
 

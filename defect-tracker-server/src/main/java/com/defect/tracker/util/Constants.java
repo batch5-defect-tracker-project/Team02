@@ -1,8 +1,10 @@
 package com.defect.tracker.util;
 
+	//subModule
+	public static final String SUBMODULE_ADDED_SUCCESS = "SubModule Added Successfully";
+	public static final String SUBMODULE_UPDATED_SUCCESS = "SubModule Update Successfully";
+	public static final String SUBMODULE_DELETED_SUCCESS = "SubModule Deleted Successfully";
 
-
-public class Constants {
 	//Type
 	public static final String TYPE_ADDED_SUCCESS = "Type Added Sucessfully";
 	public static final String SEVERITY_ADDED_SUCCESS = "Severity Added Successfully ";
@@ -43,16 +45,13 @@ public class Constants {
 	public static final String MODULE_UPDATED_SUCCESS = "Module Updated Successfully";
  	public static final String MODULE_DELETED_SUCCESS = "Module Deleted Successfully";
 
-	// SubModule
-	public static final String SUB_MODULE_ADDED_SUCCESS = "SubModule Added Successfully";
-	public static final String SUB_MODULE_UPDATED_SUCCESS = "SubModule Update Successfully";
-
-
+	
 	// login
 	public static final String LOGIN_ADDED_SUCCESS = "Login Added Successfully";
 
 
 	// Encaptulate constructor to restrict modification from outside
+
 
 	private Constants() {
 	}

@@ -20,7 +20,6 @@ public final class EndpointURI {
 	public static final String DEFECT = BASE_API_PATH + "defect";
 	public static final String DEFECT_BY_ID = BASE_API_PATH + "defect" + ID;
 
-
 	// Project
 	public static final String PROJECT = BASE_API_PATH + "project";
 	public static final String PROJECT_BY_ID = BASE_API_PATH + "project" + ID;
@@ -61,6 +60,7 @@ public final class EndpointURI {
 	// priority
 	public static final String PRIORITY = BASE_API_PATH + "priority";
 	public static final String PRIORITY_BY_ID = BASE_API_PATH + "priority" + ID;
+
 
 	private EndpointURI() {
 

@@ -65,9 +65,10 @@ public class EmployeeController {
 			return new ResponseEntity<Object>(Constants.EMPLOYEE_UPDATED_SUCCESS, HttpStatus.OK);
 		}
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_EXISTS_BY_ID,
-				validationFailureStatusCodes.getEmployeeExistsById()), HttpStatus.BAD_REQUEST);
 
-	}
+				validationFailureStatusCodes.getEmployeeExistsById()), HttpStatus.BAD_REQUEST);	
+
+  }
 
 	@DeleteMapping(value = EndpointURI.EMPLOYEE_BY_ID)
 	public ResponseEntity<Object> deleteEmployee(@PathVariable Long id) {
