@@ -4,16 +4,16 @@ public class ValidationConstance {
 
 	//Project
 	public static final String PROJECT_EXISTS = "Project  Already Exists";
-	public static final String PROJECT_DELETE_EXISTS_BY_ID = "Project  is not Exists";
-	public static final String PROJECT_NOT_EXISTS_BY_ID = "Project  is not Exists";
+	public static final String PROJECT_NOT_EXISTS_BY_ID = "Project Id Not Exists";
 
 	//Project Allocation
 	public static final String PROJECT_ALLOCATOR_EXISTS = "ProjectAllocator  Already Exists";
 	public static final String PROJECT_ALLOCATOR_NOT_EXISTS_BY_ID = "ProjectAllocator Not Exists";
-	public static final String EMPLOYEE_ID_EXISTS = "EmployeeId  Already Exists";
+	
 	
 	//Employee
 	public static final String EMPLOYEE_EXISTS = "Employee Already Exists";
+	public static final String EMPLOYEE_ID_EXISTS = "EmployeeId  Already Exists";
 	public static final String EMPLOYEE_EXISTS_BY_ID = "Employee Id Already Exists";
 	public static final String EMPLOYEE_NOT_EXISTS_BY_ID = "Employee Id Not Exists";
 	

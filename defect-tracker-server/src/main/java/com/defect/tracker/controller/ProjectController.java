@@ -75,7 +75,7 @@ public class ProjectController {
 		}
 
 		projectService.deleteById(id);
-		return new ResponseEntity<Object>(Constants.DELETED_SUCCESS, HttpStatus.OK);
+		return new ResponseEntity<Object>(Constants.PROJECT_DELETED_SUCCESS, HttpStatus.OK);
 	}
 
 	@GetMapping(value = EndpointURI.PROJECT_BY_ID)
