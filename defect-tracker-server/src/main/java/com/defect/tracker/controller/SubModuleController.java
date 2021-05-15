@@ -38,11 +38,18 @@ public class SubModuleController {
 	public ResponseEntity<Object> addSubModule(@Valid @RequestBody SubModuleDto subModuleDto) {
 		if (subModuleService.isSubModuleNameAlreadyExist(subModuleDto.getName())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SUBMODULE_EXISTS,
+
 					validationFailureStatusCodes.getSubModuleNameAlreadyExists()), HttpStatus.BAD_REQUEST);
 		}
 		SubModule subModule = mapper.map(subModuleDto, SubModule.class);
 		subModuleService.createSubModule(subModule);
 		return new ResponseEntity<Object>(Constants.SUBMODULE_ADDED_SUCCESS, HttpStatus.OK);
+
+					validationFailureStatusCodes.getSubModuleAlreadyExists()), HttpStatus.BAD_REQUEST);
+		}
+		SubModule subModule = mapper.map(subModuleDto, SubModule.class);
+		subModuleService.createSubModule(subModule);
+		return new ResponseEntity<Object>(Constants.SUB_MODULE_ADDED_SUCCESS, HttpStatus.OK);
 
 	}
 
@@ -52,11 +59,12 @@ public class SubModuleController {
 			if (subModuleService.isSubModuleNameAlreadyExist(subModuleDto.getName())) {
 				return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SUBMODULE_EXISTS,
 						validationFailureStatusCodes.getSubModuleNameAlreadyExists()), HttpStatus.BAD_REQUEST);
+						validationFailureStatusCodes.getSubModuleAlreadyExists()), HttpStatus.BAD_REQUEST);
 
 			}
 			SubModule subModule = mapper.map(subModuleDto, SubModule.class);
 			subModuleService.createSubModule(subModule);
-			return new ResponseEntity<Object>(Constants.M0DULE_UPDATED_SUCCESS, HttpStatus.OK);
+			return new ResponseEntity<Object>(Constants.SUB_MODULE_UPDATED_SUCCESS, HttpStatus.OK);
 
 		}
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SUBMODULE_EXISTS,
@@ -88,6 +96,6 @@ public class SubModuleController {
 		}
 		subModuleService.deleteById(id);
 		return new ResponseEntity<Object>(Constants.SUBMODULE_DELETED_SUCCESS, HttpStatus.OK);
-	}
+  }
 
 }

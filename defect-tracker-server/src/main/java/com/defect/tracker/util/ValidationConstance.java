@@ -20,12 +20,46 @@ public class ValidationConstance {
     public static final String GENDER_EXISTS = "Gender Already Exists";
     public static final String GENDER_NOT_EXISTS_BY_ID = "Gender Id Not Exists";
 
-    //Module
-    public static final String MODULE_EXISTS = "Module Already Exists";
-    public static final String MODULE_NOT_EXISTS_BY_ID = "Module Id Not Exists";
+	// Project Allocation
+	public static final String PROJECT_ALLOCATION_EXISTS = "ProjectAllocation  Already Exists";
+	public static final String PROJECT_ALLOCATION_NOT_EXISTS_BY_ID = "ProjectAllocation Id Not Exists";
 
+	// Severity
+	public static final String SEVERITY_EXISTS = "Severity  Already Exists";
+	public static final String SEVERITY_NOT_EXISTS_BY_ID = "Severity Id Not Exists";
+	public static final String PROJECT_NOT_EXISTS_BY_ID = "Project Id Not Exists";
+
+	// Type
+	public static final String TYPE_EXISTS = "Type Already Exists";
+	public static final String TYPE_EXISTS_BY_ID = "Type is not Exists";
+
+	// Defect
+	public static final String DEFECT_EXISTS = "Defect  Already Exists";
+	public static final String DEFECT_NOT_EXISTS_BY_ID = "Defect Id Not Exists";
+	public static final String DEFECT_EXISTS_BY_ID = "Defect Id Already Exists";
+
+	// login
+	public static final String LOGIN_EXISTS = "Login  Already Exists";
+
+	// priority
+
+	public static final String PRIORITY_EXISTS = "Priority  Already Exists";
+	public static final String PRIORITY_NOT_EXISTS_BY_ID = "Priority Id Not Exists";
+
+
+	// Project Allocation
+	public static final String PROJECT_ALLOCATION_EXISTS = "ProjectAllocation  Already Exists";
+	public static final String PROJECT_ALLOCATION_NOT_EXISTS_BY_ID = "ProjectAllocation Not Exists";
+
+	// Module
+	public static final String MODULE_EXISTS = "Module Already Exists";
+	public static final String MODULE_NOT_EXISTS_BY_ID = "Module Id Not Exists";
+	public static final String MODULE_NOT_EXISTS = "Module Not Exists";
+
+	// Designation
+	public static final String DESIGNATION_EXISTS = "Designation Already Exists";
+	public static final String DESIGNATION_NOT_EXISTS_BY_ID = "Designation Id Not Exists";
 
 	private ValidationConstance() {
 	}
-
 }

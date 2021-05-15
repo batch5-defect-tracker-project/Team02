@@ -8,15 +8,13 @@ import org.springframework.stereotype.Service;
 import com.defect.tracker.data.entities.Gender;
 import com.defect.tracker.data.repositories.GenderRepository;
 
-
-
 @Service
 public class GenderServiceImpl implements GenderService {
 	@Autowired
 	private GenderRepository genderRepository;
 
 	@Override
-	public boolean isGenderNameAlreadyExist(String genderName) {
+	public boolean isGenderAlreadyExist(String genderName) {
 		return genderRepository.existsByName(genderName);
 	}
 
@@ -29,12 +27,12 @@ public class GenderServiceImpl implements GenderService {
 	public List<Gender> getAllGender() {
 		return genderRepository.findAll();
 	}
-	
+
 	@Override
 	public boolean existsById(Long id) {
 		return genderRepository.existsById(id);
 	}
-	
+
 	@Override
 	public Object getByIdGender(Long id) {
 		return genderRepository.findById(id);
