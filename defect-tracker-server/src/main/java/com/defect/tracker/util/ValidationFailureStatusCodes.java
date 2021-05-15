@@ -15,9 +15,14 @@ public class ValidationFailureStatusCodes {
 	// project
 	@Value("${validation.project.AlreadyExists}")
 	private String projectNameAlreadyExists;
+
+	    
+	@Value("${validation.project.ExistsById}")
+
 	@Value("${validation.project.ExistsById}")
 	private String existsByProjectId;
 	@Value("${validation.project.projectExistsById}")
+
 	private String projectExistsById;
 
 	// login
@@ -30,6 +35,12 @@ public class ValidationFailureStatusCodes {
 	@Value("${validation.priority.PriorityById}")
 	private String priorityById;
 
+
+	@Value("${validation.employee.AlreadyExistsId}")
+	private String employeeExistsById;
+		
+	
+
 	// projectAllocation
 	@Value("${validation.projectAllocation.employeeIdAlreadyExists}")
 	private String EmployeeIdAlreadyExists;
@@ -39,6 +50,7 @@ public class ValidationFailureStatusCodes {
 	private String projectAllocationExistsById;
 
 	// Gender
+
 	@Value("${validation.gender.AlreadyExists}")
 	private String genderAlreadyExists;
 
@@ -65,6 +77,19 @@ public class ValidationFailureStatusCodes {
 	// Designation
 	@Value("${validation.designation.AlreadyExists}")
 	private String designationNameAlreadyExists;
+
+	
+	//Project Allocation
+	@Value("${validation.projectAllocator.EmployeeIdAlreadyExists}")
+	private String EmployeeIdAlreadyExists;
+	
+	@Value("${validation.projectAllocator.ExistsById}")
+	private String existsById;
+	
+	@Value("${validation.projectAllocator.ProjectAllocatorById}")
+	private String ProjectAllocatorById;
+	
+	
 
 	@Value("${validation.designation.ExistsById}")
 	private String designationExistsById;

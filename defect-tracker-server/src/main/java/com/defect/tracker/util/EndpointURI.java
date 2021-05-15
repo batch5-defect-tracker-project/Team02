@@ -38,7 +38,15 @@ public final class EndpointURI {
 
 	// Module
 	public static final String MODULE = BASE_API_PATH + "module";
+
+	public static final String MODULE_BY_ID = BASE_API_PATH +"module" + ID;
+	
+	//SubModule
+   	public static final String SUBMODULE = BASE_API_PATH +"subModule";
+    public static final String SUBMODULE_BY_ID = BASE_API_PATH +"submodule" + ID;
+
 	public static final String MODULE_BY_ID = BASE_API_PATH + "module" + ID;
+
 
 	// SubModule
 	public static final String SUBMODULE = BASE_API_PATH + "subModule";
