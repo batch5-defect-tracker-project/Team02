@@ -49,10 +49,4 @@ public class ProjectServiceImpl implements ProjectService {
 		return projectRepository.findById(id);
 	}
 
-
-	public List<Project> getAllProjects() {
-		return projectRepository.findAll();
-	}
-
-
 }

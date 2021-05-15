@@ -5,9 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import com.defect.tracker.data.entities.Employee;
 
-
-
 @Repository
-public interface EmployeeRepository  extends JpaRepository<Employee, Long>{
-	boolean existsByEmail(String employeeEmail); 
+public interface EmployeeRepository extends JpaRepository<Employee, Long> {
+	boolean existsByEmail(String employeeEmail);
 }

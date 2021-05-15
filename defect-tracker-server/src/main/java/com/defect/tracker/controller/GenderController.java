@@ -42,18 +42,18 @@ public class GenderController {
 		genderService.createGender(gender);
 		return new ResponseEntity<Object>(Constants.GENDER_ADDED_SUCCESS, HttpStatus.OK);
 	}
-	
+
 	@GetMapping(value = EndpointURI.GENDER)
 	public ResponseEntity<Object> getAllGender() {
 		List<GenderDto> genderList = mapper.map(genderService.getAllGender(), GenderDto.class);
 		return new ResponseEntity<Object>(genderList, HttpStatus.OK);
 	}
-	
+
 	@GetMapping(value = EndpointURI.GENDER_BY_ID)
 	public ResponseEntity<Object> getByIdGender(@PathVariable Long id) {
 		if (genderService.existsById(id)) {
 			return new ResponseEntity<Object>(genderService.getByIdGender(id), HttpStatus.OK);
-			
+
 		}
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.GENDER_NOT_EXISTS_BY_ID,
 				validationFailureStatusCodes.getGenderExistsById()), HttpStatus.BAD_REQUEST);

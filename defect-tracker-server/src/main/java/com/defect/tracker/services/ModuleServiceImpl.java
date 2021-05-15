@@ -43,7 +43,7 @@ public class ModuleServiceImpl implements ModuleService {
 	@Override
 	public void deleteById(Long id) {
 		moduleRepository.deleteById(id);
-		
+
 	}
 
 	@Override

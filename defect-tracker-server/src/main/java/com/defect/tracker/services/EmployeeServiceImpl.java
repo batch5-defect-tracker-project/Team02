@@ -8,8 +8,6 @@ import org.springframework.stereotype.Service;
 import com.defect.tracker.data.entities.Employee;
 import com.defect.tracker.data.repositories.EmployeeRepository;
 
-
-
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 	@Autowired
@@ -50,5 +48,4 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return employeeRepository.findById(id);
 	}
 
-	
 }
