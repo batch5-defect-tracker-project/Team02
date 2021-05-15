@@ -23,7 +23,7 @@ import com.defect.tracker.util.ValidationFailureStatusCodes;
 
 @RestController
 public class SeverityController {
-	
+
 	@Autowired
 	SeverityService severityService;
 	@Autowired
@@ -34,24 +34,22 @@ public class SeverityController {
 	@PostMapping(value = EndpointURI.SEVERITY)
 	public ResponseEntity<Object> addSeverity(@Valid @RequestBody SeverityDto severityDto) {
 		if (severityService.isSeverityNameAlreadyExist(severityDto.getName())) {
-			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SEVERITY_EXISTS ,
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SEVERITY_EXISTS,
 					validationFailureStatusCodes.getSeverityNameAlreadyExists()), HttpStatus.BAD_REQUEST);
 		}
 		Severity severity = mapper.map(severityDto, Severity.class);
 		severityService.createSeverity(severity);
 		return new ResponseEntity<Object>(Constants.SEVERITY_ADDED_SUCCESS, HttpStatus.OK);
 	}
+
 	@GetMapping(value = EndpointURI.SEVERITY_BY_ID)
 	public ResponseEntity<Object> findSeverityrById(@PathVariable Long id) {
 		if (severityService.existsById(id)) {
-		return new ResponseEntity<Object>(severityService.getSeverityById(id),HttpStatus.OK);
-	}
-	
-	return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SEVERITY_NOT_EXISTS_BY_ID,
-			validationFailureStatusCodes.getSeverityById()), HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<Object>(severityService.getSeverityById(id), HttpStatus.OK);
+		}
 
+		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SEVERITY_NOT_EXISTS_BY_ID,
+				validationFailureStatusCodes.getSeverityById()), HttpStatus.BAD_REQUEST);
 
 	}
 }
-
-
