@@ -28,6 +28,7 @@ public class LoginController {
 	@Autowired
 	private Mapper mapper;
 
+	/*------------------------------ ADD -------------------------------------*/
 	@PostMapping(value = EndpointURI.LOGIN)
 	public ResponseEntity<Object> addLogin(@Valid @RequestBody LoginDto loginDto) {
 		if (loginService.ExixtsByEmail(loginDto.getEmail())) {

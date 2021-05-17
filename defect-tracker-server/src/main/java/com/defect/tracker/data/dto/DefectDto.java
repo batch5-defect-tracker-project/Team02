@@ -27,6 +27,10 @@ public class DefectDto {
 	@NotEmpty(message = "{defectDto.defectComments.empty}")
 	@NotBlank(message = "{defectDto.defectComments.blank}")
 	private String comments;
+	
+	@NotNull(message = "{defectDto.defectAssignedTo.null}")
+	@NotEmpty(message = "{defectDto.defectAssignedTo.empty}")
+	@NotBlank(message = "{defectDto.defectAssignedTo.blank}")
 	private String assignedTo;
 
 	public Long getId() {

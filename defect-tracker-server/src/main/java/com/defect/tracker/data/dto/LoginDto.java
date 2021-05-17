@@ -11,7 +11,7 @@ public class LoginDto {
 	private Long id;
 
 	@Email(message = "Enter a valid email address.")
-	@Pattern(regexp = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_&*-]+)*@(?:[a-zA-Z0-9-]+\\.[a-zA-Z]{2,7}$)", message = "not allowed")
+	@Pattern(regexp = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_&*-]+)*@(?:[a-zA-Z0-9-]+\\.[a-zA-Z]{2,7}$)", message = "{loginDto.login.emailAddressNotAllowed}")
 	private String email;
 
 	@NotNull(message = "{loginDto.password.null}")

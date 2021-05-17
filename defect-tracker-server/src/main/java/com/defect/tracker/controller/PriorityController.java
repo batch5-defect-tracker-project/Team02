@@ -30,24 +30,26 @@ public class PriorityController {
 	@Autowired
 	private Mapper mapper;
 
+	/*------------------------------ ADD -------------------------------------*/
 	@PostMapping(value = EndpointURI.PRIORITY)
 	public ResponseEntity<Object> addProject(@Valid @RequestBody PriorityDto priorityDto) {
 		if (priorityService.isPriorityAlreadyExist(priorityDto.getName())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PRIORITY_EXISTS,
-					validationFailureStatusCodes.getPriorityAlreadyExists()), HttpStatus.BAD_REQUEST);
+					validationFailureStatusCodes.getPriorityNameAlreadyExists()), HttpStatus.BAD_REQUEST);
 		}
 		Priority priority = mapper.map(priorityDto, Priority.class);
 		priorityService.createPriority(priority);
-		return new ResponseEntity<Object>(Constants.PROJECT_ADDED_SUCCESS, HttpStatus.OK);
+		return new ResponseEntity<Object>(Constants.PRIORITY_ADDED_SUCCESS, HttpStatus.OK);
 	}
 
+	/*--------------------- VIEW-BY-ID  OR/ GET-BY-ID -------------------------*/
 	@GetMapping(value = EndpointURI.PRIORITY_BY_ID)
 	public ResponseEntity<Object> findPriorityById(@PathVariable Long id) {
 		if (priorityService.existsById(id)) {
 			return new ResponseEntity<Object>(priorityService.getPriorityById(id), HttpStatus.OK);
 		}
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PRIORITY_NOT_EXISTS_BY_ID,
-				validationFailureStatusCodes.getPriorityById()), HttpStatus.BAD_REQUEST);
+				validationFailureStatusCodes.getPriorityExistsById()), HttpStatus.BAD_REQUEST);
 	}
 
 }

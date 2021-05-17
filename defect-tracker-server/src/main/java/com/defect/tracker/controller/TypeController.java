@@ -30,6 +30,7 @@ public class TypeController {
 	@Autowired
 	private Mapper mapper;
 
+	/*------------------------------ ADD -------------------------------------*/
 	@PostMapping(value = EndpointURI.TYPE)
 	public ResponseEntity<Object> addType(@Valid @RequestBody TypeDto typeDto) {
 		if (typeService.isTypeNameAlreadyExist(typeDto.getName())) {
@@ -41,13 +42,14 @@ public class TypeController {
 		return new ResponseEntity<Object>(Constants.TYPE_ADDED_SUCCESS, HttpStatus.OK);
 	}
 
+	/*--------------------- VIEW-BY-ID  OR/ GET-BY-ID -------------------------*/
 	@GetMapping(value = EndpointURI.TYPE_BY_ID)
 	public ResponseEntity<Object> findTypeById(@PathVariable Long id) {
 		if (typeService.existsById(id)) {
 			return new ResponseEntity<Object>(typeService.getTypeById(id), HttpStatus.OK);
 		}
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.TYPE_EXISTS_BY_ID,
-				validationFailureStatusCodes.getTypeById()), HttpStatus.BAD_REQUEST);
+				validationFailureStatusCodes.getTypeExistsById()), HttpStatus.BAD_REQUEST);
 	}
 
 }

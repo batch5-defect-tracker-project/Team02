@@ -34,38 +34,34 @@ public class ProjectAllocationController {
 	@Autowired
 	private Mapper mapper;
 
+	/*------------------------------ ADD -------------------------------------*/
 	@PostMapping(value = EndpointURI.PROJECT_ALLOCATION)
 	public ResponseEntity<Object> addProjectAllocation(@Valid @RequestBody ProjectAllocationDto projectAllocationDto) {
 		if (projectAllocationService.isEmployeeIdAlreadyExist(projectAllocationDto.getEmployeeId())) {
-			return new ResponseEntity<>(
-					new ValidationFailureResponse(ValidationConstance.PROJECT_ALLOCATION_EXISTS,
-							validationFailureStatusCodes.getEmployeeIdAlreadyExists()),
-					(HttpStatus) HttpStatus.BAD_REQUEST);
-
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_ALLOCATION_EXISTS,
+					validationFailureStatusCodes.getEmployeeIdAlreadyExists()), HttpStatus.BAD_REQUEST);
 		}
 		ProjectAllocation projectAllocation = mapper.map(projectAllocationDto, ProjectAllocation.class);
 		projectAllocationService.createProjectAllocation(projectAllocation);
 		return new ResponseEntity<Object>(Constants.PROJECT_ALLOCATION_ADDED_SUCCESS, HttpStatus.OK);
 	}
 
+	/*--------------------- VIEW ALL OR/ GET ALL ------------------------------*/
 	@GetMapping(value = EndpointURI.PROJECT_ALLOCATION)
 	public ResponseEntity<Object> getAllProjectAllocation() {
-		List<ProjectAllocationDto> projectAllocationList = mapper
-				.map(projectAllocationService.getAllProjectAllocation(), ProjectAllocationDto.class);
+		List<ProjectAllocationDto> projectAllocationList = mapper.map(projectAllocationService.getAllProjectAllocation(), 
+				ProjectAllocationDto.class);
 		return new ResponseEntity<Object>(projectAllocationList, HttpStatus.OK);
-
 	}
 
+	/*--------------------- UPDATE OR/ EDIT -----------------------------------*/
 	@PutMapping(value = EndpointURI.PROJECT_ALLOCATION)
 	public ResponseEntity<Object> updateProjectAllocation(@RequestBody ProjectAllocationDto projectAllocationDto) {
 		if (projectAllocationService.existsById(projectAllocationDto.getId())) {
 			if (projectAllocationService.isEmployeeIdAlreadyExist(projectAllocationDto.getEmployeeId())) {
-				return new ResponseEntity<>(
-						new ValidationFailureResponse(ValidationConstance.EMPLOYEE_ID_EXISTS,
-								validationFailureStatusCodes.getEmployeeIdAlreadyExists()),
-						(HttpStatus) HttpStatus.BAD_REQUEST);
+				return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_ALLOCATION_EXISTS,
+						validationFailureStatusCodes.getEmployeeIdAlreadyExists()), HttpStatus.BAD_REQUEST);
 			}
-
 			ProjectAllocation projectAllocation = mapper.map(projectAllocationDto, ProjectAllocation.class);
 			projectAllocationService.createProjectAllocation(projectAllocation);
 			return new ResponseEntity<Object>(Constants.PROJECT_ALLOCATION_UPDATED_SUCCESS, HttpStatus.OK);
@@ -75,8 +71,8 @@ public class ProjectAllocationController {
 				validationFailureStatusCodes.getProjectAllocationExistsById()), HttpStatus.BAD_REQUEST);
 	}
 
+	/*------------------------- DELETE ----------------------------------------*/
 	@DeleteMapping(value = EndpointURI.PROJECT_ALLOCATION_BY_ID)
-
 	public ResponseEntity<Object> deleteProjectAllocation(@PathVariable Long id) {
 		if (!projectAllocationService.existsById(id)) {
 			return new ResponseEntity<>(
@@ -88,6 +84,7 @@ public class ProjectAllocationController {
 		return new ResponseEntity<Object>(Constants.PROJECT_ALLOCATION_DELETED_SUCCESS, HttpStatus.OK);
 	}
 
+	/*--------------------- VIEW-BY-ID  OR/ GET-BY-ID -------------------------*/
 	@GetMapping(value = EndpointURI.PROJECT_ALLOCATION_BY_ID)
 	public ResponseEntity<Object> findProjectAllocationById(@PathVariable Long id) {
 		if (projectAllocationService.existsById(id)) {
@@ -95,12 +92,8 @@ public class ProjectAllocationController {
 		}
 		return new ResponseEntity<>(
 				new ValidationFailureResponse(ValidationConstance.PROJECT_ALLOCATION_NOT_EXISTS_BY_ID,
-
-						validationFailureStatusCodes.getProjectAllocationById()),
-
 						validationFailureStatusCodes.getProjectAllocationExistsById()),
 				HttpStatus.BAD_REQUEST);
-
 	}
 
 }

@@ -31,6 +31,7 @@ public class SeverityController {
 	@Autowired
 	private Mapper mapper;
 
+	/*------------------------------ ADD -------------------------------------*/
 	@PostMapping(value = EndpointURI.SEVERITY)
 	public ResponseEntity<Object> addSeverity(@Valid @RequestBody SeverityDto severityDto) {
 		if (severityService.isSeverityNameAlreadyExist(severityDto.getName())) {
@@ -42,14 +43,13 @@ public class SeverityController {
 		return new ResponseEntity<Object>(Constants.SEVERITY_ADDED_SUCCESS, HttpStatus.OK);
 	}
 
+	/*--------------------- VIEW-BY-ID  OR/ GET-BY-ID -------------------------*/
 	@GetMapping(value = EndpointURI.SEVERITY_BY_ID)
 	public ResponseEntity<Object> findSeverityrById(@PathVariable Long id) {
 		if (severityService.existsById(id)) {
 			return new ResponseEntity<Object>(severityService.getSeverityById(id), HttpStatus.OK);
 		}
-
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SEVERITY_NOT_EXISTS_BY_ID,
-				validationFailureStatusCodes.getSeverityById()), HttpStatus.BAD_REQUEST);
-
+				validationFailureStatusCodes.getSeverityExistsById()), HttpStatus.BAD_REQUEST);
 	}
 }

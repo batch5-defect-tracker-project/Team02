@@ -7,6 +7,7 @@ import javax.validation.constraints.NotNull;
 public class DesignationDto {
 
 	private Long id;
+
 	@NotNull(message = "{designationDto.designationName.null}")
 	@NotEmpty(message = "{designationDto.designationName.empty}")
 	@NotBlank(message = "{designationDto.designationName.blank}")
