@@ -35,6 +35,7 @@ public class EmployeeController {
 	@Autowired
 	private Mapper mapper;
 
+	/*------------------------------ ADD -------------------------------------*/
 	@PostMapping(value = EndpointURI.EMPLOYEE)
 	public ResponseEntity<Object> addEmployee(@Valid @RequestBody EmployeeDto employeeDto) {
 		if (employeeService.isEmployeeEmailAlreadyExist(employeeDto.getEmail())) {
@@ -46,6 +47,7 @@ public class EmployeeController {
 		return new ResponseEntity<Object>(Constants.EMPLOYEE_ADDED_SUCCESS, HttpStatus.OK);
 	}
 
+	/*--------------------- VIEW ALL OR/ GET ALL ------------------------------*/
 	@GetMapping(value = EndpointURI.EMPLOYEE)
 	public ResponseEntity<Object> getAllEmployee() {
 		List<EmployeeResponseDto> employeeList = mapper.map(employeeService.getAllEmployee(),
@@ -53,6 +55,7 @@ public class EmployeeController {
 		return new ResponseEntity<Object>(employeeList, HttpStatus.OK);
 	}
 
+	/*--------------------- UPDATE OR/ EDIT -----------------------------------*/
 	@PutMapping(value = EndpointURI.EMPLOYEE)
 	public ResponseEntity<Object> updateEmployee(@Valid @RequestBody EmployeeDto employeeDto) {
 		if (employeeService.existsById(employeeDto.getId())) {
@@ -64,12 +67,12 @@ public class EmployeeController {
 			employeeService.createEmployee(employee);
 			return new ResponseEntity<Object>(Constants.EMPLOYEE_UPDATED_SUCCESS, HttpStatus.OK);
 		}
-		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_EXISTS_BY_ID,
+		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_EXISTS,
+				validationFailureStatusCodes.getEmployeeExistsById()), HttpStatus.BAD_REQUEST);
 
-				validationFailureStatusCodes.getEmployeeExistsById()), HttpStatus.BAD_REQUEST);	
+	}
 
-  }
-
+	/*------------------------- DELETE ----------------------------------------*/
 	@DeleteMapping(value = EndpointURI.EMPLOYEE_BY_ID)
 	public ResponseEntity<Object> deleteEmployee(@PathVariable Long id) {
 		if (!employeeService.existsById(id)) {
@@ -80,11 +83,11 @@ public class EmployeeController {
 		return new ResponseEntity<Object>(Constants.EMPLOYEE_DELETED_SUCCESS, HttpStatus.OK);
 	}
 
+	/*--------------------- VIEW-BY-ID  OR/ GET-BY-ID -------------------------*/
 	@GetMapping(value = EndpointURI.EMPLOYEE_BY_ID)
 	public ResponseEntity<Object> getByIdEmployee(@PathVariable Long id) {
 		if (employeeService.existsById(id)) {
 			return new ResponseEntity<Object>(employeeService.getByIdEmployee(id), HttpStatus.OK);
-
 		}
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_NOT_EXISTS_BY_ID,
 				validationFailureStatusCodes.getEmployeeExistsById()), HttpStatus.BAD_REQUEST);

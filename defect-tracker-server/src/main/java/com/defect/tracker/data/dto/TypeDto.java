@@ -6,6 +6,7 @@ import javax.validation.constraints.NotNull;
 
 public class TypeDto {
 	private Long id;
+	
 	@NotNull(message = "{typeDto.typeName.null}")
 	@NotEmpty(message = "{typeDto.typeName.empty}")
 	@NotBlank(message = "{typeDto.typeName.blank}")

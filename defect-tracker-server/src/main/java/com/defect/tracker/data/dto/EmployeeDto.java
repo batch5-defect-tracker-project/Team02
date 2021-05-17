@@ -9,18 +9,23 @@ import javax.validation.constraints.Size;
 
 public class EmployeeDto {
 	private Long id;
+	
 	@NotNull(message = "{employeeDto.employeeName.null}")
 	@NotEmpty(message = "{employeeDto.employeeName.empty}")
 	@NotBlank(message = "{employeeDto.employeeName.blank}")
 	private String name;
+	
 	@NotNull(message = "{employeeDto.employeeContactNo.null}")
 	private int contactNo;
+	
 	@NotNull(message = "{employeeDto.employeeEmail.null}")
 	@NotEmpty(message = "{employeeDto.employeeEmail.empty}")
 	@Email(message = "{employeeDto.employeeEmail.EnterAValidEmailAddress}")
 	@Size(min = 1, max = 100)
 	@Pattern(regexp = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$", message = "{employeeDto.employeeEmail.EmailAddressNotAllowed}")
 	private String email;
+	
+	@NotNull(message = "{employeeDto.genderId.null}")
 	private Long genderId;
 
 	public Long getId() {
