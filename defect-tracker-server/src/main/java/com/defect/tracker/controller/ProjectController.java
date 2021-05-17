@@ -34,6 +34,7 @@ public class ProjectController {
 	@Autowired
 	private Mapper mapper;
 
+	/*------------------------------ ADD -------------------------------------*/
 	@PostMapping(value = EndpointURI.PROJECT)
 	public ResponseEntity<Object> addProject(@Valid @RequestBody ProjectDto projectDto) {
 		if (projectService.isProjectNameAlreadyExist(projectDto.getName())) {
@@ -45,12 +46,14 @@ public class ProjectController {
 		return new ResponseEntity<Object>(Constants.PROJECT_ADDED_SUCCESS, HttpStatus.OK);
 	}
 
+	/*--------------------- VIEW ALL OR/ GET ALL ------------------------------*/
 	@GetMapping(value = EndpointURI.PROJECT)
 	public ResponseEntity<Object> getAllProject() {
 		List<ProjectDto> projectList = mapper.map(projectService.getAllProject(), ProjectDto.class);
 		return new ResponseEntity<Object>(projectList, HttpStatus.OK);
 	}
 
+	/*--------------------- UPDATE OR/ EDIT -----------------------------------*/
 	@PutMapping(value = EndpointURI.PROJECT)
 	public ResponseEntity<Object> updateProject(@RequestBody ProjectDto projectDto) {
 		if (projectService.existsById(projectDto.getId())) {
@@ -58,32 +61,30 @@ public class ProjectController {
 				return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_EXISTS,
 						validationFailureStatusCodes.getProjectNameAlreadyExists()), HttpStatus.BAD_REQUEST);
 			}
-
 			Project project = mapper.map(projectDto, Project.class);
 			projectService.createProject(project);
 			return new ResponseEntity<Object>(Constants.PROJECT_UPDATED_SUCCESS, HttpStatus.OK);
 		}
-
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_EXISTS,
 				validationFailureStatusCodes.getProjectExistsById()), HttpStatus.BAD_REQUEST);
 	}
 
+	/*------------------------- DELETE ----------------------------------------*/
 	@DeleteMapping(value = EndpointURI.PROJECT_BY_ID)
 	public ResponseEntity<Object> deleteProject(@PathVariable Long id) {
 		if (!projectService.existsById(id)) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_NOT_EXISTS_BY_ID,
 					validationFailureStatusCodes.getProjectExistsById()), HttpStatus.BAD_REQUEST);
 		}
-
 		projectService.deleteById(id);
 		return new ResponseEntity<Object>(Constants.PROJECT_DELETED_SUCCESS, HttpStatus.OK);
 	}
 
+	/*--------------------- VIEW-BY-ID  OR/ GET-BY-ID -------------------------*/
 	@GetMapping(value = EndpointURI.PROJECT_BY_ID)
 	public ResponseEntity<Object> findProjectById(@PathVariable Long id) {
 		if (projectService.existsById(id)) {
 			return new ResponseEntity<Object>(projectService.getProjectById(id), HttpStatus.OK);
-
 		}
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_NOT_EXISTS_BY_ID,
 				validationFailureStatusCodes.getProjectExistsById()), HttpStatus.BAD_REQUEST);
