@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.defect.tracker.data.dto.SubModuleDto;
+import com.defect.tracker.data.dto.SubModuleResponseDto;
 import com.defect.tracker.data.entities.SubModule;
 import com.defect.tracker.data.mapper.Mapper;
 import com.defect.tracker.data.response.ValidationFailureResponse;
@@ -66,7 +67,7 @@ public class SubModuleController {
 	/*--------------------- VIEW ALL OR/ GET ALL ------------------------------*/
 	@GetMapping(value = EndpointURI.SUBMODULE)
 	public ResponseEntity<Object> getAllSubModule() {
-		List<SubModuleDto> subModuleList = mapper.map(subModuleService.getAllSubModule(), SubModuleDto.class);
+		List<SubModuleResponseDto> subModuleList = mapper.map(subModuleService.getAllSubModule(), SubModuleResponseDto.class);
 		return new ResponseEntity<Object>(subModuleList, HttpStatus.OK);
 
 	}
