@@ -1,10 +1,15 @@
 package com.defect.tracker.data.entities;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "projectAllocation")
@@ -13,10 +18,26 @@ public class ProjectAllocation {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private Long projectId;
-	private Long employeeId;
-	private Long moduleId;
-	private Long subModuleId;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "project_id", nullable = false)
+	@JsonIgnoreProperties(value = { "employee", "hibernateLazyInitializer" })
+	private Project project;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "employee_id", nullable = false)
+	@JsonIgnoreProperties(value = { "employee", "hibernateLazyInitializer" })
+	private Employee employee;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "module_id", nullable = false)
+	@JsonIgnoreProperties(value = { "employee", "hibernateLazyInitializer" })
+	private Module module;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "subModule_id", nullable = false)
+	@JsonIgnoreProperties(value = { "employee", "hibernateLazyInitializer" })
+	private SubModule subModule;
 
 	public Long getId() {
 		return id;
@@ -26,36 +47,37 @@ public class ProjectAllocation {
 		this.id = id;
 	}
 
-	public Long getProjectId() {
-		return projectId;
+	public Project getProject() {
+		return project;
 	}
 
-	public void setProjectId(Long projectId) {
-		this.projectId = projectId;
+	public void setProject(Project project) {
+		this.project = project;
 	}
 
-	public long getEmployeeId() {
-		return employeeId;
+	public Employee getEmployee() {
+		return employee;
 	}
 
-	public void setEmployeeId(long employeeId) {
-		this.employeeId = employeeId;
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
 	}
 
-	public long getModuleId() {
-		return moduleId;
+	public Module getModule() {
+		return module;
 	}
 
-	public void setModuleId(long moduleId) {
-		this.moduleId = moduleId;
+	public void setModule(Module module) {
+		this.module = module;
 	}
 
-	public long getSubmoduleId() {
-		return subModuleId;
+	public SubModule getSubModule() {
+		return subModule;
 	}
 
-	public void setSubmoduleId(long submoduleId) {
-		this.subModuleId = submoduleId;
+	public void setSubModule(SubModule subModule) {
+		this.subModule = subModule;
 	}
 
+		
 }
