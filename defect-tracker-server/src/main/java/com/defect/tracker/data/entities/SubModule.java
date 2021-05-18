@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -24,6 +25,11 @@ public class SubModule {
 	@JsonIgnoreProperties(value = { "subModule", "hibernateLazyInitializer" })
 	private Module module;
 	
+	
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "module_id", nullable = false)
+	@JsonIgnoreProperties(value = {"subModule", "hibernateLazyInitializer"})
+	private Module module;
 
 	public Module getModule() {
 		return module;
