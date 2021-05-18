@@ -10,6 +10,10 @@ public class ModuleDto {
 	@NotEmpty(message = "{moduleDto.moduleName.empty}")
 	@NotBlank(message = "{moduleDto.moduleName.blank}")
 	private String name;
+
+
+	
+	@NotNull(message = "{moduleDto.projectId.null}")
 	private Long projectId;
 
 	public Long getId() {

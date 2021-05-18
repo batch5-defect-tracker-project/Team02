@@ -1,10 +1,16 @@
 package com.defect.tracker.data.entities;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "defect")
@@ -12,16 +18,40 @@ public class Defect {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private Long moduleId;
-	private Long subModuleId;
-	private Long typeId;
-	private Long severityId;
-	private Long priorityId;
-	private Long projectId;
 	private String description;
 	private String stepToReCreate;
 	private String comments;
 	private String assignedTo;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "module_id", nullable = false)
+	@JsonIgnoreProperties(value = { "defect", "hibernateLazyInitializer" })
+	private Module module;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "subModule_id", nullable = false)
+	@JsonIgnoreProperties(value = { "defect", "hibernateLazyInitializer" })
+	private SubModule subModule;
+
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "type_id", nullable = false)
+	@JsonIgnoreProperties(value = { "defect", "hibernateLazyInitializer" })
+	private Type type;
+
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "severity_id", nullable = false)
+	@JsonIgnoreProperties(value = { "defect", "hibernateLazyInitializer" })
+	private Severity severity;
+
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "priority_id", nullable = false)
+	@JsonIgnoreProperties(value = { "defect", "hibernateLazyInitializer" })
+	private Priority priority;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "project_id", nullable = false)
+	@JsonIgnoreProperties(value = { "defect", "hibernateLazyInitializer" })
+	private Project project;
 
 	public Long getId() {
 		return id;
@@ -29,54 +59,6 @@ public class Defect {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public Long getModuleId() {
-		return moduleId;
-	}
-
-	public void setModuleId(Long moduleId) {
-		this.moduleId = moduleId;
-	}
-
-	public Long getSubModuleId() {
-		return subModuleId;
-	}
-
-	public void setSubModuleId(Long subModuleId) {
-		this.subModuleId = subModuleId;
-	}
-
-	public Long getTypeId() {
-		return typeId;
-	}
-
-	public void setTypeId(Long typeId) {
-		this.typeId = typeId;
-	}
-
-	public Long getSeverityId() {
-		return severityId;
-	}
-
-	public void setSeverityId(Long severityId) {
-		this.severityId = severityId;
-	}
-
-	public Long getPriorityId() {
-		return priorityId;
-	}
-
-	public void setPriorityId(Long priorityId) {
-		this.priorityId = priorityId;
-	}
-
-	public Long getProjectId() {
-		return projectId;
-	}
-
-	public void setProjectId(Long projectId) {
-		this.projectId = projectId;
 	}
 
 	public String getDescription() {
@@ -109,6 +91,54 @@ public class Defect {
 
 	public void setAssignedTo(String assignedTo) {
 		this.assignedTo = assignedTo;
+	}
+
+	public Module getModule() {
+		return module;
+	}
+
+	public void setModule(Module module) {
+		this.module = module;
+	}
+
+	public SubModule getSubModule() {
+		return subModule;
+	}
+
+	public void setSubModule(SubModule subModule) {
+		this.subModule = subModule;
+	}
+
+	public Type getType() {
+		return type;
+	}
+
+	public void setType(Type type) {
+		this.type = type;
+	}
+
+	public Severity getSeverity() {
+		return severity;
+	}
+
+	public void setSeverity(Severity severity) {
+		this.severity = severity;
+	}
+
+	public Priority getPriority() {
+		return priority;
+	}
+
+	public void setPriority(Priority priority) {
+		this.priority = priority;
+	}
+
+	public Project getProject() {
+		return project;
+	}
+
+	public void setProject(Project project) {
+		this.project = project;
 	}
 
 }
