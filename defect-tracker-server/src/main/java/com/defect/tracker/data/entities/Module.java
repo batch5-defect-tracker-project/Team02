@@ -31,6 +31,7 @@ public class Module {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy= "module")
 	private List <SubModule> subModule;
 
+
 	public Project getProject() {
 		return project;
 	}
@@ -47,8 +48,25 @@ public class Module {
 		this.project = project;
 	}
 
+
 	public Long getId() {
 		return id;
+	}
+
+	public Project getProject() {
+		return project;
+	}
+
+	public void setProject(Project project) {
+		this.project = project;
+	}
+
+	public List<SubModule> getSubModule() {
+		return subModule;
+	}
+
+	public void setSubModule(List<SubModule> subModule) {
+		this.subModule = subModule;
 	}
 
 	public void setId(Long id) {
