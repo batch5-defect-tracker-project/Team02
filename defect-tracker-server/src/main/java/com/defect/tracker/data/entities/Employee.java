@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -18,13 +19,23 @@ public class Employee {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
-	private String contactNo;
+	private int contactNo;
 	private String email;
 
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "gender_id", nullable = false)
-	@JsonIgnoreProperties(value = {"employee", "hibernateLazyInitializer"})
+	@JsonIgnoreProperties(value = { "employee", "hibernateLazyInitializer" })
 	private Gender gender;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "designation_id", nullable = false)
+	@JsonIgnoreProperties(value = { "employee", "hibernateLazyInitializer" })
+	private Designation designation;
+
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "login_id", nullable = false)
+	@JsonIgnoreProperties(value = { "employee", "hibernateLazyInitializer" })
+	private Login login;
 
 	public Long getId() {
 		return id;
@@ -42,11 +53,11 @@ public class Employee {
 		this.name = name;
 	}
 
-	public String getContactNo() {
+	public int getContactNo() {
 		return contactNo;
 	}
 
-	public void setContactNo(String contactNo) {
+	public void setContactNo(int contactNo) {
 		this.contactNo = contactNo;
 	}
 
@@ -64,6 +75,22 @@ public class Employee {
 
 	public void setGender(Gender gender) {
 		this.gender = gender;
+	}
+
+	public Designation getDesignation() {
+		return designation;
+	}
+
+	public void setDesignation(Designation designation) {
+		this.designation = designation;
+	}
+
+	public Login getLogin() {
+		return login;
+	}
+
+	public void setLogin(Login login) {
+		this.login = login;
 	}
 
 }

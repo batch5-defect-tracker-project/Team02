@@ -7,6 +7,11 @@ public class EmployeeResponseDto {
 	private String email;
 	private Long genderId;
 	private String genderName;
+	private Long designationId;
+	private String designationName;
+	private Long loginId;
+	private String loginEmail;
+	private String loginPassword;
 
 	public Long getId() {
 		return id;
@@ -54,6 +59,46 @@ public class EmployeeResponseDto {
 
 	public void setGenderName(String genderName) {
 		this.genderName = genderName;
+	}
+
+	public Long getDesignationId() {
+		return designationId;
+	}
+
+	public void setDesignationId(Long designationId) {
+		this.designationId = designationId;
+	}
+
+	public String getDesignationName() {
+		return designationName;
+	}
+
+	public void setDesignationName(String designationName) {
+		this.designationName = designationName;
+	}
+
+	public Long getLoginId() {
+		return loginId;
+	}
+
+	public void setLoginId(Long loginId) {
+		this.loginId = loginId;
+	}
+
+	public String getLoginEmail() {
+		return loginEmail;
+	}
+
+	public void setLoginEmail(String loginEmail) {
+		this.loginEmail = loginEmail;
+	}
+
+	public String getLoginPassword() {
+		return loginPassword;
+	}
+
+	public void setLoginPassword(String loginPassword) {
+		this.loginPassword = loginPassword;
 	}
 
 }
