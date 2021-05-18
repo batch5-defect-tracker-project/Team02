@@ -1,48 +1,22 @@
 package com.defect.tracker.data.dto;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-
-public class DefectDto {
+public class DefectResponseDto {
 	private Long id;
-	
-	@NotNull(message = "{defectDto.moduleId.null}")
 	private Long moduleId;
-	
-	@NotNull(message = "{defectDto.subModuleId.null}")
+	private String moduleName;
 	private Long subModuleId;
-	
-	@NotNull(message = "{defectDto.typeId.null}")
+	private String subModuleName;
 	private Long typeId;
-	
-	@NotNull(message = "{defectDto.severityId.null}")
+	private String typeName;
 	private Long severityId;
-
-	@NotNull(message = "{defectDto.priorityId.null}")
+	private String severityName;
 	private Long priorityId;
-
-	@NotNull(message = "{defectDto.projectId.null}")
+	private String priorityName;
 	private Long projectId;
-
-	@NotNull(message = "{defectDto.defectDescription.null}")
-	@NotEmpty(message = "{defectDto.defectDescription.empty}")
-	@NotBlank(message = "{defectDto.defectDescription.blank}")
+	private String projectName;
 	private String description;
-
-	@NotNull(message = "{defectDto.defectSteptoReCreate.null}")
-	@NotEmpty(message = "{defectDto.defectSteptoReCreate.empty}")
-	@NotBlank(message = "{defectDto.defectSteptoReCreate.blank}")
 	private String stepToReCreate;
-
-	@NotNull(message = "{defectDto.defectComments.null}")
-	@NotEmpty(message = "{defectDto.defectComments.empty}")
-	@NotBlank(message = "{defectDto.defectComments.blank}")
 	private String comments;
-	
-	@NotNull(message = "{defectDto.defectAssignedTo.null}")
-	@NotEmpty(message = "{defectDto.defectAssignedTo.empty}")
-	@NotBlank(message = "{defectDto.defectAssignedTo.blank}")
 	private String assignedTo;
 
 	public Long getId() {
@@ -61,12 +35,28 @@ public class DefectDto {
 		this.moduleId = moduleId;
 	}
 
+	public String getModuleName() {
+		return moduleName;
+	}
+
+	public void setModuleName(String moduleName) {
+		this.moduleName = moduleName;
+	}
+
 	public Long getSubModuleId() {
 		return subModuleId;
 	}
 
 	public void setSubModuleId(Long subModuleId) {
 		this.subModuleId = subModuleId;
+	}
+
+	public String getSubModuleName() {
+		return subModuleName;
+	}
+
+	public void setSubModuleName(String subModuleName) {
+		this.subModuleName = subModuleName;
 	}
 
 	public Long getTypeId() {
@@ -77,12 +67,28 @@ public class DefectDto {
 		this.typeId = typeId;
 	}
 
+	public String getTypeName() {
+		return typeName;
+	}
+
+	public void setTypeName(String typeName) {
+		this.typeName = typeName;
+	}
+
 	public Long getSeverityId() {
 		return severityId;
 	}
 
 	public void setSeverityId(Long severityId) {
 		this.severityId = severityId;
+	}
+
+	public String getSeverityName() {
+		return severityName;
+	}
+
+	public void setSeverityName(String severityName) {
+		this.severityName = severityName;
 	}
 
 	public Long getPriorityId() {
@@ -93,12 +99,28 @@ public class DefectDto {
 		this.priorityId = priorityId;
 	}
 
+	public String getPriorityName() {
+		return priorityName;
+	}
+
+	public void setPriorityName(String priorityName) {
+		this.priorityName = priorityName;
+	}
+
 	public Long getProjectId() {
 		return projectId;
 	}
 
 	public void setProjectId(Long projectId) {
 		this.projectId = projectId;
+	}
+
+	public String getProjectName() {
+		return projectName;
+	}
+
+	public void setProjectName(String projectName) {
+		this.projectName = projectName;
 	}
 
 	public String getDescription() {
