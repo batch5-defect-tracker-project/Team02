@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.defect.tracker.data.entities.Module;
 import com.defect.tracker.data.dto.ModuleDto;
+import com.defect.tracker.data.dto.ModuleResponseDto;
 import com.defect.tracker.data.mapper.Mapper;
 import com.defect.tracker.data.response.ValidationFailureResponse;
 import com.defect.tracker.services.ModuleService;
@@ -65,7 +66,7 @@ public class ModuleController {
 	/*--------------------- VIEW ALL OR/ GET ALL ------------------------------*/
 	@GetMapping(value = EndpointURI.MODULE)
 	public ResponseEntity<Object> getAllModule() {
-		List<ModuleDto> moduleList = mapper.map(moduleService.getAllModule(), ModuleDto.class);
+		List<ModuleResponseDto> moduleList = mapper.map(moduleService.getAllModule(), ModuleResponseDto.class);
 		return new ResponseEntity<Object>(moduleList, HttpStatus.OK);
 	}
 
