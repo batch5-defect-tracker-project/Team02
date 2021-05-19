@@ -16,7 +16,6 @@ public class SubModuleServiceImpl implements SubModuleService {
 	@Override
 	public void createSubModule(SubModule subModule) {
 		subModuleRepository.save(subModule);
-
 	}
 
 	@Override
@@ -27,7 +26,6 @@ public class SubModuleServiceImpl implements SubModuleService {
 	@Override
 	public void updateSubModule(SubModule subModule) {
 		subModuleRepository.save(subModule);
-
 	}
 
 	@Override
@@ -37,7 +35,7 @@ public class SubModuleServiceImpl implements SubModuleService {
 
 	@Override
 	public List<SubModule> getAllSubModule() {
-		return  subModuleRepository.findAll();
+		return subModuleRepository.findAll();
 	}
 
 	@Override
@@ -48,7 +46,6 @@ public class SubModuleServiceImpl implements SubModuleService {
 	@Override
 	public void deleteById(Long id) {
 		subModuleRepository.deleteById(id);
-		
 	}
 
 }

@@ -48,7 +48,7 @@ public class TypeController {
 		if (typeService.existsById(id)) {
 			return new ResponseEntity<Object>(typeService.getTypeById(id), HttpStatus.OK);
 		}
-		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.TYPE_EXISTS_BY_ID,
+		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.TYPE_NOT_EXISTS_BY_ID,
 				validationFailureStatusCodes.getTypeExistsById()), HttpStatus.BAD_REQUEST);
 	}
 

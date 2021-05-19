@@ -20,4 +20,6 @@ public interface DefectService {
 
 	public boolean isModuleIdAlreadyExist(Long moduleId);
 
+	public void updateDefect(Defect defect);
+
 }

@@ -40,7 +40,6 @@ public class SubModuleController {
 	public ResponseEntity<Object> addSubModule(@Valid @RequestBody SubModuleDto subModuleDto) {
 		if (subModuleService.isSubModuleNameAlreadyExist(subModuleDto.getName())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SUBMODULE_EXISTS,
-
 					validationFailureStatusCodes.getSubModuleNameAlreadyExists()), HttpStatus.BAD_REQUEST);
 		}
 		SubModule subModule = mapper.map(subModuleDto, SubModule.class);
@@ -50,14 +49,14 @@ public class SubModuleController {
 
 	/*--------------------- UPDATE OR/ EDIT -----------------------------------*/
 	@PutMapping(value = EndpointURI.SUBMODULE)
-	public ResponseEntity<Object> updateSubModule(@RequestBody SubModuleDto subModuleDto) {
+	public ResponseEntity<Object> updateSubModule(@Valid @RequestBody SubModuleDto subModuleDto) {
 		if (subModuleService.existsById(subModuleDto.getId())) {
 			if (subModuleService.isSubModuleNameAlreadyExist(subModuleDto.getName())) {
 				return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SUBMODULE_EXISTS,
 						validationFailureStatusCodes.getSubModuleNameAlreadyExists()), HttpStatus.BAD_REQUEST);
 			}
 			SubModule subModule = mapper.map(subModuleDto, SubModule.class);
-			subModuleService.createSubModule(subModule);
+			subModuleService.updateSubModule(subModule);
 			return new ResponseEntity<Object>(Constants.SUBMODULE_UPDATED_SUCCESS, HttpStatus.OK);
 		}
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SUBMODULE_EXISTS,
@@ -67,7 +66,8 @@ public class SubModuleController {
 	/*--------------------- VIEW ALL OR/ GET ALL ------------------------------*/
 	@GetMapping(value = EndpointURI.SUBMODULE)
 	public ResponseEntity<Object> getAllSubModule() {
-		List<SubModuleResponseDto> subModuleList = mapper.map(subModuleService.getAllSubModule(), SubModuleResponseDto.class);
+		List<SubModuleResponseDto> subModuleList = mapper.map(subModuleService.getAllSubModule(),
+				SubModuleResponseDto.class);
 		return new ResponseEntity<Object>(subModuleList, HttpStatus.OK);
 
 	}

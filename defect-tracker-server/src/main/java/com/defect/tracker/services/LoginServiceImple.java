@@ -35,7 +35,6 @@ public class LoginServiceImple implements LoginService {
 		message.setSubject(subject);
 
 		mailSender.send(message);
-
 	}
 
 }
