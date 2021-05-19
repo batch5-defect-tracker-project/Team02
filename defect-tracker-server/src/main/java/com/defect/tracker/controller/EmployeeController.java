@@ -64,7 +64,7 @@ public class EmployeeController {
 						validationFailureStatusCodes.getEmployeeEmailAlreadyExists()), HttpStatus.BAD_REQUEST);
 			}
 			Employee employee = mapper.map(employeeDto, Employee.class);
-			employeeService.createEmployee(employee);
+			employeeService.updateEmployee(employee);
 			return new ResponseEntity<Object>(Constants.EMPLOYEE_UPDATED_SUCCESS, HttpStatus.OK);
 		}
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_EXISTS,

@@ -27,46 +27,12 @@ public class Module {
 	@JoinColumn(name = "project_id", nullable = false)
 	@JsonIgnoreProperties(value = { "module", "hibernateLazyInitializer" })
 	private Project project;
-	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy= "module")
-	private List <SubModule> subModule;
 
-
-	public Project getProject() {
-		return project;
-	}
-
-	public List<SubModule> getSubModule() {
-		return subModule;
-	}
-
-	public void setSubModule(List<SubModule> subModule) {
-		this.subModule = subModule;
-	}
-
-	public void setProject(Project project) {
-		this.project = project;
-	}
-
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "module")
+	private List<SubModule> subModule;
 
 	public Long getId() {
 		return id;
-	}
-
-	public Project getProject() {
-		return project;
-	}
-
-	public void setProject(Project project) {
-		this.project = project;
-	}
-
-	public List<SubModule> getSubModule() {
-		return subModule;
-	}
-
-	public void setSubModule(List<SubModule> subModule) {
-		this.subModule = subModule;
 	}
 
 	public void setId(Long id) {
@@ -79,6 +45,22 @@ public class Module {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public Project getProject() {
+		return project;
+	}
+
+	public void setProject(Project project) {
+		this.project = project;
+	}
+
+	public List<SubModule> getSubModule() {
+		return subModule;
+	}
+
+	public void setSubModule(List<SubModule> subModule) {
+		this.subModule = subModule;
 	}
 
 }

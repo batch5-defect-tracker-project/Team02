@@ -16,7 +16,6 @@ public class ModuleServiceImpl implements ModuleService {
 	@Override
 	public void createModule(Module module) {
 		moduleRepository.save(module);
-
 	}
 
 	@Override
@@ -27,7 +26,6 @@ public class ModuleServiceImpl implements ModuleService {
 	@Override
 	public void updateModule(Module module) {
 		moduleRepository.save(module);
-
 	}
 
 	@Override
@@ -43,7 +41,6 @@ public class ModuleServiceImpl implements ModuleService {
 	@Override
 	public void deleteById(Long id) {
 		moduleRepository.deleteById(id);
-
 	}
 
 	@Override

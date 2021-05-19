@@ -10,8 +10,9 @@ public class SubModuleDto {
 	@NotEmpty(message = "{subModuleDto.subModuleName.empty}")
 	@NotBlank(message = "{subModuleDto.subModuleName.blank}")
 	private String name;
-	private Long moduleId;
 	
+	@NotNull(message = "{subModuleDto.moduleId.null}")
+	private Long moduleId;
 
 	public Long getId() {
 		return id;

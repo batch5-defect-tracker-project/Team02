@@ -17,7 +17,6 @@ public class DesignationServiceImpl implements DesignationService {
 	@Override
 	public void createDesignation(Designation designation) {
 		designationRepository.save(designation);
-
 	}
 
 	@Override
@@ -28,7 +27,6 @@ public class DesignationServiceImpl implements DesignationService {
 	@Override
 	public void updateDesignation(Designation designation) {
 		designationRepository.save(designation);
-		
 	}
 
 	@Override
@@ -44,7 +42,6 @@ public class DesignationServiceImpl implements DesignationService {
 	@Override
 	public void deleteById(Long id) {
 		designationRepository.deleteById(id);
-		
 	}
 
 	@Override

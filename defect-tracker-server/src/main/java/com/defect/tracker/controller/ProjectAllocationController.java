@@ -56,14 +56,14 @@ public class ProjectAllocationController {
 
 	/*--------------------- UPDATE OR/ EDIT -----------------------------------*/
 	@PutMapping(value = EndpointURI.PROJECT_ALLOCATION)
-	public ResponseEntity<Object> updateProjectAllocation(@RequestBody ProjectAllocationDto projectAllocationDto) {
+	public ResponseEntity<Object> updateProjectAllocation(@Valid @RequestBody ProjectAllocationDto projectAllocationDto) {
 		if (projectAllocationService.existsById(projectAllocationDto.getId())) {
 			if (projectAllocationService.isEmployeeIdAlreadyExist(projectAllocationDto.getEmployeeId())) {
 				return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_ALLOCATION_EXISTS,
 						validationFailureStatusCodes.getEmployeeIdAlreadyExists()), HttpStatus.BAD_REQUEST);
 			}
 			ProjectAllocation projectAllocation = mapper.map(projectAllocationDto, ProjectAllocation.class);
-			projectAllocationService.createProjectAllocation(projectAllocation);
+			projectAllocationService.updateProjectAllocation(projectAllocation);
 			return new ResponseEntity<Object>(Constants.PROJECT_ALLOCATION_UPDATED_SUCCESS, HttpStatus.OK);
 		}
 

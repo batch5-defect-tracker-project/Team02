@@ -48,14 +48,14 @@ public class DesignationController {
 
 	/*--------------------- UPDATE OR/ EDIT -----------------------------------*/
 	@PutMapping(value = EndpointURI.DESIGNATION)
-	public ResponseEntity<Object> updateDesignation(@RequestBody DesignationDto designationDto) {
+	public ResponseEntity<Object> updateDesignation(@Valid @RequestBody DesignationDto designationDto) {
 		if (designationService.existsById(designationDto.getId())) {
 			if (designationService.isDesignationNameAlreadyExist(designationDto.getName())) {
 				return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DESIGNATION_EXISTS,
 					validationFailureStatusCodes.getDesignationNameAlreadyExists()),HttpStatus.BAD_REQUEST);
 			}
 			Designation designation = mapper.map(designationDto, Designation.class);
-			designationService.createDesignation(designation);
+			designationService.updateDesignation(designation);
 			return new ResponseEntity<Object>(Constants.DESIGNATION_UPDATED_SUCCESS, HttpStatus.OK);
 		}
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DESIGNATION_EXISTS,

@@ -55,14 +55,14 @@ public class ProjectController {
 
 	/*--------------------- UPDATE OR/ EDIT -----------------------------------*/
 	@PutMapping(value = EndpointURI.PROJECT)
-	public ResponseEntity<Object> updateProject(@RequestBody ProjectDto projectDto) {
+	public ResponseEntity<Object> updateProject(@Valid @RequestBody ProjectDto projectDto) {
 		if (projectService.existsById(projectDto.getId())) {
 			if (projectService.isProjectNameAlreadyExist(projectDto.getName())) {
 				return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_EXISTS,
 						validationFailureStatusCodes.getProjectNameAlreadyExists()), HttpStatus.BAD_REQUEST);
 			}
 			Project project = mapper.map(projectDto, Project.class);
-			projectService.createProject(project);
+			projectService.updateProject(project);
 			return new ResponseEntity<Object>(Constants.PROJECT_UPDATED_SUCCESS, HttpStatus.OK);
 		}
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_EXISTS,

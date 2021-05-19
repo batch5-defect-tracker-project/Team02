@@ -60,7 +60,6 @@ public class DefectController {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_NOT_EXISTS_BY_ID,
 					validationFailureStatusCodes.getDefectExistsById()), HttpStatus.BAD_REQUEST);
 		}
-
 		defectService.deleteById(id);
 		return new ResponseEntity<Object>(Constants.DEFECT_DELETED_SUCCESS, HttpStatus.OK);
 	}
@@ -84,10 +83,10 @@ public class DefectController {
 						validationFailureStatusCodes.getModuleIdAlreadyExists()), HttpStatus.BAD_REQUEST);
 			}
 			Defect defect = mapper.map(defectDto, Defect.class);
-			defectService.createDefect(defect);
+			defectService.updateDefect(defect);
 			return new ResponseEntity<Object>(Constants.DEFECT_UPDATED_SUCCESS, HttpStatus.OK);
 		}
-		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_EXISTS_BY_ID,
+		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_EXISTS,
 				validationFailureStatusCodes.getDefectExistsById()), HttpStatus.BAD_REQUEST);
 	}
 

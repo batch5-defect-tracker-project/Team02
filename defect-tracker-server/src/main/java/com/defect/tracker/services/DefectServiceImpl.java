@@ -10,16 +10,13 @@ import com.defect.tracker.data.repositories.DefectRepository;
 
 @Service
 public class DefectServiceImpl implements DefectService {
-	
+
 	@Autowired
 	private DefectRepository defectRepository;
-
-	
 
 	@Override
 	public void createDefect(Defect defect) {
 		defectRepository.save(defect);
-
 	}
 
 	@Override
@@ -30,24 +27,20 @@ public class DefectServiceImpl implements DefectService {
 	@Override
 	public void deleteById(Long id) {
 		defectRepository.deleteById(id);
-		
 	}
 
 	@Override
 	public boolean existsByDefectId(Long id) {
-		
 		return defectRepository.existsById(id);
 	}
 
 	@Override
 	public boolean existsById(Long id) {
-		
 		return defectRepository.existsById(id);
 	}
 
 	@Override
 	public Object getByIdDefect(Long id) {
-		
 		return defectRepository.findById(id);
 	}
 
@@ -56,7 +49,9 @@ public class DefectServiceImpl implements DefectService {
 		return defectRepository.existsById(moduleId);
 	}
 
-	
+	@Override
+	public void updateDefect(Defect defect) {
+		defectRepository.save(defect);
+	}
 
-	
 }
