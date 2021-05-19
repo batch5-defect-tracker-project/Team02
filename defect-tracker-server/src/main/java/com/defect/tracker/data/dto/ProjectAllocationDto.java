@@ -6,10 +6,11 @@ public class ProjectAllocationDto {
 	private Long id;
 	@NotNull(message = "{projectAllocatationDto.projectId.null}")
 	private Long projectId;
-	@NotNull(message = "{projectAllocationDto.EmployeeId.null}")
+	@NotNull(message = "{projectAllocationDto.employeeId.null}")
 	private Long employeeId;
 	@NotNull(message = "{projectAllocationDto.ModuleId.null}")
 	private Long moduleId;
+	@NotNull(message = "{projectAllocationDto.subModuleId.null}")
 	private Long subModuleId;
 
 	public Long getProjectId() {
