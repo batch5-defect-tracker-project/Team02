@@ -57,7 +57,7 @@ public class ProjectController {
 	@PutMapping(value = EndpointURI.PROJECT)
 	public ResponseEntity<Object> updateProject(@Valid @RequestBody ProjectDto projectDto) {
 		if (projectService.existsById(projectDto.getId())) {
-			if (projectService.isProjectNameAlreadyExist(projectDto.getName())) {
+			if (projectService.isUpdatedProjectNameAlreadyExist(projectDto.getId(), projectDto.getName())) {
 				return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_EXISTS,
 						validationFailureStatusCodes.getProjectNameAlreadyExists()), HttpStatus.BAD_REQUEST);
 			}
