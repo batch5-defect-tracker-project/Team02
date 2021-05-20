@@ -20,7 +20,9 @@ import com.defect.tracker.data.dto.EmployeeResponseDto;
 import com.defect.tracker.data.entities.Employee;
 import com.defect.tracker.data.mapper.Mapper;
 import com.defect.tracker.data.response.ValidationFailureResponse;
+import com.defect.tracker.services.DesignationService;
 import com.defect.tracker.services.EmployeeService;
+import com.defect.tracker.services.GenderService;
 import com.defect.tracker.util.Constants;
 import com.defect.tracker.util.EndpointURI;
 import com.defect.tracker.util.ValidationConstance;
@@ -31,6 +33,10 @@ public class EmployeeController {
 	@Autowired
 	EmployeeService employeeService;
 	@Autowired
+	GenderService genderService;
+	@Autowired
+	DesignationService designationService;
+	@Autowired
 	ValidationFailureStatusCodes validationFailureStatusCodes;
 	@Autowired
 	private Mapper mapper;
@@ -38,13 +44,23 @@ public class EmployeeController {
 	/*------------------------------ ADD -------------------------------------*/
 	@PostMapping(value = EndpointURI.EMPLOYEE)
 	public ResponseEntity<Object> addEmployee(@Valid @RequestBody EmployeeDto employeeDto) {
-		if (employeeService.isEmployeeEmailAlreadyExist(employeeDto.getEmail())) {
-			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_EXISTS,
-					validationFailureStatusCodes.getEmployeeEmailAlreadyExists()), HttpStatus.BAD_REQUEST);
+		if (genderService.existsById(employeeDto.getGenderId())) {
+			if (designationService.existsById(employeeDto.getDesignationId())) {
+				if (employeeService.isEmployeeEmailAlreadyExist(employeeDto.getEmail())) {
+					return new ResponseEntity<>(
+							new ValidationFailureResponse(ValidationConstance.EMPLOYEE_EXISTS,
+									validationFailureStatusCodes.getEmployeeEmailAlreadyExists()),
+							HttpStatus.BAD_REQUEST);
+				}
+				Employee employee = mapper.map(employeeDto, Employee.class);
+				employeeService.createEmployee(employee);
+				return new ResponseEntity<Object>(Constants.EMPLOYEE_ADDED_SUCCESS, HttpStatus.OK);
+			}
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DESIGNATION_NOT_EXISTS_BY_ID,
+					validationFailureStatusCodes.getDesignationExistsById()), HttpStatus.BAD_REQUEST);
 		}
-		Employee employee = mapper.map(employeeDto, Employee.class);
-		employeeService.createEmployee(employee);
-		return new ResponseEntity<Object>(Constants.EMPLOYEE_ADDED_SUCCESS, HttpStatus.OK);
+		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.GENDER_NOT_EXISTS_BY_ID,
+				validationFailureStatusCodes.getGenderExistsById()), HttpStatus.BAD_REQUEST);
 	}
 
 	/*--------------------- VIEW ALL OR/ GET ALL ------------------------------*/
@@ -58,8 +74,8 @@ public class EmployeeController {
 	/*--------------------- UPDATE OR/ EDIT -----------------------------------*/
 	@PutMapping(value = EndpointURI.EMPLOYEE)
 	public ResponseEntity<Object> updateEmployee(@Valid @RequestBody EmployeeDto employeeDto) {
-		if (employeeService.existsById(employeeDto.getId())) {	
-				if (employeeService.isUpdatedEmployeeEmailAlreadyExist(employeeDto.getId(), employeeDto.getEmail())) {
+		if (employeeService.existsById(employeeDto.getId())) {
+			if (employeeService.isEmployeeEmailAlreadyExist(employeeDto.getEmail())) {
 				return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_EXISTS,
 						validationFailureStatusCodes.getEmployeeEmailAlreadyExists()), HttpStatus.BAD_REQUEST);
 			}
@@ -69,7 +85,6 @@ public class EmployeeController {
 		}
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_EXISTS,
 				validationFailureStatusCodes.getEmployeeExistsById()), HttpStatus.BAD_REQUEST);
-
 	}
 
 	/*------------------------- DELETE ----------------------------------------*/
