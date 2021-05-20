@@ -48,4 +48,13 @@ public class SubModuleServiceImpl implements SubModuleService {
 		subModuleRepository.deleteById(id);
 	}
 
+	@Override
+	public boolean isUpdatedSubModuleNameAlreadyExist(Long id, String subModuleName) {
+		if ((!subModuleRepository.findById(id).get().getName().equalsIgnoreCase(subModuleName))
+				&& (isSubModuleNameAlreadyExist(subModuleName))) {
+			return true;
+		}
+		return false;
+	}
+
 }
