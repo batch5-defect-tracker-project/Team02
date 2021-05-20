@@ -21,6 +21,7 @@ import com.defect.tracker.data.dto.ModuleResponseDto;
 import com.defect.tracker.data.mapper.Mapper;
 import com.defect.tracker.data.response.ValidationFailureResponse;
 import com.defect.tracker.services.ModuleService;
+import com.defect.tracker.services.ProjectService;
 import com.defect.tracker.util.Constants;
 import com.defect.tracker.util.EndpointURI;
 import com.defect.tracker.util.ValidationConstance;
@@ -31,6 +32,8 @@ public class ModuleController {
 	@Autowired
 	ModuleService moduleService;
 	@Autowired
+	ProjectService projectService;
+	@Autowired
 	ValidationFailureStatusCodes validationFailureStatusCodes;
 	@Autowired
 	private Mapper mapper;
@@ -38,26 +41,34 @@ public class ModuleController {
 	/*------------------------------ ADD -------------------------------------*/
 	@PostMapping(value = EndpointURI.MODULE)
 	public ResponseEntity<Object> addModule(@Valid @RequestBody ModuleDto moduleDto) {
-		if (moduleService.isModuleNameAlreadyExist(moduleDto.getName())) {
-			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_EXISTS,
-					validationFailureStatusCodes.getModuleNameAlreadyExists()), HttpStatus.BAD_REQUEST);
+		if (projectService.existsById(moduleDto.getProjectId())) {
+			if (moduleService.isModuleNameAlreadyExist(moduleDto.getName())) {
+				return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_EXISTS,
+						validationFailureStatusCodes.getModuleNameAlreadyExists()), HttpStatus.BAD_REQUEST);
+			}
+			Module module = mapper.map(moduleDto, Module.class);
+			moduleService.createModule(module);
+			return new ResponseEntity<Object>(Constants.MODULE_ADDED_SUCCESS, HttpStatus.OK);
 		}
-		Module module = mapper.map(moduleDto, Module.class);
-		moduleService.createModule(module);
-		return new ResponseEntity<Object>(Constants.MODULE_ADDED_SUCCESS, HttpStatus.OK);
+		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_NOT_EXISTS_BY_ID,
+				validationFailureStatusCodes.getProjectExistsById()), HttpStatus.BAD_REQUEST);
 	}
 
 	/*--------------------- UPDATE OR/ EDIT -----------------------------------*/
 	@PutMapping(value = EndpointURI.MODULE)
 	public ResponseEntity<Object> updateModule(@Valid @RequestBody ModuleDto moduleDto) {
 		if (moduleService.existsById(moduleDto.getId())) {
-			if (moduleService.isModuleNameAlreadyExist(moduleDto.getName())) {
-				return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_EXISTS,
-						validationFailureStatusCodes.getModuleNameAlreadyExists()), HttpStatus.BAD_REQUEST);
+			if (projectService.existsById(moduleDto.getProjectId())) {
+				if (moduleService.isUpdatedModuleNameAlreadyExist(moduleDto.getId(), moduleDto.getName())) {
+					return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_EXISTS,
+							validationFailureStatusCodes.getModuleNameAlreadyExists()), HttpStatus.BAD_REQUEST);
+				}
+				Module module = mapper.map(moduleDto, Module.class);
+				moduleService.updateModule(module);
+				return new ResponseEntity<Object>(Constants.MODULE_UPDATED_SUCCESS, HttpStatus.OK);
 			}
-			Module module = mapper.map(moduleDto, Module.class);
-			moduleService.updateModule(module);
-			return new ResponseEntity<Object>(Constants.MODULE_UPDATED_SUCCESS, HttpStatus.OK);
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_NOT_EXISTS_BY_ID,
+					validationFailureStatusCodes.getProjectExistsById()), HttpStatus.BAD_REQUEST);
 		}
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_EXISTS,
 				validationFailureStatusCodes.getModuleExistsById()), HttpStatus.BAD_REQUEST);
