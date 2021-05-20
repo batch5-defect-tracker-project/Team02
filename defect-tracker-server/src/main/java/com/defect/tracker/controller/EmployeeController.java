@@ -58,8 +58,8 @@ public class EmployeeController {
 	/*--------------------- UPDATE OR/ EDIT -----------------------------------*/
 	@PutMapping(value = EndpointURI.EMPLOYEE)
 	public ResponseEntity<Object> updateEmployee(@Valid @RequestBody EmployeeDto employeeDto) {
-		if (employeeService.existsById(employeeDto.getId())) {
-			if (employeeService.isEmployeeEmailAlreadyExist(employeeDto.getEmail())) {
+		if (employeeService.existsById(employeeDto.getId())) {	
+				if (employeeService.isUpdatedEmployeeEmailAlreadyExist(employeeDto.getId(), employeeDto.getEmail())) {
 				return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_EXISTS,
 						validationFailureStatusCodes.getEmployeeEmailAlreadyExists()), HttpStatus.BAD_REQUEST);
 			}

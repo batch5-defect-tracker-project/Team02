@@ -50,11 +50,6 @@ public class ProjectServiceImpl implements ProjectService {
 	}
 
 	@Override
-	public Object getProjectByName(Long id) {
-		return projectRepository.findById(id).get().getName();
-	}
-
-	@Override
 	public boolean isUpdatedProjectNameAlreadyExist(Long id, String projectName) {
 		if ((!projectRepository.findById(id).get().getName().equalsIgnoreCase(projectName))
 				&& (isProjectNameAlreadyExist(projectName))) {

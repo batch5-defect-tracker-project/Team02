@@ -48,4 +48,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return employeeRepository.findById(id);
 	}
 
+	@Override
+	public boolean isUpdatedEmployeeEmailAlreadyExist(Long id, String employeeEmail) {
+		if ((!employeeRepository.findById(id).get().getEmail().equalsIgnoreCase(employeeEmail))
+				&& (isEmployeeEmailAlreadyExist(employeeEmail))) {
+			return true;
+		}
+		return false;
+	}
+
 }

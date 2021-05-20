@@ -20,8 +20,6 @@ public interface ProjectService {
 
 	public Object getProjectById(Long id);
 
-	public Object getProjectByName(Long id);
-
 	public boolean isUpdatedProjectNameAlreadyExist(Long id, String projectName);
 
 }
