@@ -19,5 +19,7 @@ public interface EmployeeService {
 	public void updateEmployee(Employee employee);
 
 	public Object getByIdEmployee(Long id);
+	
+	public boolean isUpdatedEmployeeEmailAlreadyExist(Long id, String employeeEmail);
 
 }
