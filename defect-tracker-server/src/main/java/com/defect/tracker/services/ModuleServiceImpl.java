@@ -48,4 +48,13 @@ public class ModuleServiceImpl implements ModuleService {
 		return moduleRepository.findById(id);
 	}
 
+	@Override
+	public boolean isUpdatedModuleNameAlreadyExist(Long id, String moduleName) {
+		if ((!moduleRepository.findById(id).get().getName().equalsIgnoreCase(moduleName))
+				&& (isModuleNameAlreadyExist(moduleName))) {
+			return true;
+		}
+		return false;
+	}
+
 }
