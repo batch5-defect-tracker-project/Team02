@@ -20,4 +20,6 @@ public interface SubModuleService {
 	
 	public void deleteById(Long id);
 	
+	public boolean isUpdatedSubModuleNameAlreadyExist(Long id, String subModuleName);
+	
 }
