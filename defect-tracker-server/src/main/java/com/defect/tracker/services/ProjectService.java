@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.defect.tracker.data.entities.Project;
 
-	public interface ProjectService {
+public interface ProjectService {
 
 	public boolean isProjectNameAlreadyExist(String projectName);
 
@@ -19,5 +19,9 @@ import com.defect.tracker.data.entities.Project;
 	public void deleteById(Long id);
 
 	public Object getProjectById(Long id);
+
+	public Object getProjectByName(Long id);
+
+	public boolean isUpdatedProjectNameAlreadyExist(Long id, String projectName);
 
 }
