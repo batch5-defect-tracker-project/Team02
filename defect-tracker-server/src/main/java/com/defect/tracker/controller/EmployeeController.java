@@ -75,7 +75,7 @@ public class EmployeeController {
 		if (employeeService.existsById(employeeDto.getId())) {
 			if (genderService.existsById(employeeDto.getGenderId())) {
 				if (designationService.existsById(employeeDto.getDesignationId())) {
-					if (employeeService.isEmployeeEmailAlreadyExist(employeeDto.getEmail())) {
+					if (employeeService.isUpdatedEmployeeEmailAlreadyExist(employeeDto.getId(), employeeDto.getEmail())) {
 						return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_EXISTS,
 							validationFailureStatusCodes.getEmployeeEmailAlreadyExists()),HttpStatus.BAD_REQUEST);
 					}
