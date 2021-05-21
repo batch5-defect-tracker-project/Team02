@@ -19,7 +19,11 @@ import com.defect.tracker.data.dto.ProjectAllocationDto;
 import com.defect.tracker.data.entities.ProjectAllocation;
 import com.defect.tracker.data.mapper.Mapper;
 import com.defect.tracker.data.response.ValidationFailureResponse;
+import com.defect.tracker.services.EmployeeService;
+import com.defect.tracker.services.ModuleService;
 import com.defect.tracker.services.ProjectAllocationService;
+import com.defect.tracker.services.ProjectService;
+import com.defect.tracker.services.SubModuleService;
 import com.defect.tracker.util.Constants;
 import com.defect.tracker.util.EndpointURI;
 import com.defect.tracker.util.ValidationConstance;
@@ -30,43 +34,84 @@ public class ProjectAllocationController {
 	@Autowired
 	ProjectAllocationService projectAllocationService;
 	@Autowired
+	ProjectService projectService;
+	@Autowired
+	EmployeeService employeeService;
+	@Autowired
+	ModuleService moduleService;
+	@Autowired
+	SubModuleService subModuleService;
+	@Autowired
 	ValidationFailureStatusCodes validationFailureStatusCodes;
+
 	@Autowired
 	private Mapper mapper;
 
 	/*------------------------------ ADD -------------------------------------*/
 	@PostMapping(value = EndpointURI.PROJECT_ALLOCATION)
 	public ResponseEntity<Object> addProjectAllocation(@Valid @RequestBody ProjectAllocationDto projectAllocationDto) {
-		if (projectAllocationService.isEmployeeIdAlreadyExist(projectAllocationDto.getEmployeeId())) {
-			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_ALLOCATION_EXISTS,
-					validationFailureStatusCodes.getEmployeeIdAlreadyExists()), HttpStatus.BAD_REQUEST);
+		if (projectService.existsById(projectAllocationDto.getProjectId())) {
+			if (employeeService.existsById(projectAllocationDto.getEmployeeId())) {
+				if (moduleService.existsById(projectAllocationDto.getModuleId())) {
+					if (subModuleService.existsById(projectAllocationDto.getSubModuleId())) {
+						ProjectAllocation projectAllocation = mapper.map(projectAllocationDto, ProjectAllocation.class);
+						projectAllocationService.createProjectAllocation(projectAllocation);
+						return new ResponseEntity<Object>(Constants.PROJECT_ALLOCATION_ADDED_SUCCESS, HttpStatus.OK);
+					}
+					return new ResponseEntity<>(
+							new ValidationFailureResponse(ValidationConstance.SUBMODULE_NOT_EXISTS_BY_ID,
+									validationFailureStatusCodes.getSubModuleExistsById()),
+							HttpStatus.BAD_REQUEST);
+				}
+				return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_NOT_EXISTS_BY_ID,
+						validationFailureStatusCodes.getModuleExistsById()), HttpStatus.BAD_REQUEST);
+			}
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_NOT_EXISTS_BY_ID,
+					validationFailureStatusCodes.getEmployeeExistsById()), HttpStatus.BAD_REQUEST);
 		}
-		ProjectAllocation projectAllocation = mapper.map(projectAllocationDto, ProjectAllocation.class);
-		projectAllocationService.createProjectAllocation(projectAllocation);
-		return new ResponseEntity<Object>(Constants.PROJECT_ALLOCATION_ADDED_SUCCESS, HttpStatus.OK);
+		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_NOT_EXISTS_BY_ID,
+				validationFailureStatusCodes.getProjectExistsById()), HttpStatus.BAD_REQUEST);
 	}
 
 	/*--------------------- VIEW ALL OR/ GET ALL ------------------------------*/
 	@GetMapping(value = EndpointURI.PROJECT_ALLOCATION)
 	public ResponseEntity<Object> getAllProjectAllocation() {
-		List<ProjectAllocationDto> projectAllocationList = mapper.map(projectAllocationService.getAllProjectAllocation(), 
-				ProjectAllocationDto.class);
+		List<ProjectAllocationDto> projectAllocationList = mapper
+				.map(projectAllocationService.getAllProjectAllocation(), ProjectAllocationDto.class);
 		return new ResponseEntity<Object>(projectAllocationList, HttpStatus.OK);
 	}
 
 	/*--------------------- UPDATE OR/ EDIT -----------------------------------*/
 	@PutMapping(value = EndpointURI.PROJECT_ALLOCATION)
-	public ResponseEntity<Object> updateProjectAllocation(@Valid @RequestBody ProjectAllocationDto projectAllocationDto) {
+	public ResponseEntity<Object> updateProjectAllocation(
+			@Valid @RequestBody ProjectAllocationDto projectAllocationDto) {
 		if (projectAllocationService.existsById(projectAllocationDto.getId())) {
-			if (projectAllocationService.isEmployeeIdAlreadyExist(projectAllocationDto.getEmployeeId())) {
-				return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_ALLOCATION_EXISTS,
-						validationFailureStatusCodes.getEmployeeIdAlreadyExists()), HttpStatus.BAD_REQUEST);
+			if (projectService.existsById(projectAllocationDto.getProjectId())) {
+				if (employeeService.existsById(projectAllocationDto.getEmployeeId())) {
+					if (moduleService.existsById(projectAllocationDto.getModuleId())) {
+						if (subModuleService.existsById(projectAllocationDto.getSubModuleId())) {
+							ProjectAllocation projectAllocation = mapper.map(projectAllocationDto,
+									ProjectAllocation.class);
+							projectAllocationService.updateProjectAllocation(projectAllocation);
+							return new ResponseEntity<Object>(Constants.PROJECT_ALLOCATION_UPDATED_SUCCESS,
+									HttpStatus.OK);
+						}
+						return new ResponseEntity<>(
+								new ValidationFailureResponse(ValidationConstance.SUBMODULE_NOT_EXISTS_BY_ID,
+										validationFailureStatusCodes.getSubModuleExistsById()),
+								HttpStatus.BAD_REQUEST);
+					}
+					return new ResponseEntity<>(
+							new ValidationFailureResponse(ValidationConstance.MODULE_NOT_EXISTS_BY_ID,
+									validationFailureStatusCodes.getModuleExistsById()),
+							HttpStatus.BAD_REQUEST);
+				}
+				return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_NOT_EXISTS_BY_ID,
+						validationFailureStatusCodes.getEmployeeExistsById()), HttpStatus.BAD_REQUEST);
 			}
-			ProjectAllocation projectAllocation = mapper.map(projectAllocationDto, ProjectAllocation.class);
-			projectAllocationService.updateProjectAllocation(projectAllocation);
-			return new ResponseEntity<Object>(Constants.PROJECT_ALLOCATION_UPDATED_SUCCESS, HttpStatus.OK);
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_NOT_EXISTS_BY_ID,
+					validationFailureStatusCodes.getProjectExistsById()), HttpStatus.BAD_REQUEST);
 		}
-
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_ALLOCATION_EXISTS,
 				validationFailureStatusCodes.getProjectAllocationExistsById()), HttpStatus.BAD_REQUEST);
 	}
