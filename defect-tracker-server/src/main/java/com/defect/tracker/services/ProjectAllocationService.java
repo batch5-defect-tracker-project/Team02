@@ -6,8 +6,6 @@ import com.defect.tracker.data.entities.ProjectAllocation;
 
 public interface ProjectAllocationService {
 
-	public boolean isEmployeeIdAlreadyExist(Long EmployeeId);
-
 	public void createProjectAllocation(ProjectAllocation projectAllocation);
 
 	public List<ProjectAllocation> getAllProjectAllocation();
