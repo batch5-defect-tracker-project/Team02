@@ -29,6 +29,7 @@ public class Module {
 	private Project project;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "module")
+	@JsonIgnoreProperties(value = { "module", "hibernateLazyInitializer" })
 	private List<SubModule> subModule;
 
 	public Long getId() {
