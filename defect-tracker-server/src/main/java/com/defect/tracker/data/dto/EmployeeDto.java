@@ -16,7 +16,10 @@ public class EmployeeDto {
 	private String name;
 
 	@NotNull(message = "{employeeDto.employeeContactNo.null}")
-	private int contactNo;
+	@NotEmpty(message = "{employeeDto.employeeContactNo.empty}")
+	@NotBlank(message = "{employeeDto.employeeContactNo.blank}")
+	@Pattern(regexp = "(^$|[0-9]{10})", message = "{employeeDto.employeeContactNo.EnterValidPhoneNo}")
+	private String contactNo;
 
 	@NotNull(message = "{employeeDto.employeeEmail.null}")
 	@NotEmpty(message = "{employeeDto.employeeEmail.empty}")
@@ -30,7 +33,7 @@ public class EmployeeDto {
 
 	@NotNull(message = "{employeeDto.designationId.null}")
 	private Long designationId;
-	
+
 	@NotNull(message = "{employeeDto.loginId.null}")
 	private Long loginId;
 
@@ -50,11 +53,11 @@ public class EmployeeDto {
 		this.name = name;
 	}
 
-	public int getContactNo() {
+	public String getContactNo() {
 		return contactNo;
 	}
 
-	public void setContactNo(int contactNo) {
+	public void setContactNo(String contactNo) {
 		this.contactNo = contactNo;
 	}
 
