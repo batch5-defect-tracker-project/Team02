@@ -128,7 +128,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		if (employee == null || employee.isEnabled()) {
 			return false;
 		} else {
-			employee.setVerificationCode(null);
+			employee.setVerificationCode(verificationCode);
 			employee.setEnabled(true);
 			employeeRepository.save(employee);
 
