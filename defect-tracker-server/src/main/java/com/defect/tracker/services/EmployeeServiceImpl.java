@@ -5,6 +5,7 @@ import java.util.List;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
+import org.modelmapper.internal.bytebuddy.utility.RandomString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -13,8 +14,6 @@ import org.springframework.stereotype.Service;
 
 import com.defect.tracker.data.entities.Employee;
 import com.defect.tracker.data.repositories.EmployeeRepository;
-
-import net.bytebuddy.utility.RandomString;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
@@ -71,7 +70,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return false;
 	}
 
-	@Override
 	public boolean isEnabled(Employee employee) {
 		return employeeRepository.isEnabled(employee);
 	}
@@ -81,13 +79,14 @@ public class EmployeeServiceImpl implements EmployeeService {
 		String encodedPassword = passwordEncoder.encode(employee.getPassword());
 		employee.setPassword(encodedPassword);
 
-		String randomCode = RandomString.make(64);
+		String randomCode = RandomString.make();
 		employee.setVerificationCode(randomCode);
 		employee.setEnabled(false);
 
 		employeeRepository.save(employee);
 
 		sendVerificationEmail(employee, siteURL);
+
 	}
 
 	@Override
@@ -108,14 +107,14 @@ public class EmployeeServiceImpl implements EmployeeService {
 		helper.setSubject(subject);
 
 		content = content.replace("[[name]]", employee.getName());
-		String verifyURL = siteURL + "/verify?code=" + employee.getVerificationCode();
+		String verifyURL = siteURL + "/api/v1/verify?code=" + employee.getVerificationCode();
 
 		content = content.replace("[[URL]]", verifyURL);
 
 		helper.setText(content, true);
 
 		mailSender.send(message);
-
+		System.out.println(verifyURL);
 	}
 
 	@Override
@@ -125,7 +124,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		if (employee == null || employee.isEnabled()) {
 			return false;
 		} else {
-			employee.setVerificationCode(null);
+			employee.setVerificationCode(verificationCode);
 			employee.setEnabled(true);
 			employeeRepository.save(employee);
 

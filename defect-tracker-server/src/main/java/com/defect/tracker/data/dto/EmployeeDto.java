@@ -37,6 +37,12 @@ public class EmployeeDto {
 	@NotNull(message = "{employeeDto.loginId.null}")
 	private Long loginId;
 
+	@NotNull(message = "{employeeDto.password.null}")
+	private String password;
+	
+	private String verificationCode;
+	private boolean isEnabled;
+
 	public Long getId() {
 		return id;
 	}
@@ -91,6 +97,30 @@ public class EmployeeDto {
 
 	public void setLoginId(Long loginId) {
 		this.loginId = loginId;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getVerificationCode() {
+		return verificationCode;
+	}
+
+	public void setVerificationCode(String verificationCode) {
+		this.verificationCode = verificationCode;
+	}
+
+	public boolean isEnabled() {
+		return isEnabled;
+	}
+
+	public void setEnabled(boolean isEnabled) {
+		this.isEnabled = isEnabled;
 	}
 
 }
