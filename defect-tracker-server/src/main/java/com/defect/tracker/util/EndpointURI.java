@@ -56,6 +56,10 @@ public final class EndpointURI {
 	// Priority
 	public static final String PRIORITY = BASE_API_PATH + "priority";
 	public static final String PRIORITY_BY_ID = BASE_API_PATH + "priority" + ID;
+	
+	// Status
+	public static final String STATUS = BASE_API_PATH + "status";
+	public static final String STATUS_BY_ID = BASE_API_PATH + "status" + ID;
 
 	private EndpointURI() {
 
