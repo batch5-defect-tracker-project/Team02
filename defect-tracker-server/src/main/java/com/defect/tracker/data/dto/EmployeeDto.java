@@ -36,71 +36,91 @@ public class EmployeeDto {
 
 	@NotNull(message = "{employeeDto.loginId.null}")
 	private Long loginId;
-	
+
 	@NotNull(message = "{employeeDto.password.null}")
 	private String password;
+	
 	private String verificationCode;
 	private boolean isEnabled;
-	
+
 	public Long getId() {
 		return id;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	public String getContactNo() {
 		return contactNo;
 	}
+
 	public void setContactNo(String contactNo) {
 		this.contactNo = contactNo;
 	}
+
 	public String getEmail() {
 		return email;
 	}
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
 	public Long getGenderId() {
 		return genderId;
 	}
+
 	public void setGenderId(Long genderId) {
 		this.genderId = genderId;
 	}
+
 	public Long getDesignationId() {
 		return designationId;
 	}
+
 	public void setDesignationId(Long designationId) {
 		this.designationId = designationId;
 	}
+
 	public Long getLoginId() {
 		return loginId;
 	}
+
 	public void setLoginId(Long loginId) {
 		this.loginId = loginId;
 	}
+
 	public String getPassword() {
 		return password;
 	}
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
 	public String getVerificationCode() {
 		return verificationCode;
 	}
+
 	public void setVerificationCode(String verificationCode) {
 		this.verificationCode = verificationCode;
 	}
+
 	public boolean isEnabled() {
 		return isEnabled;
 	}
+
 	public void setEnabled(boolean isEnabled) {
 		this.isEnabled = isEnabled;
 	}
-	
+
 }

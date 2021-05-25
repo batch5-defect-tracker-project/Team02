@@ -35,11 +35,6 @@ public class Employee {
 	@JsonIgnoreProperties(value = { "employee", "hibernateLazyInitializer" })
 	private Designation designation;
 
-	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "login_id", nullable = false)
-	@JsonIgnoreProperties(value = { "employee", "hibernateLazyInitializer" })
-	private Login login;
-
 	public Long getId() {
 		return id;
 	}
@@ -110,14 +105,6 @@ public class Employee {
 
 	public void setDesignation(Designation designation) {
 		this.designation = designation;
-	}
-
-	public Login getLogin() {
-		return login;
-	}
-
-	public void setLogin(Login login) {
-		this.login = login;
 	}
 
 }
