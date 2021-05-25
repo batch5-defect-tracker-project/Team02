@@ -34,9 +34,6 @@ public class EmployeeDto {
 	@NotNull(message = "{employeeDto.designationId.null}")
 	private Long designationId;
 
-	@NotNull(message = "{employeeDto.loginId.null}")
-	private Long loginId;
-
 	@NotNull(message = "{employeeDto.password.null}")
 	private String password;
 	
@@ -89,14 +86,6 @@ public class EmployeeDto {
 
 	public void setDesignationId(Long designationId) {
 		this.designationId = designationId;
-	}
-
-	public Long getLoginId() {
-		return loginId;
-	}
-
-	public void setLoginId(Long loginId) {
-		this.loginId = loginId;
 	}
 
 	public String getPassword() {

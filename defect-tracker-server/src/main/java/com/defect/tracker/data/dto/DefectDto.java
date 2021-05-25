@@ -6,16 +6,16 @@ import javax.validation.constraints.NotNull;
 
 public class DefectDto {
 	private Long id;
-	
+
 	@NotNull(message = "{defectDto.moduleId.null}")
 	private Long moduleId;
-	
+
 	@NotNull(message = "{defectDto.subModuleId.null}")
 	private Long subModuleId;
-	
+
 	@NotNull(message = "{defectDto.typeId.null}")
 	private Long typeId;
-	
+
 	@NotNull(message = "{defectDto.severityId.null}")
 	private Long severityId;
 
@@ -39,11 +39,19 @@ public class DefectDto {
 	@NotEmpty(message = "{defectDto.defectComments.empty}")
 	@NotBlank(message = "{defectDto.defectComments.blank}")
 	private String comments;
-	
+
 	@NotNull(message = "{defectDto.defectAssignedTo.null}")
 	@NotEmpty(message = "{defectDto.defectAssignedTo.empty}")
 	@NotBlank(message = "{defectDto.defectAssignedTo.blank}")
 	private String assignedTo;
+
+	@NotNull(message = "{defectDto.defectAssignedBy.null}")
+	@NotEmpty(message = "{defectDto.defectAssignedBy.empty}")
+	@NotBlank(message = "{defectDto.defectAssignedBy.blank}")
+	private String assignedBy;
+
+	@NotNull(message = "{defectDto.defectStatusId.null}")
+	private String statusId;
 
 	public Long getId() {
 		return id;
@@ -131,6 +139,22 @@ public class DefectDto {
 
 	public void setAssignedTo(String assignedTo) {
 		this.assignedTo = assignedTo;
+	}
+
+	public String getAssignedBy() {
+		return assignedBy;
+	}
+
+	public void setAssignedBy(String assignedBy) {
+		this.assignedBy = assignedBy;
+	}
+
+	public String getStatusId() {
+		return statusId;
+	}
+
+	public void setStatusId(String statusId) {
+		this.statusId = statusId;
 	}
 
 }

@@ -94,6 +94,13 @@ public class ValidationFailureStatusCodes {
 	@Value("${validation.priority.ExistsById}")
 	private String priorityExistsById;
 
+	// Status
+	@Value("${validation.status.AlreadyExists}")
+	private String statusNameAlreadyExists;
+
+	@Value("${validation.status.ExistsById}")
+	private String statusExistsById;
+
 	// Getters Setters
 	public String getProjectNameAlreadyExists() {
 		return projectNameAlreadyExists;
@@ -277,6 +284,22 @@ public class ValidationFailureStatusCodes {
 
 	public void setPriorityExistsById(String priorityExistsById) {
 		this.priorityExistsById = priorityExistsById;
+	}
+
+	public String getStatusNameAlreadyExists() {
+		return statusNameAlreadyExists;
+	}
+
+	public void setStatusNameAlreadyExists(String statusNameAlreadyExists) {
+		this.statusNameAlreadyExists = statusNameAlreadyExists;
+	}
+
+	public String getStatusExistsById() {
+		return statusExistsById;
+	}
+
+	public void setStatusExistsById(String statusExistsById) {
+		this.statusExistsById = statusExistsById;
 	}
 
 }
