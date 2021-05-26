@@ -51,6 +51,9 @@ public class Constants {
 	
 	// Priority
 	public static final String PRIORITY_ADDED_SUCCESS = "Priority Added Successfully";
+	
+	// Status
+	public static final String STATUS_ADDED_SUCCESS = "Status Added Sucessfully";
 
 	// Encapsulate constructor to restrict modification from outside
 

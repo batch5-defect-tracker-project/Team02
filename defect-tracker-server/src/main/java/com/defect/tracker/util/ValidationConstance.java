@@ -48,6 +48,10 @@ public class ValidationConstance {
 	// Priority
 	public static final String PRIORITY_EXISTS = "Priority Already Exists";
 	public static final String PRIORITY_NOT_EXISTS_BY_ID = "Priority Id Not Exists";
+	
+	// Status
+	public static final String STATUS_EXISTS = "Status Already Exists";
+	public static final String STATUS_NOT_EXISTS_BY_ID = "Status Id Not Exists";
 
 	private ValidationConstance() {
 	}

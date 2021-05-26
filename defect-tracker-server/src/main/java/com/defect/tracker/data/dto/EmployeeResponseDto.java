@@ -5,13 +5,13 @@ public class EmployeeResponseDto {
 	private String name;
 	private int contactNo;
 	private String email;
+	private String password;
+	private String verificationCode;
+	private boolean isEnabled;
 	private Long genderId;
 	private String genderName;
 	private Long designationId;
 	private String designationName;
-	private Long loginId;
-	private String loginEmail;
-	private String loginPassword;
 
 	public Long getId() {
 		return id;
@@ -45,6 +45,30 @@ public class EmployeeResponseDto {
 		this.email = email;
 	}
 
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getVerificationCode() {
+		return verificationCode;
+	}
+
+	public void setVerificationCode(String verificationCode) {
+		this.verificationCode = verificationCode;
+	}
+
+	public boolean isEnabled() {
+		return isEnabled;
+	}
+
+	public void setEnabled(boolean isEnabled) {
+		this.isEnabled = isEnabled;
+	}
+
 	public Long getGenderId() {
 		return genderId;
 	}
@@ -75,30 +99,6 @@ public class EmployeeResponseDto {
 
 	public void setDesignationName(String designationName) {
 		this.designationName = designationName;
-	}
-
-	public Long getLoginId() {
-		return loginId;
-	}
-
-	public void setLoginId(Long loginId) {
-		this.loginId = loginId;
-	}
-
-	public String getLoginEmail() {
-		return loginEmail;
-	}
-
-	public void setLoginEmail(String loginEmail) {
-		this.loginEmail = loginEmail;
-	}
-
-	public String getLoginPassword() {
-		return loginPassword;
-	}
-
-	public void setLoginPassword(String loginPassword) {
-		this.loginPassword = loginPassword;
 	}
 
 }

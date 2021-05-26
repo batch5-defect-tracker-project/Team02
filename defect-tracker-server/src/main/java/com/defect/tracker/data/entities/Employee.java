@@ -21,6 +21,9 @@ public class Employee {
 	private String name;
 	private int contactNo;
 	private String email;
+	private String password;
+	private String verificationCode;
+	private boolean isEnabled;
 
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "gender_id", nullable = false)
@@ -31,11 +34,6 @@ public class Employee {
 	@JoinColumn(name = "designation_id", nullable = false)
 	@JsonIgnoreProperties(value = { "employee", "hibernateLazyInitializer" })
 	private Designation designation;
-
-	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "login_id", nullable = false)
-	@JsonIgnoreProperties(value = { "employee", "hibernateLazyInitializer" })
-	private Login login;
 
 	public Long getId() {
 		return id;
@@ -69,6 +67,30 @@ public class Employee {
 		this.email = email;
 	}
 
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getVerificationCode() {
+		return verificationCode;
+	}
+
+	public void setVerificationCode(String verificationCode) {
+		this.verificationCode = verificationCode;
+	}
+
+	public boolean isEnabled() {
+		return isEnabled;
+	}
+
+	public void setEnabled(boolean isEnabled) {
+		this.isEnabled = isEnabled;
+	}
+
 	public Gender getGender() {
 		return gender;
 	}
@@ -83,14 +105,6 @@ public class Employee {
 
 	public void setDesignation(Designation designation) {
 		this.designation = designation;
-	}
-
-	public Login getLogin() {
-		return login;
-	}
-
-	public void setLogin(Login login) {
-		this.login = login;
 	}
 
 }

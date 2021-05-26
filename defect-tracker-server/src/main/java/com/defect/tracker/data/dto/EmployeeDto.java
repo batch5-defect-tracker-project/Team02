@@ -16,7 +16,10 @@ public class EmployeeDto {
 	private String name;
 
 	@NotNull(message = "{employeeDto.employeeContactNo.null}")
-	private int contactNo;
+	@NotEmpty(message = "{employeeDto.employeeContactNo.empty}")
+	@NotBlank(message = "{employeeDto.employeeContactNo.blank}")
+	@Pattern(regexp = "(^$|[0-9]{10})", message = "{employeeDto.employeeContactNo.EnterValidPhoneNo}")
+	private String contactNo;
 
 	@NotNull(message = "{employeeDto.employeeEmail.null}")
 	@NotEmpty(message = "{employeeDto.employeeEmail.empty}")
@@ -30,9 +33,12 @@ public class EmployeeDto {
 
 	@NotNull(message = "{employeeDto.designationId.null}")
 	private Long designationId;
+
+	@NotNull(message = "{employeeDto.password.null}")
+	private String password;
 	
-	@NotNull(message = "{employeeDto.loginId.null}")
-	private Long loginId;
+	private String verificationCode;
+	private boolean isEnabled;
 
 	public Long getId() {
 		return id;
@@ -50,11 +56,11 @@ public class EmployeeDto {
 		this.name = name;
 	}
 
-	public int getContactNo() {
+	public String getContactNo() {
 		return contactNo;
 	}
 
-	public void setContactNo(int contactNo) {
+	public void setContactNo(String contactNo) {
 		this.contactNo = contactNo;
 	}
 
@@ -82,12 +88,28 @@ public class EmployeeDto {
 		this.designationId = designationId;
 	}
 
-	public Long getLoginId() {
-		return loginId;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setLoginId(Long loginId) {
-		this.loginId = loginId;
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getVerificationCode() {
+		return verificationCode;
+	}
+
+	public void setVerificationCode(String verificationCode) {
+		this.verificationCode = verificationCode;
+	}
+
+	public boolean isEnabled() {
+		return isEnabled;
+	}
+
+	public void setEnabled(boolean isEnabled) {
+		this.isEnabled = isEnabled;
 	}
 
 }
