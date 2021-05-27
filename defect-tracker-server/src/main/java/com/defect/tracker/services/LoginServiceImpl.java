@@ -11,7 +11,7 @@ public class LoginServiceImpl implements LoginService {
 	@Autowired
 	LoginRepository loginRepository;
 
-	@Override
+	@Override 
 	public void createLogin(Login login) {
 		loginRepository.save(login);
 	}
