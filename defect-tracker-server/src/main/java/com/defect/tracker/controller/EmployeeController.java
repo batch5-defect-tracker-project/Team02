@@ -21,12 +21,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.defect.tracker.data.dto.EmployeeDto;
 import com.defect.tracker.data.dto.EmployeeResponseDto;
+import com.defect.tracker.data.dto.LoginDto;
 import com.defect.tracker.data.entities.Employee;
+import com.defect.tracker.data.entities.Login;
 import com.defect.tracker.data.mapper.Mapper;
 import com.defect.tracker.data.response.ValidationFailureResponse;
 import com.defect.tracker.services.DesignationService;
 import com.defect.tracker.services.EmployeeService;
 import com.defect.tracker.services.GenderService;
+import com.defect.tracker.services.LoginService;
 import com.defect.tracker.util.Constants;
 import com.defect.tracker.util.EndpointURI;
 import com.defect.tracker.util.ValidationConstance;
@@ -36,6 +39,8 @@ import com.defect.tracker.util.ValidationFailureStatusCodes;
 public class EmployeeController {
 	@Autowired
 	EmployeeService employeeService;
+	@Autowired
+	LoginService loginService;
 	@Autowired
 	GenderService genderService;
 	@Autowired
@@ -47,13 +52,13 @@ public class EmployeeController {
 
 	/*------------------------------ REGISTER -------------------------------------*/
 	@PostMapping(value = EndpointURI.EMPLOYEE)
-	public ResponseEntity<Object> processRegister(@Valid @RequestBody EmployeeDto employeeDto, HttpServletRequest request)
-			throws UnsupportedEncodingException, MessagingException {
+	public ResponseEntity<Object> processRegister(@Valid @RequestBody EmployeeDto employeeDto,
+			HttpServletRequest request) throws UnsupportedEncodingException, MessagingException {
 		if (genderService.existsById(employeeDto.getGenderId())) {
 			if (designationService.existsById(employeeDto.getDesignationId())) {
 				if (employeeService.isEmployeeEmailAlreadyExist(employeeDto.getEmail())) {
 					return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_EXISTS,
-						validationFailureStatusCodes.getEmployeeEmailAlreadyExists()),HttpStatus.BAD_REQUEST);
+						validationFailureStatusCodes.getEmployeeEmailAlreadyExists()), HttpStatus.BAD_REQUEST);
 				}
 				Employee employee = mapper.map(employeeDto, Employee.class);
 				employeeService.register(employee, getSiteURL(request));
@@ -66,12 +71,12 @@ public class EmployeeController {
 				validationFailureStatusCodes.getGenderExistsById()), HttpStatus.BAD_REQUEST);
 	}
 
-		private String getSiteURL(HttpServletRequest request) {
-			String siteURL = request.getRequestURL().toString();
-			return siteURL.replace(request.getServletPath(), "");
-	
+	private String getSiteURL(HttpServletRequest request) {
+		String siteURL = request.getRequestURL().toString();
+		return siteURL.replace(request.getServletPath(), "");
+
 	}
-		
+
 	/*------------------------------ ADD -------------------------------------*/
 	@PostMapping(value = EndpointURI.EMPLOYEE_ADD)
 	public ResponseEntity<Object> addEmployee(@Valid @RequestBody EmployeeDto employeeDto) {
@@ -109,14 +114,14 @@ public class EmployeeController {
 					if (employeeService.isUpdatedEmployeeEmailAlreadyExist(employeeDto.getId(),
 							employeeDto.getEmail())) {
 						return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_EXISTS,
-							validationFailureStatusCodes.getEmployeeEmailAlreadyExists()), HttpStatus.BAD_REQUEST);
+							validationFailureStatusCodes.getEmployeeEmailAlreadyExists()),HttpStatus.BAD_REQUEST);
 					}
 					Employee employee = mapper.map(employeeDto, Employee.class);
 					employeeService.updateEmployee(employee);
 					return new ResponseEntity<Object>(Constants.EMPLOYEE_UPDATED_SUCCESS, HttpStatus.OK);
 				}
 				return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DESIGNATION_NOT_EXISTS_BY_ID,
-					validationFailureStatusCodes.getDesignationExistsById()), HttpStatus.BAD_REQUEST);
+						validationFailureStatusCodes.getDesignationExistsById()), HttpStatus.BAD_REQUEST);
 			}
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.GENDER_NOT_EXISTS_BY_ID,
 					validationFailureStatusCodes.getGenderExistsById()), HttpStatus.BAD_REQUEST);
@@ -145,7 +150,7 @@ public class EmployeeController {
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_NOT_EXISTS_BY_ID,
 				validationFailureStatusCodes.getEmployeeExistsById()), HttpStatus.BAD_REQUEST);
 	}
-	
+
 	/*------------------------------ VERIFY -------------------------------------*/
 	@GetMapping(value = EndpointURI.EMPLOYEE_REGISTER)
 	public String verifyEmployee(@Param("code") String code) {
@@ -154,6 +159,22 @@ public class EmployeeController {
 		} else {
 			return "verify_fail";
 		}
+	}
+
+	/*------------------------------ LOGIN -------------------------------------*/
+	@PostMapping(value = EndpointURI.LOGIN)
+	public ResponseEntity<Object> Login(@Valid @RequestBody LoginDto loginDto) {
+			if (employeeService.isEmployeeEmailAlreadyExist(loginDto.getEmail())) {
+				Login login = mapper.map(loginDto, Login.class);
+				if (employeeService.loginEmployee(login)) {
+				loginService.createLogin(login);
+				return new ResponseEntity<Object>(Constants.LOGIN_ADDED_SUCCESS, HttpStatus.OK);
+		}
+		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.LOGIN_EXISTS,
+				validationFailureStatusCodes.getExistsByEmail()), HttpStatus.BAD_REQUEST);
+	 }
+		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_NOT_REGISTER,
+				validationFailureStatusCodes.getEmployeeEmailAlreadyExists()),HttpStatus.BAD_REQUEST);
 	}
 
 }

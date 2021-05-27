@@ -14,6 +14,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.defect.tracker.data.entities.Employee;
+import com.defect.tracker.data.entities.Login;
 import com.defect.tracker.data.repositories.EmployeeRepository;
 
 @Service
@@ -134,7 +135,18 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 			return true;
 		}
-
+	}
+	
+	@Override
+	public boolean loginEmployee(Login login) {
+		String encodedPassword = passwordEncoder.encode(login.getPassword());
+	    login.setPassword(encodedPassword);
+		Employee employee = (Employee) employeeRepository.findByEmail(login.getEmail());
+		if (login.getEmail().equalsIgnoreCase(employee.getEmail())
+				&& passwordEncoder.matches(login.getPassword(), employee.getPassword())) {
+			return true;
+		}
+		return false;
 	}
 
 }

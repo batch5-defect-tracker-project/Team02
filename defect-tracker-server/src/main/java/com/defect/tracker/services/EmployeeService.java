@@ -6,6 +6,7 @@ import java.util.List;
 import javax.mail.MessagingException;
 
 import com.defect.tracker.data.entities.Employee;
+import com.defect.tracker.data.entities.Login;
 
 public interface EmployeeService {
 
@@ -32,5 +33,7 @@ public interface EmployeeService {
 	public void sendVerificationEmail(Employee employee, String siteURL) throws MessagingException, UnsupportedEncodingException;
 
 	public boolean verify(String verificationCode);
+
+	boolean loginEmployee(Login login);
 
 }
