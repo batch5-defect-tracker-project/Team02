@@ -2,6 +2,7 @@ package com.defect.tracker.services;
 
 import java.io.UnsupportedEncodingException;
 import java.util.List;
+import java.util.Optional;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
@@ -10,11 +11,11 @@ import org.modelmapper.internal.bytebuddy.utility.RandomString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.defect.tracker.data.dto.LoginDto;
 import com.defect.tracker.data.entities.Employee;
-import com.defect.tracker.data.entities.Login;
 import com.defect.tracker.data.repositories.EmployeeRepository;
 
 @Service
@@ -23,7 +24,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	private EmployeeRepository employeeRepository;
 
 	@Autowired
-	private PasswordEncoder passwordEncoder;
+	private BCryptPasswordEncoder passwordEncoder;
 
 	@Autowired
 	private JavaMailSender mailSender;
@@ -55,6 +56,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	public void updateEmployee(Employee employee) {
+		String encodedPassword = passwordEncoder.encode(employee.getPassword());
+	    employee.setPassword(encodedPassword);
 		employeeRepository.save(employee);
 	}
 
@@ -115,9 +118,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		    String verifyURL = siteURL + "/api/v1/verify?code=" + employee.getVerificationCode();
 		     
 		    content = content.replace("[[URL]]", verifyURL);
-		     
 		    helper.setText(content, true);
-		     
 		    mailSender.send(message);	
 		    System.out.println(verifyURL);
 	}
@@ -138,15 +139,20 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 	
 	@Override
-	public boolean loginEmployee(Login login) {
-		String encodedPassword = passwordEncoder.encode(login.getPassword());
-	    login.setPassword(encodedPassword);
-		Employee employee = (Employee) employeeRepository.findByEmail(login.getEmail());
-		if (login.getEmail().equalsIgnoreCase(employee.getEmail())
-				&& passwordEncoder.matches(login.getPassword(), employee.getPassword())) {
+	public boolean loginEmployee(LoginDto loginDto) {
+		String encodedPassword = passwordEncoder.encode(loginDto.getPassword());
+	    loginDto.setPassword(encodedPassword);
+		Employee employee = (Employee) employeeRepository.findByEmail(loginDto.getEmail());
+		if (loginDto.getEmail().equalsIgnoreCase(employee.getEmail())
+				&& passwordEncoder.matches(loginDto.getPassword(), employee.getPassword())) {
 			return true;
 		}
 		return false;
+	}
+
+	@Override
+	public Optional<Employee> findById(Long assignedTo) {
+		return employeeRepository.findById(assignedTo);
 	}
 
 }

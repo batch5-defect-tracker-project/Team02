@@ -23,7 +23,6 @@ import com.defect.tracker.data.dto.EmployeeDto;
 import com.defect.tracker.data.dto.EmployeeResponseDto;
 import com.defect.tracker.data.dto.LoginDto;
 import com.defect.tracker.data.entities.Employee;
-import com.defect.tracker.data.entities.Login;
 import com.defect.tracker.data.mapper.Mapper;
 import com.defect.tracker.data.response.ValidationFailureResponse;
 import com.defect.tracker.services.DesignationService;
@@ -51,7 +50,7 @@ public class EmployeeController {
 	private Mapper mapper;
 
 	/*------------------------------ REGISTER -------------------------------------*/
-	@PostMapping(value = EndpointURI.EMPLOYEE)
+	@PostMapping(value = EndpointURI.EMPLOYEE_REGISTER)
 	public ResponseEntity<Object> processRegister(@Valid @RequestBody EmployeeDto employeeDto,
 			HttpServletRequest request) throws UnsupportedEncodingException, MessagingException {
 		if (genderService.existsById(employeeDto.getGenderId())) {
@@ -106,7 +105,7 @@ public class EmployeeController {
 	}
 
 	/*--------------------- UPDATE OR/ EDIT -----------------------------------*/
-	@PutMapping(value = EndpointURI.EMPLOYEE)
+	@PutMapping(value = EndpointURI.EMPLOYEE_REGISTER)
 	public ResponseEntity<Object> updateEmployee(@Valid @RequestBody EmployeeDto employeeDto) {
 		if (employeeService.existsById(employeeDto.getId())) {
 			if (genderService.existsById(employeeDto.getGenderId())) {
@@ -152,7 +151,7 @@ public class EmployeeController {
 	}
 
 	/*------------------------------ VERIFY -------------------------------------*/
-	@GetMapping(value = EndpointURI.EMPLOYEE_REGISTER)
+	@GetMapping(value = EndpointURI.EMPLOYEE_VERIFY)
 	public String verifyEmployee(@Param("code") String code) {
 		if (employeeService.verify(code)) {
 			return "verify_success";
@@ -164,17 +163,13 @@ public class EmployeeController {
 	/*------------------------------ LOGIN -------------------------------------*/
 	@PostMapping(value = EndpointURI.LOGIN)
 	public ResponseEntity<Object> Login(@Valid @RequestBody LoginDto loginDto) {
-			if (employeeService.isEmployeeEmailAlreadyExist(loginDto.getEmail())) {
-				Login login = mapper.map(loginDto, Login.class);
-				if (employeeService.loginEmployee(login)) {
-				loginService.createLogin(login);
-				return new ResponseEntity<Object>(Constants.LOGIN_ADDED_SUCCESS, HttpStatus.OK);
+		if (employeeService.loginEmployee(loginDto)) {
+			return new ResponseEntity<Object>(Constants.LOGIN_SUCCESS, HttpStatus.OK);
 		}
-		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.LOGIN_EXISTS,
-				validationFailureStatusCodes.getExistsByEmail()), HttpStatus.BAD_REQUEST);
-	 }
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_NOT_REGISTER,
-				validationFailureStatusCodes.getEmployeeEmailAlreadyExists()),HttpStatus.BAD_REQUEST);
+			validationFailureStatusCodes.getExistsByEmail()), HttpStatus.BAD_REQUEST);
 	}
+		
+		
 
 }
