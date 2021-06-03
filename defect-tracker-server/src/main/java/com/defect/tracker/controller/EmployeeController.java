@@ -28,7 +28,6 @@ import com.defect.tracker.data.response.ValidationFailureResponse;
 import com.defect.tracker.services.DesignationService;
 import com.defect.tracker.services.EmployeeService;
 import com.defect.tracker.services.GenderService;
-import com.defect.tracker.services.LoginService;
 import com.defect.tracker.util.Constants;
 import com.defect.tracker.util.EndpointURI;
 import com.defect.tracker.util.ValidationConstance;
@@ -38,8 +37,6 @@ import com.defect.tracker.util.ValidationFailureStatusCodes;
 public class EmployeeController {
 	@Autowired
 	EmployeeService employeeService;
-	@Autowired
-	LoginService loginService;
 	@Autowired
 	GenderService genderService;
 	@Autowired

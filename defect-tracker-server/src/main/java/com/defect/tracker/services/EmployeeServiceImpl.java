@@ -155,4 +155,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return employeeRepository.findById(assignedTo);
 	}
 
+	@Override
+	public boolean ExixtsByEmail(String email) {
+		return employeeRepository.existsByEmail(email);
+	}
+
 }

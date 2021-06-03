@@ -38,5 +38,7 @@ public interface EmployeeService {
 	boolean loginEmployee(LoginDto loginDto);
 	
 	public Optional<Employee> findById(Long assignedTo);
+	
+	public boolean ExixtsByEmail(String email);
 
 }
