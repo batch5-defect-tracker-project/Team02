@@ -40,18 +40,14 @@ public class DefectDto {
 	@NotBlank(message = "{defectDto.defectComments.blank}")
 	private String comments;
 
-	@NotNull(message = "{defectDto.defectAssignedTo.null}")
-	@NotEmpty(message = "{defectDto.defectAssignedTo.empty}")
-	@NotBlank(message = "{defectDto.defectAssignedTo.blank}")
-	private String assignedTo;
+	@NotNull(message = "{defectDto.defectAssignedToId.null}")
+	private Long assignedToId;
 
-	@NotNull(message = "{defectDto.defectAssignedBy.null}")
-	@NotEmpty(message = "{defectDto.defectAssignedBy.empty}")
-	@NotBlank(message = "{defectDto.defectAssignedBy.blank}")
-	private String assignedBy;
+	@NotNull(message = "{defectDto.defectAssignedById.null}")
+	private Long assignedById;
 
 	@NotNull(message = "{defectDto.defectStatusId.null}")
-	private String statusId;
+	private Long statusId;
 
 	public Long getId() {
 		return id;
@@ -133,27 +129,27 @@ public class DefectDto {
 		this.comments = comments;
 	}
 
-	public String getAssignedTo() {
-		return assignedTo;
+	public Long getAssignedToId() {
+		return assignedToId;
 	}
 
-	public void setAssignedTo(String assignedTo) {
-		this.assignedTo = assignedTo;
+	public void setAssignedToId(Long assignedToId) {
+		this.assignedToId = assignedToId;
 	}
 
-	public String getAssignedBy() {
-		return assignedBy;
+	public Long getAssignedById() {
+		return assignedById;
 	}
 
-	public void setAssignedBy(String assignedBy) {
-		this.assignedBy = assignedBy;
+	public void setAssignedById(Long assignedById) {
+		this.assignedById = assignedById;
 	}
 
-	public String getStatusId() {
+	public Long getStatusId() {
 		return statusId;
 	}
 
-	public void setStatusId(String statusId) {
+	public void setStatusId(Long statusId) {
 		this.statusId = statusId;
 	}
 
