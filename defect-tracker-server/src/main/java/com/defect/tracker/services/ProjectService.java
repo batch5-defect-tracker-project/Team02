@@ -1,6 +1,7 @@
 package com.defect.tracker.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.defect.tracker.data.entities.Project;
 
@@ -21,5 +22,7 @@ public interface ProjectService {
 	public Object getProjectById(Long id);
 
 	public boolean isUpdatedProjectNameAlreadyExist(Long id, String projectName);
+
+	public Optional<Project> findById(Long id);
 
 }

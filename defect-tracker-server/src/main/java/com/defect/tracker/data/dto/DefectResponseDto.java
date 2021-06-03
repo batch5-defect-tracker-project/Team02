@@ -17,8 +17,8 @@ public class DefectResponseDto {
 	private String description;
 	private String stepToReCreate;
 	private String comments;
-	private String assignedTo;
-	private String assignedBy;
+	private Long assignedToId;
+	private Long assignedById;
 	private Long statusId;
 	private String statusName;
 
@@ -150,22 +150,6 @@ public class DefectResponseDto {
 		this.comments = comments;
 	}
 
-	public String getAssignedTo() {
-		return assignedTo;
-	}
-
-	public void setAssignedTo(String assignedTo) {
-		this.assignedTo = assignedTo;
-	}
-
-	public String getAssignedBy() {
-		return assignedBy;
-	}
-
-	public void setAssignedBy(String assignedBy) {
-		this.assignedBy = assignedBy;
-	}
-
 	public Long getStatusId() {
 		return statusId;
 	}
@@ -180,6 +164,22 @@ public class DefectResponseDto {
 
 	public void setStatusName(String statusName) {
 		this.statusName = statusName;
+	}
+
+	public Long getAssignedToId() {
+		return assignedToId;
+	}
+
+	public void setAssignedToId(Long assignedToId) {
+		this.assignedToId = assignedToId;
+	}
+
+	public Long getAssignedById() {
+		return assignedById;
+	}
+
+	public void setAssignedById(Long assignedById) {
+		this.assignedById = assignedById;
 	}
 
 }
