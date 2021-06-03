@@ -2,11 +2,12 @@ package com.defect.tracker.services;
 
 import java.io.UnsupportedEncodingException;
 import java.util.List;
+import java.util.Optional;
 
 import javax.mail.MessagingException;
 
+import com.defect.tracker.data.dto.LoginDto;
 import com.defect.tracker.data.entities.Employee;
-import com.defect.tracker.data.entities.Login;
 
 public interface EmployeeService {
 
@@ -34,6 +35,10 @@ public interface EmployeeService {
 
 	public boolean verify(String verificationCode);
 
-	boolean loginEmployee(Login login);
+	boolean loginEmployee(LoginDto loginDto);
+	
+	public Optional<Employee> findById(Long assignedTo);
+	
+	public boolean ExixtsByEmail(String email);
 
 }

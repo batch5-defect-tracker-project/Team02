@@ -1,6 +1,7 @@
 package com.defect.tracker.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.defect.tracker.data.entities.Module;
 
@@ -21,5 +22,7 @@ public interface ModuleService {
 	public Object getModuleById(Long id);
 	
 	public boolean isUpdatedModuleNameAlreadyExist(Long id, String moduleName);
+
+	public Optional<Module> findById(Long id);
 
 }
