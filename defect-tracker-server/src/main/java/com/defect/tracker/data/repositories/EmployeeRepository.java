@@ -13,6 +13,6 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 	
 	public Employee findByVerificationCode(String code);
 
-	public Object findByEmail(String email);
+	public Employee findByEmail(String email);
 
 }

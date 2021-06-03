@@ -1,7 +1,9 @@
 package com.defect.tracker.controller;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
+import javax.mail.MessagingException;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,7 @@ import com.defect.tracker.services.ModuleService;
 import com.defect.tracker.services.PriorityService;
 import com.defect.tracker.services.ProjectService;
 import com.defect.tracker.services.SeverityService;
+import com.defect.tracker.services.StatusService;
 import com.defect.tracker.services.SubModuleService;
 import com.defect.tracker.services.TypeService;
 import com.defect.tracker.util.Constants;
@@ -49,37 +52,37 @@ public class DefectController {
 	@Autowired
 	ProjectService projectService;
 	@Autowired
+	StatusService statusService;
+	@Autowired
 	ValidationFailureStatusCodes validationFailureStatusCodes;
 	@Autowired
 	private Mapper mapper;
 
 	/*------------------------------ ADD -------------------------------------*/
 	@PostMapping(value = EndpointURI.DEFECT)
-	public ResponseEntity<Object> addDefect(@Valid @RequestBody DefectDto defectDto) {
+	public ResponseEntity<Object> addDefect(@Valid @RequestBody DefectDto defectDto)throws UnsupportedEncodingException, MessagingException {
 		if (moduleService.existsById(defectDto.getModuleId())) {
 			if (subModuleService.existsById(defectDto.getSubModuleId())) {
 				if (typeService.existsById(defectDto.getTypeId())) {
 					if (severityService.existsById(defectDto.getSeverityId())) {
 						if (priorityService.existsById(defectDto.getPriorityId())) {
 							if (projectService.existsById(defectDto.getProjectId())) {
-								Defect defect = mapper.map(defectDto, Defect.class);
-								defectService.createDefect(defect);
-								return new ResponseEntity<Object>(Constants.DEFECT_ADDED_SUCCESS, HttpStatus.OK);
+								if (statusService.existsById(defectDto.getStatusId())) {
+									Defect defect = mapper.map(defectDto, Defect.class);
+									defectService.createDefect(defect);
+									return new ResponseEntity<Object>(Constants.DEFECT_ADDED_SUCCESS, HttpStatus.OK);
+								}
+								return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.STATUS_NOT_EXISTS_BY_ID,
+												validationFailureStatusCodes.getStatusExistsById()),HttpStatus.BAD_REQUEST);
 							}
-							return new ResponseEntity<>(
-									new ValidationFailureResponse(ValidationConstance.PROJECT_NOT_EXISTS_BY_ID,
-											validationFailureStatusCodes.getProjectExistsById()),
-									HttpStatus.BAD_REQUEST);
+							return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_NOT_EXISTS_BY_ID,
+											validationFailureStatusCodes.getProjectExistsById()),HttpStatus.BAD_REQUEST);
 						}
-						return new ResponseEntity<>(
-								new ValidationFailureResponse(ValidationConstance.PRIORITY_NOT_EXISTS_BY_ID,
-										validationFailureStatusCodes.getPriorityExistsById()),
-								HttpStatus.BAD_REQUEST);
+						return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PRIORITY_NOT_EXISTS_BY_ID,
+										validationFailureStatusCodes.getPriorityExistsById()),HttpStatus.BAD_REQUEST);
 					}
-					return new ResponseEntity<>(
-							new ValidationFailureResponse(ValidationConstance.SEVERITY_NOT_EXISTS_BY_ID,
-									validationFailureStatusCodes.getSeverityExistsById()),
-							HttpStatus.BAD_REQUEST);
+					return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SEVERITY_NOT_EXISTS_BY_ID,
+									validationFailureStatusCodes.getSeverityExistsById()),HttpStatus.BAD_REQUEST);
 				}
 				return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.TYPE_NOT_EXISTS_BY_ID,
 						validationFailureStatusCodes.getTypeExistsById()), HttpStatus.BAD_REQUEST);
@@ -121,7 +124,7 @@ public class DefectController {
 
 	/*--------------------- UPDATE OR/ EDIT -----------------------------------*/
 	@PutMapping(value = EndpointURI.DEFECT)
-	public ResponseEntity<Object> updateDefect(@Valid @RequestBody DefectDto defectDto) {
+	public ResponseEntity<Object> updateDefect(@Valid @RequestBody DefectDto defectDto)throws UnsupportedEncodingException, MessagingException {
 		if (defectService.existsById(defectDto.getId())) {
 			if (moduleService.existsById(defectDto.getModuleId())) {
 				if (subModuleService.existsById(defectDto.getSubModuleId())) {
@@ -129,32 +132,28 @@ public class DefectController {
 						if (severityService.existsById(defectDto.getSeverityId())) {
 							if (priorityService.existsById(defectDto.getPriorityId())) {
 								if (projectService.existsById(defectDto.getProjectId())) {
-									Defect defect = mapper.map(defectDto, Defect.class);
-									defectService.updateDefect(defect);
-									return new ResponseEntity<Object>(Constants.DEFECT_UPDATED_SUCCESS, HttpStatus.OK);
+									if (statusService.existsById(defectDto.getStatusId())) {
+										Defect defect = mapper.map(defectDto, Defect.class);
+										defectService.updateDefect(defect);
+										return new ResponseEntity<Object>(Constants.DEFECT_UPDATED_SUCCESS,HttpStatus.OK);
+									}
+									return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.STATUS_NOT_EXISTS_BY_ID,
+													validationFailureStatusCodes.getStatusExistsById()),HttpStatus.BAD_REQUEST);
 								}
-								return new ResponseEntity<>(
-										new ValidationFailureResponse(ValidationConstance.PROJECT_NOT_EXISTS_BY_ID,
-												validationFailureStatusCodes.getProjectExistsById()),
-										HttpStatus.BAD_REQUEST);
+								return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_NOT_EXISTS_BY_ID,
+												validationFailureStatusCodes.getProjectExistsById()),HttpStatus.BAD_REQUEST);
 							}
-							return new ResponseEntity<>(
-									new ValidationFailureResponse(ValidationConstance.PRIORITY_NOT_EXISTS_BY_ID,
-											validationFailureStatusCodes.getPriorityExistsById()),
-									HttpStatus.BAD_REQUEST);
+							return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PRIORITY_NOT_EXISTS_BY_ID,
+											validationFailureStatusCodes.getPriorityExistsById()),HttpStatus.BAD_REQUEST);
 						}
-						return new ResponseEntity<>(
-								new ValidationFailureResponse(ValidationConstance.SEVERITY_NOT_EXISTS_BY_ID,
-										validationFailureStatusCodes.getSeverityExistsById()),
-								HttpStatus.BAD_REQUEST);
+						return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SEVERITY_NOT_EXISTS_BY_ID,
+										validationFailureStatusCodes.getSeverityExistsById()),HttpStatus.BAD_REQUEST);
 					}
 					return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.TYPE_NOT_EXISTS_BY_ID,
 							validationFailureStatusCodes.getTypeExistsById()), HttpStatus.BAD_REQUEST);
 				}
-				return new ResponseEntity<>(
-						new ValidationFailureResponse(ValidationConstance.SUBMODULE_NOT_EXISTS_BY_ID,
-								validationFailureStatusCodes.getSubModuleExistsById()),
-						HttpStatus.BAD_REQUEST);
+				return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SUBMODULE_NOT_EXISTS_BY_ID,
+								validationFailureStatusCodes.getSubModuleExistsById()),HttpStatus.BAD_REQUEST);
 			}
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_EXISTS,
 					validationFailureStatusCodes.getModuleExistsById()), HttpStatus.BAD_REQUEST);
