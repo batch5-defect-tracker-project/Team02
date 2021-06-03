@@ -21,7 +21,7 @@ public class Constants {
 	public static final String DESIGNATION_DELETED_SUCCESS = "Designation Deleted Successfully";
 	
 	// login
-	public static final String LOGIN_ADDED_SUCCESS = "Login Added Successfully";
+	public static final String LOGIN_SUCCESS = "Login Successfully";
 
 	// Module
 	public static final String MODULE_ADDED_SUCCESS = "Module Added Successfully";

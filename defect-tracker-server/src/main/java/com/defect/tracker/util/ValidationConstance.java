@@ -19,9 +19,6 @@ public class ValidationConstance {
 	public static final String DESIGNATION_EXISTS = "Designation Already Exists";
 	public static final String DESIGNATION_NOT_EXISTS_BY_ID = "Designation Id Not Exists";
 
-	// Login
-	public static final String LOGIN_EXISTS = "Login Already Exists";
-
 	// Module
 	public static final String MODULE_EXISTS = "Module Already Exists";
 	public static final String MODULE_NOT_EXISTS_BY_ID = "Module Id Not Exists";
