@@ -21,8 +21,6 @@ public class Defect {
 	private String description;
 	private String stepToReCreate;
 	private String comments;
-	private String assignedTo;
-	private String assignedBy;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "module_id", nullable = false)
@@ -59,6 +57,16 @@ public class Defect {
 	@JsonIgnoreProperties(value = { "defect", "hibernateLazyInitializer" })
 	private Status status;
 
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "assignedBy", nullable = false)
+	@JsonIgnoreProperties(value = { "defect", "hibernateLazyInitializer" })
+	private Employee assignedBy;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "assignedTo", nullable = false)
+	@JsonIgnoreProperties(value = { "defect", "hibernateLazyInitializer" })
+	private Employee assignedTo;
+
 	public Long getId() {
 		return id;
 	}
@@ -89,22 +97,6 @@ public class Defect {
 
 	public void setComments(String comments) {
 		this.comments = comments;
-	}
-
-	public String getAssignedTo() {
-		return assignedTo;
-	}
-
-	public void setAssignedTo(String assignedTo) {
-		this.assignedTo = assignedTo;
-	}
-
-	public String getAssignedBy() {
-		return assignedBy;
-	}
-
-	public void setAssignedBy(String assignedBy) {
-		this.assignedBy = assignedBy;
 	}
 
 	public Module getModule() {
@@ -161,6 +153,22 @@ public class Defect {
 
 	public void setStatus(Status status) {
 		this.status = status;
+	}
+
+	public Employee getAssignedBy() {
+		return assignedBy;
+	}
+
+	public void setAssignedBy(Employee assignedBy) {
+		this.assignedBy = assignedBy;
+	}
+
+	public Employee getAssignedTo() {
+		return assignedTo;
+	}
+
+	public void setAssignedTo(Employee assignedTo) {
+		this.assignedTo = assignedTo;
 	}
 
 }
