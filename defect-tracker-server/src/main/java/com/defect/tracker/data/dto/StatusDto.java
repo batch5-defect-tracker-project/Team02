@@ -5,7 +5,6 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 public class StatusDto {
-
 	private Long id;
 
 	@NotNull(message = "{statusDto.statusName.null}")

@@ -8,8 +8,8 @@ import com.defect.tracker.data.entities.Status;
 @Repository
 public interface StatusRepository extends JpaRepository<Status, Long>{
 
-	public boolean existsByName(String name);
+	public boolean existsByName(String statusName);
 
 	public Status findByName(String statusName);
 
-} 
+}

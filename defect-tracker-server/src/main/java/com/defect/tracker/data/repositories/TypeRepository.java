@@ -6,8 +6,8 @@ import org.springframework.stereotype.Repository;
 import com.defect.tracker.data.entities.Type;
 
 @Repository
-public interface TypeRepository extends JpaRepository<Type, Long>{
+public interface TypeRepository extends JpaRepository<Type, Long> {
+	
+	public boolean existsByName(String typeName);
 
-	public boolean existsByName(String name);
-
-} 
+}

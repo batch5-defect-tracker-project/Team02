@@ -52,13 +52,13 @@ public class DesignationController {
 		if (designationService.existsById(designationDto.getId())) {
 			if (designationService.isDesignationNameAlreadyExist(designationDto.getName())) {
 				return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DESIGNATION_EXISTS,
-					validationFailureStatusCodes.getDesignationNameAlreadyExists()),HttpStatus.BAD_REQUEST);
+								validationFailureStatusCodes.getDesignationNameAlreadyExists()),HttpStatus.BAD_REQUEST);
 			}
 			Designation designation = mapper.map(designationDto, Designation.class);
 			designationService.updateDesignation(designation);
 			return new ResponseEntity<Object>(Constants.DESIGNATION_UPDATED_SUCCESS, HttpStatus.OK);
 		}
-		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DESIGNATION_EXISTS,
+		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DESIGNATION_NOT_EXISTS_BY_ID,
 				validationFailureStatusCodes.getDesignationExistsById()), HttpStatus.BAD_REQUEST);
 	}
 
@@ -71,7 +71,7 @@ public class DesignationController {
 
 	/*--------------------- VIEW-BY-ID  OR/ GET-BY-ID -------------------------*/
 	@GetMapping(value = EndpointURI.DESIGNATION_BY_ID)
-	public ResponseEntity<Object> findDesignationById(@PathVariable Long id) {
+	public ResponseEntity<Object> getDesignationById(@PathVariable Long id) {
 		if (designationService.existsById(id)) {
 			return new ResponseEntity<Object>(designationService.getDesignationById(id), HttpStatus.OK);
 		}

@@ -14,29 +14,28 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Entity
 @Table(name = "projectAllocation")
 public class ProjectAllocation {
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "project_id", nullable = false)
-	@JsonIgnoreProperties(value = { "employee", "hibernateLazyInitializer" })
+	@JsonIgnoreProperties(value = { "projectAllocation", "hibernateLazyInitializer" })
 	private Project project;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "employee_id", nullable = false)
-	@JsonIgnoreProperties(value = { "employee", "hibernateLazyInitializer" })
+	@JsonIgnoreProperties(value = { "projectAllocation", "hibernateLazyInitializer" })
 	private Employee employee;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "module_id", nullable = false)
-	@JsonIgnoreProperties(value = { "employee", "hibernateLazyInitializer" })
+	@JsonIgnoreProperties(value = { "projectAllocation", "hibernateLazyInitializer" })
 	private Module module;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "subModule_id", nullable = false)
-	@JsonIgnoreProperties(value = { "employee", "hibernateLazyInitializer" })
+	@JsonIgnoreProperties(value = { "projectAllocation", "hibernateLazyInitializer" })
 	private SubModule subModule;
 
 	public Long getId() {
@@ -79,5 +78,4 @@ public class ProjectAllocation {
 		this.subModule = subModule;
 	}
 
-		
 }

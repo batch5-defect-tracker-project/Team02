@@ -14,8 +14,8 @@ public class StatusServiceImpl implements StatusService {
 	private StatusRepository statusRepository;
 
 	@Override
-	public boolean isStatusNameAlreadyExist(String name) {
-		return statusRepository.existsByName(name);
+	public boolean isStatusNameAlreadyExist(String statusName) {
+		return statusRepository.existsByName(statusName);
 	}
 
 	@Override

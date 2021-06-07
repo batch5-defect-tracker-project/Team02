@@ -52,7 +52,7 @@ public class Defect {
 	@JsonIgnoreProperties(value = { "defect", "hibernateLazyInitializer" })
 	private Project project;
 
-	@OneToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "status_id", nullable = false)
 	@JsonIgnoreProperties(value = { "defect", "hibernateLazyInitializer" })
 	private Status status;
@@ -170,5 +170,5 @@ public class Defect {
 	public void setAssignedTo(Employee assignedTo) {
 		this.assignedTo = assignedTo;
 	}
-
+	
 }

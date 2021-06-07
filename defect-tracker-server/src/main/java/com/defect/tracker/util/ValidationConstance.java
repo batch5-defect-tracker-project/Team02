@@ -23,7 +23,7 @@ public class ValidationConstance {
 	// Module
 	public static final String MODULE_EXISTS = "Module Already Exists";
 	public static final String MODULE_NOT_EXISTS_BY_ID = "Module Id Not Exists";
-	
+
 	// SubModule
 	public static final String SUBMODULE_EXISTS = "SubModule Already Exists";
 	public static final String SUBMODULE_NOT_EXISTS_BY_ID = "SubModule Id Not Exists";
@@ -47,7 +47,7 @@ public class ValidationConstance {
 	// Priority
 	public static final String PRIORITY_EXISTS = "Priority Already Exists";
 	public static final String PRIORITY_NOT_EXISTS_BY_ID = "Priority Id Not Exists";
-	
+
 	// Status
 	public static final String STATUS_EXISTS = "Status Already Exists";
 	public static final String STATUS_NOT_EXISTS_BY_ID = "Status Id Not Exists";
