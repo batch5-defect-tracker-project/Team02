@@ -21,7 +21,6 @@ import com.defect.tracker.data.repositories.DefectRepository;
 
 @Service
 public class DefectServiceImpl implements DefectService {
-
 	@Autowired
 	private DefectRepository defectRepository;
 	@Autowired
@@ -43,11 +42,6 @@ public class DefectServiceImpl implements DefectService {
 	@Override
 	public void deleteById(Long id) {
 		defectRepository.deleteById(id);
-	}
-
-	@Override
-	public boolean existsByDefectId(Long id) {
-		return defectRepository.existsById(id);
 	}
 
 	@Override
@@ -88,10 +82,10 @@ public class DefectServiceImpl implements DefectService {
 		String senderName = fromAddress.get().getName();
 
 		String subject = "Defect Added Newely";
-		String content = "Dear [[name]],<br><br>" 
+		String content = "Dear [[name]],<br><br>"
 				+ "Project Name : [[projectName]] <br>"
-				+ "Module Name : [[moduleName]] <br>"
-				+ "Defect Status :[[statusName]] <br><br>"
+				+ "Module Name : [[moduleName]] <br>" 
+				+ "Defect Status :[[statusName]] <br><br>" 
 				+ "Thank you, <br>"
 				+ fromAddress.get().getName();
 

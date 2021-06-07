@@ -7,10 +7,11 @@ import com.defect.tracker.data.entities.Employee;
 
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee, Long> {
-	boolean existsByEmail(String employeeEmail);
-	
-	boolean isEnabled(Employee employee);
-	
+
+	public boolean existsByEmail(String employeeEmail);
+
+	public boolean isEnabled(Employee employee);
+
 	public Employee findByVerificationCode(String code);
 
 	public Employee findByEmail(String email);

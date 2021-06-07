@@ -7,6 +7,6 @@ import com.defect.tracker.data.entities.Module;
 @Repository
 public interface ModuleRepository extends JpaRepository<Module, Long> {
 
-	boolean existsByName(String moduleName);
+	public boolean existsByName(String moduleName);
 
 }

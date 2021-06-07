@@ -70,7 +70,7 @@ public class ModuleController {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_NOT_EXISTS_BY_ID,
 					validationFailureStatusCodes.getProjectExistsById()), HttpStatus.BAD_REQUEST);
 		}
-		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_EXISTS,
+		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_NOT_EXISTS_BY_ID,
 				validationFailureStatusCodes.getModuleExistsById()), HttpStatus.BAD_REQUEST);
 	}
 
@@ -83,7 +83,7 @@ public class ModuleController {
 
 	/*--------------------- VIEW-BY-ID  OR/ GET-BY-ID -------------------------*/
 	@GetMapping(value = EndpointURI.MODULE_BY_ID)
-	public ResponseEntity<Object> findModuleById(@PathVariable Long id) {
+	public ResponseEntity<Object> getModuleById(@PathVariable Long id) {
 		if (moduleService.existsById(id)) {
 			return new ResponseEntity<Object>(moduleService.getModuleById(id), HttpStatus.OK);
 		}

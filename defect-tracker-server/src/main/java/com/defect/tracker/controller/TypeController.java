@@ -44,7 +44,7 @@ public class TypeController {
 
 	/*--------------------- VIEW-BY-ID  OR/ GET-BY-ID -------------------------*/
 	@GetMapping(value = EndpointURI.TYPE_BY_ID)
-	public ResponseEntity<Object> findTypeById(@PathVariable Long id) {
+	public ResponseEntity<Object>getTypeById(@PathVariable Long id) {
 		if (typeService.existsById(id)) {
 			return new ResponseEntity<Object>(typeService.getTypeById(id), HttpStatus.OK);
 		}

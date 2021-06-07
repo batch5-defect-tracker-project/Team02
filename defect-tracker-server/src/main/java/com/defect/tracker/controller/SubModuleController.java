@@ -70,22 +70,21 @@ public class SubModuleController {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_NOT_EXISTS_BY_ID,
 					validationFailureStatusCodes.getModuleExistsById()), HttpStatus.BAD_REQUEST);
 		}
-		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SUBMODULE_EXISTS,
+		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SUBMODULE_NOT_EXISTS_BY_ID,
 				validationFailureStatusCodes.getSubModuleExistsById()), HttpStatus.BAD_REQUEST);
 	}
 
 	/*--------------------- VIEW ALL OR/ GET ALL ------------------------------*/
 	@GetMapping(value = EndpointURI.SUBMODULE)
 	public ResponseEntity<Object> getAllSubModule() {
-		List<SubModuleResponseDto> subModuleList = mapper.map(subModuleService.getAllSubModule(),
-				SubModuleResponseDto.class);
+		List<SubModuleResponseDto> subModuleList = mapper.map(subModuleService.getAllSubModule(),SubModuleResponseDto.class);
 		return new ResponseEntity<Object>(subModuleList, HttpStatus.OK);
 
 	}
 
 	/*--------------------- VIEW-BY-ID  OR/ GET-BY-ID -------------------------*/
 	@GetMapping(value = EndpointURI.SUBMODULE_BY_ID)
-	public ResponseEntity<Object> findSubModuleById(@PathVariable Long id) {
+	public ResponseEntity<Object>getSubModuleById(@PathVariable Long id) {
 		if (subModuleService.existsById(id)) {
 			return new ResponseEntity<Object>(subModuleService.getSubModuleById(id), HttpStatus.OK);
 		}

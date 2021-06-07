@@ -22,21 +22,14 @@ import com.defect.tracker.data.repositories.EmployeeRepository;
 public class EmployeeServiceImpl implements EmployeeService {
 	@Autowired
 	private EmployeeRepository employeeRepository;
-
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
-
 	@Autowired
 	private JavaMailSender mailSender;
 
 	@Override
 	public boolean isEmployeeEmailAlreadyExist(String employeeEmail) {
 		return employeeRepository.existsByEmail(employeeEmail);
-	}
-
-	@Override
-	public void createEmployee(Employee employee) {
-		employeeRepository.save(employee);
 	}
 
 	@Override
@@ -57,7 +50,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public void updateEmployee(Employee employee) {
 		String encodedPassword = passwordEncoder.encode(employee.getPassword());
-	    employee.setPassword(encodedPassword);
+		employee.setPassword(encodedPassword);
 		employeeRepository.save(employee);
 	}
 
@@ -74,53 +67,50 @@ public class EmployeeServiceImpl implements EmployeeService {
 		}
 		return false;
 	}
-	
+
 	public boolean isEnabled(Employee employee) {
 		return employeeRepository.isEnabled(employee);
 	}
 
 	@Override
 	public void register(Employee employee, String siteURL) throws UnsupportedEncodingException, MessagingException {
-		    String encodedPassword = passwordEncoder.encode(employee.getPassword());
-		    employee.setPassword(encodedPassword);
-		     
-		    String randomCode = RandomString.make();
-		    employee.setVerificationCode(randomCode);
-		    employee.setEnabled(false);
-		     
-		    employeeRepository.save(employee);
-		     
-		    sendVerificationEmail(employee, siteURL);	
-		
+		String encodedPassword = passwordEncoder.encode(employee.getPassword());
+		employee.setPassword(encodedPassword);
+
+		String randomCode = RandomString.make();
+		employee.setVerificationCode(randomCode);
+		employee.setEnabled(false);
+
+		employeeRepository.save(employee);
+		sendVerificationEmail(employee, siteURL);
 	}
 
 	@Override
-	public void sendVerificationEmail(Employee employee, String siteURL) 
-		throws MessagingException, UnsupportedEncodingException {
-		    String toAddress = employee.getEmail();
-		    String fromAddress = "meera10testmail@gmail.com";
-		    String senderName = "Team 02";
-		    String subject = "Please verify your registration";
-		    String content = "Dear [[name]],<br>"
-		            + "Please click the link below to verify your registration:<br>"
-		            + "<h3><a href=\"[[URL]]\" target=\"_self\">VERIFY</a></h3>"
-		            + "Thank you,<br>"
-		            + "Team 02.";
-		     
-		    MimeMessage message = mailSender.createMimeMessage();
-		    MimeMessageHelper helper = new MimeMessageHelper(message);
-		     
-		    helper.setFrom(fromAddress, senderName);
-		    helper.setTo(toAddress);
-		    helper.setSubject(subject);
-		     
-		    content = content.replace("[[name]]", employee.getName());
-		    String verifyURL = siteURL + "/api/v1/verify?code=" + employee.getVerificationCode();
-		     
-		    content = content.replace("[[URL]]", verifyURL);
-		    helper.setText(content, true);
-		    mailSender.send(message);	
-		    System.out.println(verifyURL);
+	public void sendVerificationEmail(Employee employee, String siteURL) throws MessagingException, UnsupportedEncodingException {
+		String toAddress = employee.getEmail();
+		String fromAddress = "meera10testmail@gmail.com";
+		String senderName = "Team 02";
+		String subject = "Please verify your registration";
+		String content = "Dear [[name]],<br>" 
+						+ "Please click the link below to verify your registration:<br>"
+						+ "<h3><a href=\"[[URL]]\" target=\"_self\">VERIFY</a></h3>" 
+						+ "Thank you,<br>" 
+						+ "Team 02.";
+
+		MimeMessage message = mailSender.createMimeMessage();
+		MimeMessageHelper helper = new MimeMessageHelper(message);
+
+		helper.setFrom(fromAddress, senderName);
+		helper.setTo(toAddress);
+		helper.setSubject(subject);
+
+		content = content.replace("[[name]]", employee.getName());
+		String verifyURL = siteURL + "/api/v1/verify?code=" + employee.getVerificationCode();
+
+		content = content.replace("[[URL]]", verifyURL);
+		helper.setText(content, true);
+		mailSender.send(message);
+		System.out.println(verifyURL);
 	}
 
 	@Override
@@ -137,11 +127,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 			return true;
 		}
 	}
-	
+
 	@Override
 	public boolean loginEmployee(LoginDto loginDto) {
 		String encodedPassword = passwordEncoder.encode(loginDto.getPassword());
-	    loginDto.setPassword(encodedPassword);
+		loginDto.setPassword(encodedPassword);
 		Employee employee = (Employee) employeeRepository.findByEmail(loginDto.getEmail());
 		if (loginDto.getEmail().equalsIgnoreCase(employee.getEmail())
 				&& passwordEncoder.matches(loginDto.getPassword(), employee.getPassword())) {

@@ -38,4 +38,4 @@ public class Project {
 	public void setAbbrevation(String abbrevation) {
 		this.abbrevation = abbrevation;
 	}
-} 
+}

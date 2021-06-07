@@ -15,8 +15,6 @@ public interface DefectService {
 
 	public void deleteById(Long id);
 
-	public boolean existsByDefectId(Long id);
-
 	public boolean existsById(Long id);
 
 	public Object getByIdDefect(Long id);
@@ -25,7 +23,7 @@ public interface DefectService {
 
 	public void updateDefect(Defect defect) throws UnsupportedEncodingException, MessagingException;
 
-	void sendNotificationEmail(Defect defect) throws UnsupportedEncodingException, MessagingException;
+	public void sendNotificationEmail(Defect defect) throws UnsupportedEncodingException, MessagingException;
 
 	public void sendUpdateNotificationEmail(Defect defect) throws UnsupportedEncodingException, MessagingException;
 
