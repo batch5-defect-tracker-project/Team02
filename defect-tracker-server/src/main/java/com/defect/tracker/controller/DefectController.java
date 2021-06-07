@@ -161,5 +161,11 @@ public class DefectController {
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_EXISTS,
 				validationFailureStatusCodes.getDefectExistsById()), HttpStatus.BAD_REQUEST);
 	}
-
+	
+	/*--------------------- GET ALL DEFECT COUNT ------------------------------*/
+	@GetMapping(value = EndpointURI.COUNT_DEFECT)
+	public ResponseEntity<Object> countDefect() {
+		return new ResponseEntity<Object>(defectService.countDefect(), HttpStatus.OK);
+	}
+	
 }

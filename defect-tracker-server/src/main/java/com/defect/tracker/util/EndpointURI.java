@@ -41,6 +41,7 @@ public final class EndpointURI {
 	// Defect
 	public static final String DEFECT = BASE_API_PATH + "defect";
 	public static final String DEFECT_BY_ID = BASE_API_PATH + "defect" + ID;
+	public static final String COUNT_DEFECT = BASE_API_PATH + "count-defect";
 		
 	// Project Allocation
 	public static final String PROJECT_ALLOCATION = BASE_API_PATH + "projectAllocation";
@@ -61,7 +62,7 @@ public final class EndpointURI {
 	// Status
 	public static final String STATUS = BASE_API_PATH + "status";
 	public static final String STATUS_BY_ID = BASE_API_PATH + "status" + ID;
-
+	
 	private EndpointURI() {
 
 	}

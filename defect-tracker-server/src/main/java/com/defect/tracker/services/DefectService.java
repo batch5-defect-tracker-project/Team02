@@ -29,4 +29,5 @@ public interface DefectService {
 
 	public void sendUpdateNotificationEmail(Defect defect) throws UnsupportedEncodingException, MessagingException;
 
+	public long countDefect();
 }
