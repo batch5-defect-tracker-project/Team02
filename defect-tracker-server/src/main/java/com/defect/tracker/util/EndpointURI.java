@@ -7,6 +7,7 @@ public final class EndpointURI {
 
 	private static final String BASE_API_PATH = "/api/v1/";
 	private static final String ID = "/{id}";
+	private static final String PROJECTNAME = "/{projectName}";
 
 	// Project
 	public static final String PROJECT = BASE_API_PATH + "project";
@@ -40,7 +41,8 @@ public final class EndpointURI {
 	// Defect
 	public static final String DEFECT = BASE_API_PATH + "defect";
 	public static final String DEFECT_BY_ID = BASE_API_PATH + "defect" + ID;
-
+	public static final String COUNT_STATUS = BASE_API_PATH + "count-status" + PROJECTNAME;
+		
 	// Project Allocation
 	public static final String PROJECT_ALLOCATION = BASE_API_PATH + "projectAllocation";
 	public static final String PROJECT_ALLOCATION_BY_ID = BASE_API_PATH + "projectAllocation" + ID;

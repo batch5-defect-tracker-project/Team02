@@ -5,6 +5,7 @@ public class ValidationConstance {
 	// Project
 	public static final String PROJECT_EXISTS = "Project Already Exists";
 	public static final String PROJECT_NOT_EXISTS_BY_ID = "Project Id Not Exists";
+	public static final String PROJECT_NOT_EXISTS_BY_NAME = "Project Name Not Exists";
 
 	// Employee
 	public static final String EMPLOYEE_EXISTS = "Employee Already Exists";

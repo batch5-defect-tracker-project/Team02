@@ -6,8 +6,10 @@ import org.springframework.stereotype.Repository;
 import com.defect.tracker.data.entities.Status;
 
 @Repository
-public interface StatusRepository extends JpaRepository<Status, Long> {
+public interface StatusRepository extends JpaRepository<Status, Long>{
 
 	public boolean existsByName(String statusName);
+
+	public Status findByName(String statusName);
 
 }

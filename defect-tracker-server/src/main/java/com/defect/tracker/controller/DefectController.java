@@ -161,5 +161,16 @@ public class DefectController {
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_NOT_EXISTS_BY_ID,
 				validationFailureStatusCodes.getDefectExistsById()), HttpStatus.BAD_REQUEST);
 	}
+	
+	/*---------------------  GET ALL STATUS COUNT ------------------------------*/
+	@GetMapping(value = EndpointURI.COUNT_STATUS)
+	public ResponseEntity<Object> countDefectPriorityAndProject(@PathVariable String projectName) {
+		if (projectService.existsByProjectName(projectName)) {
+		return new ResponseEntity<Object>(defectService.countByProjectStatus(projectName), HttpStatus.OK);
+		}
+		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_NOT_EXISTS_BY_NAME,
+						validationFailureStatusCodes.getProjectExistsByName()),HttpStatus.BAD_REQUEST);
+	}
+		
 
 }

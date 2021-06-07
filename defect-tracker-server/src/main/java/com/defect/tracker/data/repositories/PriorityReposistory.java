@@ -10,4 +10,6 @@ public interface PriorityReposistory extends JpaRepository<Priority, Long> {
 
 	public boolean existsByName(String priorityName);
 
+	public Priority findByName(String priorityName);
+
 }

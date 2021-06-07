@@ -15,5 +15,7 @@ public interface StatusService {
 	public Object getStatusById(Long id);
 
 	public Optional<Status> findById(Long id);
+	
+	public Status findByName(String statusName);
 
 }

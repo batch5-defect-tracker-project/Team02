@@ -12,6 +12,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
+import com.defect.tracker.data.dto.DefectStatusCountResponseDto;
 import com.defect.tracker.data.entities.Defect;
 import com.defect.tracker.data.entities.Employee;
 import com.defect.tracker.data.entities.Module;
@@ -116,11 +117,11 @@ public class DefectServiceImpl implements DefectService {
 
 		String subject = "Please Check Your Status";
 		String content = "Dear [[name]],<br><br>" 
-				+ "Project Name : [[projectName]] <br>"
-				+ "Module Name : [[moduleName]] <br>" 
-				+ "Defect Status :[[statusName]] <br><br>" 
-				+ "Thank you, <br>"
-				+ "[[senderName]]";
+						+ "Project Name : [[projectName]] <br>"
+						+ "Module Name : [[moduleName]] <br>" 
+						+ "Defect Status :[[statusName]] <br><br>" 
+						+ "Thank you, <br>"
+						+ "[[senderName]]";
 
 		MimeMessage message = mailSender.createMimeMessage();
 		MimeMessageHelper helper = new MimeMessageHelper(message);
@@ -139,8 +140,7 @@ public class DefectServiceImpl implements DefectService {
 			content = content.replace("[[senderName]]", fromAddress.get().getName());
 			helper.setText(content, true);
 		}
-		if ("Open".equalsIgnoreCase(statusName.get().getName()) 
-				|| "Fixed".equalsIgnoreCase(statusName.get().getName())
+		if ("Open".equalsIgnoreCase(statusName.get().getName()) || "Fixed".equalsIgnoreCase(statusName.get().getName())
 				|| "Reject".equalsIgnoreCase(statusName.get().getName())) {
 			String senderName = toAddress.get().getName();
 
@@ -159,4 +159,28 @@ public class DefectServiceImpl implements DefectService {
 
 		mailSender.send(message);
 	}
+
+	@Override
+	public DefectStatusCountResponseDto countByProjectStatus(String projectName) {
+		DefectStatusCountResponseDto defectStatusCountResponseDto = new DefectStatusCountResponseDto();
+		Project project = projectService.findByName(projectName);
+
+		Status New = statusService.findByName("New");
+		Status Open = statusService.findByName("Open");
+		Status ReOpen = statusService.findByName("Reopen");
+		Status Fixed = statusService.findByName("Fixed");
+		Status Closed = statusService.findByName("Closed");
+		Status Reject = statusService.findByName("Reject");
+
+		defectStatusCountResponseDto.setStatusNew(defectRepository.countByStatusAndProject(New, project));
+		defectStatusCountResponseDto.setStatusOpen(defectRepository.countByStatusAndProject(Open, project));
+		defectStatusCountResponseDto.setStatusReopen(defectRepository.countByStatusAndProject(ReOpen, project));
+		defectStatusCountResponseDto.setStatusFixed(defectRepository.countByStatusAndProject(Fixed, project));
+		defectStatusCountResponseDto.setStatusClosed(defectRepository.countByStatusAndProject(Closed, project));
+		defectStatusCountResponseDto.setStatusReject(defectRepository.countByStatusAndProject(Reject, project));
+		defectStatusCountResponseDto.setTotal(defectRepository.countByProject(project));
+
+		return defectStatusCountResponseDto;
+	}
+
 }
