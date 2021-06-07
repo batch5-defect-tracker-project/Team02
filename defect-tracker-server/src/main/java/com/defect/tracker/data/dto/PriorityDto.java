@@ -5,7 +5,6 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 public class PriorityDto {
-
 	private Long id;
 
 	@NotNull(message = "{priorityDto.priorityName.null}")

@@ -13,13 +13,13 @@ public interface SubModuleService {
 	public void updateSubModule(SubModule subModule);
 
 	public boolean existsById(Long id);
-	
+
 	public List<SubModule> getAllSubModule();
 
 	public Object getSubModuleById(Long id);
-	
+
 	public void deleteById(Long id);
-	
+
 	public boolean isUpdatedSubModuleNameAlreadyExist(Long id, String subModuleName);
-	
+
 }

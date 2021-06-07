@@ -36,7 +36,7 @@ public class EmployeeDto {
 
 	@NotNull(message = "{employeeDto.password.null}")
 	private String password;
-	
+
 	private String verificationCode;
 	private boolean isEnabled;
 

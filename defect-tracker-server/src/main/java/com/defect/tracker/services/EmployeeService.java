@@ -15,8 +15,6 @@ public interface EmployeeService {
 
 	public boolean existsById(Long id);
 
-	public void createEmployee(Employee employee);
-
 	public List<Employee> getAllEmployee();
 
 	public void deleteById(Long id);
@@ -35,10 +33,10 @@ public interface EmployeeService {
 
 	public boolean verify(String verificationCode);
 
-	boolean loginEmployee(LoginDto loginDto);
-	
+	public boolean loginEmployee(LoginDto loginDto);
+
 	public Optional<Employee> findById(Long assignedTo);
-	
+
 	public boolean ExixtsByEmail(String email);
 
 }
