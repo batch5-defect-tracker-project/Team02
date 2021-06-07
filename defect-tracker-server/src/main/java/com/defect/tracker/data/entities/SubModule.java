@@ -1,4 +1,5 @@
 package com.defect.tracker.data.entities;
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -17,7 +18,7 @@ public class SubModule {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
-    
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "module_id", nullable = false)
 	@JsonIgnoreProperties(value = { "subModule", "hibernateLazyInitializer" })

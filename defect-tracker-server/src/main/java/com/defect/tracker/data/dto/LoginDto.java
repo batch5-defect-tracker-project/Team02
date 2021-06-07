@@ -7,7 +7,6 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 public class LoginDto {
-
 	private Long id;
 
 	@Email(message = "{loginDto.login.EnterAValidEmailAddress}")

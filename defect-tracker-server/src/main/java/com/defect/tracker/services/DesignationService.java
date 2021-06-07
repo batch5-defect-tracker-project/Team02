@@ -9,7 +9,7 @@ public interface DesignationService {
 	public void createDesignation(Designation designation);
 
 	public boolean isDesignationNameAlreadyExist(String designationName);
-	
+
 	public void updateDesignation(Designation designation);
 
 	public boolean existsById(Long id);
@@ -17,7 +17,7 @@ public interface DesignationService {
 	public List<Designation> getAllDesignation();
 
 	public void deleteById(Long id);
-	
+
 	public Object getDesignationById(Long id);
 
 }
