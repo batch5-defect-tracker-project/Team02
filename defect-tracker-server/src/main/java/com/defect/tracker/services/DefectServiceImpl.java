@@ -13,6 +13,7 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
 import com.defect.tracker.data.dto.DefectStatusCountResponseDto;
+
 import com.defect.tracker.data.entities.Defect;
 import com.defect.tracker.data.entities.Employee;
 import com.defect.tracker.data.entities.Module;
@@ -158,7 +159,12 @@ public class DefectServiceImpl implements DefectService {
 		helper.setText(content, true);
 
 		mailSender.send(message);
-	}
+	}		
+  
+	@Override
+	public long countDefect() {
+		return defectRepository.count();
+		}
 
 	@Override
 	public DefectStatusCountResponseDto countByProjectStatus(String projectName) {
