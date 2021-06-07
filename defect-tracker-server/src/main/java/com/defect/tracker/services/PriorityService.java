@@ -1,5 +1,7 @@
 package com.defect.tracker.services;
 
+import java.util.Optional;
+
 import com.defect.tracker.data.entities.Priority;
 
 public interface PriorityService {
@@ -11,5 +13,7 @@ public interface PriorityService {
 	public boolean existsById(Long id);
 
 	public Object getPriorityById(Long id);
+	
+	public Optional<Priority> findById(Long id);
 
 }

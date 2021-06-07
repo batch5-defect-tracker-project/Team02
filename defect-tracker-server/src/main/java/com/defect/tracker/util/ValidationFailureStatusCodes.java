@@ -20,6 +20,9 @@ public class ValidationFailureStatusCodes {
 	@Value("${validation.project.ExistsById}")
 	private String projectExistsById;
 
+	@Value("${validation.project.ExistsByName}")
+	private String projectExistsByName;
+
 	// Employee
 	@Value("${validation.employee.AlreadyExists}")
 	private String employeeEmailAlreadyExists;
@@ -116,6 +119,14 @@ public class ValidationFailureStatusCodes {
 
 	public void setProjectExistsById(String projectExistsById) {
 		this.projectExistsById = projectExistsById;
+	}
+
+	public String getProjectExistsByName() {
+		return projectExistsByName;
+	}
+
+	public void setProjectExistsByName(String projectExistsByName) {
+		this.projectExistsByName = projectExistsByName;
 	}
 
 	public String getEmployeeEmailAlreadyExists() {

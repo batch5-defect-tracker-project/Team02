@@ -1,5 +1,7 @@
 package com.defect.tracker.services;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +30,11 @@ public class PriorityServiceImpl implements PriorityService {
 
 	@Override
 	public Object getPriorityById(Long id) {
+		return priorityReposistory.findById(id);
+	}
+
+	@Override
+	public Optional<Priority> findById(Long id) {
 		return priorityReposistory.findById(id);
 	}
 
