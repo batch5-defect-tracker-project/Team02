@@ -31,4 +31,9 @@ public class PriorityServiceImpl implements PriorityService {
 		return priorityReposistory.findById(id);
 	}
 
+	@Override
+	public Priority findByName(String priorityName) {
+		return priorityReposistory.findByName(priorityName);
+	}
+
 }

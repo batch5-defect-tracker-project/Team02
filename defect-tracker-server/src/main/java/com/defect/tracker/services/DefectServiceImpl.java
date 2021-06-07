@@ -12,16 +12,17 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
+import com.defect.tracker.data.dto.DefectPriorityCountResponseDto;
 import com.defect.tracker.data.entities.Defect;
 import com.defect.tracker.data.entities.Employee;
 import com.defect.tracker.data.entities.Module;
+import com.defect.tracker.data.entities.Priority;
 import com.defect.tracker.data.entities.Project;
 import com.defect.tracker.data.entities.Status;
 import com.defect.tracker.data.repositories.DefectRepository;
 
 @Service
 public class DefectServiceImpl implements DefectService {
-
 	@Autowired
 	private DefectRepository defectRepository;
 	@Autowired
@@ -32,6 +33,8 @@ public class DefectServiceImpl implements DefectService {
 	private ModuleService moduleService;
 	@Autowired
 	private StatusService statusService;
+	@Autowired
+	private PriorityService priorityService;
 	@Autowired
 	private JavaMailSender mailSender;
 
@@ -89,9 +92,9 @@ public class DefectServiceImpl implements DefectService {
 
 		String subject = "Defect Added Newely";
 		String content = "Dear [[name]],<br><br>" 
-				+ "Project Name : [[projectName]] <br>"
-				+ "Module Name : [[moduleName]] <br>"
-				+ "Defect Status :[[statusName]] <br><br>"
+		        + "Project Name : [[projectName]] <br>"
+				+ "Module Name : [[moduleName]] <br>" 
+		        + "Defect Status :[[statusName]] <br><br>"
 				+ "Thank you, <br>"
 				+ fromAddress.get().getName();
 
@@ -122,9 +125,9 @@ public class DefectServiceImpl implements DefectService {
 
 		String subject = "Please Check Your Status";
 		String content = "Dear [[name]],<br><br>" 
-				+ "Project Name : [[projectName]] <br>"
+		        +"Project Name : [[projectName]] <br>"
 				+ "Module Name : [[moduleName]] <br>" 
-				+ "Defect Status :[[statusName]] <br><br>" 
+		        + "Defect Status :[[statusName]] <br><br>"
 				+ "Thank you, <br>"
 				+ "[[senderName]]";
 
@@ -165,4 +168,21 @@ public class DefectServiceImpl implements DefectService {
 
 		mailSender.send(message);
 	}
+
+	@Override
+	public DefectPriorityCountResponseDto countByProjectPriority(String projectName) {
+		DefectPriorityCountResponseDto defectPriorityCountResponseDto = new DefectPriorityCountResponseDto();
+		Project project = projectService.findByName(projectName);
+
+		Priority High = priorityService.findByName("High");
+		Priority Medium = priorityService.findByName("Medium");
+		Priority Law = priorityService.findByName("Law");
+
+		defectPriorityCountResponseDto.setPriorityHigh(defectRepository.countByPriorityAndProject(High, project));
+		defectPriorityCountResponseDto.setPriorityMedium(defectRepository.countByPriorityAndProject(Medium, project));
+		defectPriorityCountResponseDto.setPriorityLaw(defectRepository.countByPriorityAndProject(Law, project));
+		defectPriorityCountResponseDto.setTotalPriority(defectRepository.countByProject(project));
+		return defectPriorityCountResponseDto;
+	}
+	
 }
