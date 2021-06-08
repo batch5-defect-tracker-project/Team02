@@ -135,12 +135,13 @@ public class EmployeeController {
 
 	/*------------------------------ LOGIN -------------------------------------*/
 	@PostMapping(value = EndpointURI.LOGIN)
-	public ResponseEntity<Object> Login(@Valid @RequestBody LoginDto loginDto) {
+	public ResponseEntity<Object> Login(@Valid @RequestBody LoginDto loginDto, EmployeeDto employeeDto) {
 		if (employeeService.loginEmployee(loginDto)) {
-			return new ResponseEntity<Object>(Constants.LOGIN_SUCCESS, HttpStatus.OK);
-		}
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_NOT_REGISTER,
 				validationFailureStatusCodes.getExistsByEmail()), HttpStatus.BAD_REQUEST);
+		}
+		employeeService.loginEmployee(loginDto);
+		return new ResponseEntity<Object>(Constants.LOGIN_SUCCESS, HttpStatus.OK);
 	}
 
 }

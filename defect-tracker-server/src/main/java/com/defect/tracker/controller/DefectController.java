@@ -164,7 +164,7 @@ public class DefectController {
 	
 	/*---------------------  GET ALL STATUS COUNT ------------------------------*/
 	@GetMapping(value = EndpointURI.COUNT_STATUS)
-	public ResponseEntity<Object> countDefectPriorityAndProject(@PathVariable String projectName) {
+	public ResponseEntity<Object> countDefectStatusAndProject(@PathVariable String projectName) {
 		if (projectService.existsByProjectName(projectName)) {
 		return new ResponseEntity<Object>(defectService.countByProjectStatus(projectName), HttpStatus.OK);
 		}
