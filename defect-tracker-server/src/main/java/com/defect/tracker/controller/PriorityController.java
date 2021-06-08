@@ -44,7 +44,7 @@ public class PriorityController {
 
 	/*--------------------- VIEW-BY-ID  OR/ GET-BY-ID -------------------------*/
 	@GetMapping(value = EndpointURI.PRIORITY_BY_ID)
-	public ResponseEntity<Object> findPriorityById(@PathVariable Long id) {
+	public ResponseEntity<Object> getPriorityById(@PathVariable Long id) {
 		if (priorityService.existsById(id)) {
 			return new ResponseEntity<Object>(priorityService.getPriorityById(id), HttpStatus.OK);
 		}

@@ -12,8 +12,8 @@ public class TypeServiceImpl implements TypeService {
 	private TypeRepository typeRepository;
 
 	@Override
-	public boolean isTypeNameAlreadyExist(String name) {
-		return typeRepository.existsByName(name);
+	public boolean isTypeNameAlreadyExist(String typeName) {
+		return typeRepository.existsByName(typeName);
 	}
 
 	@Override

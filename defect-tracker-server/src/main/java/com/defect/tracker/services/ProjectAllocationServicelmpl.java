@@ -10,7 +10,6 @@ import com.defect.tracker.data.repositories.ProjectAllocationRepository;
 
 @Service
 public class ProjectAllocationServicelmpl implements ProjectAllocationService {
-
 	@Autowired
 	private ProjectAllocationRepository projectAllocationRepository;
 

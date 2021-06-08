@@ -7,5 +7,7 @@ import com.defect.tracker.data.entities.Gender;
 
 @Repository
 public interface GenderRepository extends JpaRepository<Gender, Long> {
-	boolean existsByName(String genderName);
+
+	public boolean existsByName(String genderName);
+
 }

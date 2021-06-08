@@ -25,4 +25,8 @@ public interface ProjectService {
 
 	public Optional<Project> findById(Long id);
 
+	public Project findByName(String projectName);
+
+	public boolean existsByProjectName(String projectName);
+
 }

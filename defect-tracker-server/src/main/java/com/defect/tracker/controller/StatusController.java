@@ -44,7 +44,7 @@ public class StatusController {
 
 	/*--------------------- VIEW-BY-ID  OR/ GET-BY-ID -------------------------*/
 	@GetMapping(value = EndpointURI.STATUS_BY_ID)
-	public ResponseEntity<Object> findStatusById(@PathVariable Long id) {
+	public ResponseEntity<Object>getStatusById(@PathVariable Long id) {
 		if (statusService.existsById(id)) {
 			return new ResponseEntity<Object>(statusService.getStatusById(id), HttpStatus.OK);
 		}
