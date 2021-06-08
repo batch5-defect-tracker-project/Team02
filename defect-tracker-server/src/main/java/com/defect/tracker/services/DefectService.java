@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.mail.MessagingException;
 
-import com.defect.tracker.data.dto.DefectPriorityCountResponseDto;
 import com.defect.tracker.data.dto.DefectStatusCountResponseDto;
 import com.defect.tracker.data.entities.Defect;
 
@@ -29,10 +28,8 @@ public interface DefectService {
 
 	public void sendUpdateNotificationEmail(Defect defect) throws UnsupportedEncodingException, MessagingException;
 
-	public DefectPriorityCountResponseDto countByProjectPriority(String projectName);
+	public DefectStatusCountResponseDto countByProjectStatus(String projectName);
 
 	public long countDefect();
-
-	public DefectStatusCountResponseDto countByProjectStatus(String projectName);
 
 }
