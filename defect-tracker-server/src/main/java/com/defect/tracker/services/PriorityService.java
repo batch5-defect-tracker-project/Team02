@@ -12,4 +12,6 @@ public interface PriorityService {
 
 	public Object getPriorityById(Long id);
 
+	public Priority findByName(String string);
+
 }

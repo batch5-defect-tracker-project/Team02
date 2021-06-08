@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import com.defect.tracker.data.entities.Priority;
 
 @Repository
-public interface PriorityReposistory extends JpaRepository<Priority, Long> {
+public interface PriorityRepository extends JpaRepository<Priority, Long> {
 
 	public boolean existsByName(String priorityName);
 
