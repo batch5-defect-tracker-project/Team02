@@ -179,6 +179,12 @@ public class DefectController {
 				validationFailureStatusCodes.getDefectExistsById()), HttpStatus.BAD_REQUEST);
 	}
 	
+	/*--------------------- GET ALL DEFECT COUNT ------------------------------*/
+	@GetMapping(value = EndpointURI.COUNT_DEFECT)
+	public ResponseEntity<Object> countDefect() {
+		return new ResponseEntity<Object>(defectService.countDefect(), HttpStatus.OK);
+	}
+	
 	/*---------------------  GET ALL STATUS COUNT ------------------------------*/
 	@GetMapping(value = EndpointURI.COUNT_STATUS)
 	public ResponseEntity<Object> countDefectPriorityAndProject(@PathVariable String projectName) {
@@ -189,6 +195,7 @@ public class DefectController {
 						validationFailureStatusCodes.getProjectExistsByName()),HttpStatus.BAD_REQUEST);
 	}
 	
+
 	/*---------------------  GET ALL PRIORITY COUNT ------------------------------*/
 	@GetMapping(value = EndpointURI.COUNT_PRIORITY)
 	public ResponseEntity<Object> countDefectPriorityAndProject(@PathVariable String projectName) {

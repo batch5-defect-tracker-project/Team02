@@ -31,6 +31,8 @@ public interface DefectService {
 
 	public DefectPriorityCountResponseDto countByProjectPriority(String projectName);
 
+	public long countDefect();
+
 	public DefectStatusCountResponseDto countByProjectStatus(String projectName);
 
 }
