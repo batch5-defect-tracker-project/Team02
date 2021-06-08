@@ -20,7 +20,7 @@ public interface ModuleService {
 	public void deleteById(Long id);
 
 	public Object getModuleById(Long id);
-	
+
 	public boolean isUpdatedModuleNameAlreadyExist(Long id, String moduleName);
 
 	public Optional<Module> findById(Long id);

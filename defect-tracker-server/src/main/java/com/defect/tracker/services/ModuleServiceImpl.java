@@ -59,7 +59,7 @@ public class ModuleServiceImpl implements ModuleService {
 	}
 
 	@Override
-	public Optional <Module> findById(Long id) {
+	public Optional<Module> findById(Long id) {
 		return moduleRepository.findById(id);
 	}
 

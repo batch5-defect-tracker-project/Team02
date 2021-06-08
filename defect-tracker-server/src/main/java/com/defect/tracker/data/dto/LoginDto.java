@@ -7,9 +7,9 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 public class LoginDto {
-
 	private Long id;
 
+	@NotNull(message = "{loginDto.login.null}")
 	@Email(message = "{loginDto.login.EnterAValidEmailAddress}")
 	@Pattern(regexp = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_&*-]+)*@(?:[a-zA-Z0-9-]+\\.[a-zA-Z]{2,7}$)", message = "{loginDto.login.emailAddressNotAllowed}")
 	private String email;

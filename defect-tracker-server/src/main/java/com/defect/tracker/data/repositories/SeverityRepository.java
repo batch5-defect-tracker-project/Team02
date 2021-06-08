@@ -7,5 +7,7 @@ import com.defect.tracker.data.entities.Severity;
 
 @Repository
 public interface SeverityRepository extends JpaRepository<Severity, Long> {
-	boolean existsByName(String severityName);
+
+	public boolean existsByName(String severityName);
+
 }

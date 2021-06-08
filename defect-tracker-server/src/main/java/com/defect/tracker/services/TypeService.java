@@ -4,12 +4,12 @@ import com.defect.tracker.data.entities.Type;
 
 public interface TypeService {
 
-	void createType(Type type);
+	public void createType(Type type);
 
-	boolean isTypeNameAlreadyExist(String name);
+	public boolean isTypeNameAlreadyExist(String typeName);
 
-	boolean existsById(Long id);
+	public boolean existsById(Long id);
 
 	public Object getTypeById(Long id);
 
-} 
+}

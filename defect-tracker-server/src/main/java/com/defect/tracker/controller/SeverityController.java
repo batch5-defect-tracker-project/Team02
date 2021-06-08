@@ -23,7 +23,6 @@ import com.defect.tracker.util.ValidationFailureStatusCodes;
 
 @RestController
 public class SeverityController {
-
 	@Autowired
 	SeverityService severityService;
 	@Autowired
@@ -45,7 +44,7 @@ public class SeverityController {
 
 	/*--------------------- VIEW-BY-ID  OR/ GET-BY-ID -------------------------*/
 	@GetMapping(value = EndpointURI.SEVERITY_BY_ID)
-	public ResponseEntity<Object> findSeverityrById(@PathVariable Long id) {
+	public ResponseEntity<Object> getSeverityrById(@PathVariable Long id) {
 		if (severityService.existsById(id)) {
 			return new ResponseEntity<Object>(severityService.getSeverityById(id), HttpStatus.OK);
 		}

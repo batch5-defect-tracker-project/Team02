@@ -26,7 +26,6 @@ import com.defect.tracker.util.ValidationFailureStatusCodes;
 
 @RestController
 public class ProjectController {
-
 	@Autowired
 	ProjectService projectService;
 	@Autowired
@@ -65,7 +64,7 @@ public class ProjectController {
 			projectService.updateProject(project);
 			return new ResponseEntity<Object>(Constants.PROJECT_UPDATED_SUCCESS, HttpStatus.OK);
 		}
-		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_EXISTS,
+		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_NOT_EXISTS_BY_ID,
 				validationFailureStatusCodes.getProjectExistsById()), HttpStatus.BAD_REQUEST);
 	}
 
@@ -82,7 +81,7 @@ public class ProjectController {
 
 	/*--------------------- VIEW-BY-ID  OR/ GET-BY-ID -------------------------*/
 	@GetMapping(value = EndpointURI.PROJECT_BY_ID)
-	public ResponseEntity<Object> findProjectById(@PathVariable Long id) {
+	public ResponseEntity<Object> getProjectById(@PathVariable Long id) {
 		if (projectService.existsById(id)) {
 			return new ResponseEntity<Object>(projectService.getProjectById(id), HttpStatus.OK);
 		}

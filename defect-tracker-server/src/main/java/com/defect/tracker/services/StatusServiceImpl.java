@@ -14,8 +14,8 @@ public class StatusServiceImpl implements StatusService {
 	private StatusRepository statusRepository;
 
 	@Override
-	public boolean isStatusNameAlreadyExist(String name) {
-		return statusRepository.existsByName(name);
+	public boolean isStatusNameAlreadyExist(String statusName) {
+		return statusRepository.existsByName(statusName);
 	}
 
 	@Override
@@ -36,6 +36,11 @@ public class StatusServiceImpl implements StatusService {
 	@Override
 	public Optional<Status> findById(Long id) {
 		return statusRepository.findById(id);
+	}
+
+	@Override
+	public Status findByName(String statusName) {
+		return statusRepository.findByName(statusName);
 	}
 
 }

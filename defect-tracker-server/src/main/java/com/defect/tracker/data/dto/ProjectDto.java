@@ -12,8 +12,8 @@ public class ProjectDto {
 	@NotBlank(message = "{projectDto.projectName.blank}")
 	private String name;
 
-	@NotNull(message = "{projectDto.projectAbbrevation.null}")
-	private String abbrevation;
+	@NotNull(message = "{projectDto.projectAbbreviation.null}")
+	private String abbreviation;
 
 	public Long getId() {
 		return id;
@@ -31,11 +31,12 @@ public class ProjectDto {
 		this.name = name;
 	}
 
-	public String getAbbrevation() {
-		return abbrevation;
+	public String getAbbreviation() {
+		return abbreviation;
 	}
 
-	public void setAbbrevation(String abbrevation) {
-		this.abbrevation = abbrevation;
+	public void setAbbreviation(String abbreviation) {
+		this.abbreviation = abbreviation;
 	}
-} 
+
+}

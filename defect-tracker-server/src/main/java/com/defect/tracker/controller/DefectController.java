@@ -38,23 +38,23 @@ import com.defect.tracker.util.ValidationFailureStatusCodes;
 @RestController
 public class DefectController {
 	@Autowired
-	DefectService defectService;
+	private DefectService defectService;
 	@Autowired
-	ModuleService moduleService;
+	private ModuleService moduleService;
 	@Autowired
-	SubModuleService subModuleService;
+	private SubModuleService subModuleService;
 	@Autowired
-	TypeService typeService;
+	private TypeService typeService;
 	@Autowired
-	SeverityService severityService;
+	private SeverityService severityService;
 	@Autowired
-	PriorityService priorityService;
+	private PriorityService priorityService;
 	@Autowired
-	ProjectService projectService;
+	private ProjectService projectService;
 	@Autowired
-	StatusService statusService;
+	private StatusService statusService;
 	@Autowired
-	ValidationFailureStatusCodes validationFailureStatusCodes;
+	private ValidationFailureStatusCodes validationFailureStatusCodes;
 	@Autowired
 	private Mapper mapper;
 
@@ -73,17 +73,25 @@ public class DefectController {
 									defectService.createDefect(defect);
 									return new ResponseEntity<Object>(Constants.DEFECT_ADDED_SUCCESS, HttpStatus.OK);
 								}
-								return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.STATUS_NOT_EXISTS_BY_ID,
-									validationFailureStatusCodes.getStatusExistsById()), HttpStatus.BAD_REQUEST);
+								return new ResponseEntity<>(
+										new ValidationFailureResponse(ValidationConstance.STATUS_NOT_EXISTS_BY_ID,
+												validationFailureStatusCodes.getStatusExistsById()),
+										HttpStatus.BAD_REQUEST);
 							}
-							return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_NOT_EXISTS_BY_ID,
-								validationFailureStatusCodes.getProjectExistsById()), HttpStatus.BAD_REQUEST);
+							return new ResponseEntity<>(
+									new ValidationFailureResponse(ValidationConstance.PROJECT_NOT_EXISTS_BY_ID,
+											validationFailureStatusCodes.getProjectExistsById()),
+									HttpStatus.BAD_REQUEST);
 						}
-						return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PRIORITY_NOT_EXISTS_BY_ID,
-							validationFailureStatusCodes.getPriorityExistsById()), HttpStatus.BAD_REQUEST);
+						return new ResponseEntity<>(
+								new ValidationFailureResponse(ValidationConstance.PRIORITY_NOT_EXISTS_BY_ID,
+										validationFailureStatusCodes.getPriorityExistsById()),
+								HttpStatus.BAD_REQUEST);
 					}
-					return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SEVERITY_NOT_EXISTS_BY_ID,
-						validationFailureStatusCodes.getSeverityExistsById()), HttpStatus.BAD_REQUEST);
+					return new ResponseEntity<>(
+							new ValidationFailureResponse(ValidationConstance.SEVERITY_NOT_EXISTS_BY_ID,
+									validationFailureStatusCodes.getSeverityExistsById()),
+							HttpStatus.BAD_REQUEST);
 				}
 				return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.TYPE_NOT_EXISTS_BY_ID,
 						validationFailureStatusCodes.getTypeExistsById()), HttpStatus.BAD_REQUEST);
@@ -105,7 +113,7 @@ public class DefectController {
 	/*------------------------- DELETE ----------------------------------------*/
 	@DeleteMapping(value = EndpointURI.DEFECT_BY_ID)
 	public ResponseEntity<Object> deleteDefect(@PathVariable Long id) {
-		if (!defectService.existsByDefectId(id)) {
+		if (!defectService.existsById(id)) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_NOT_EXISTS_BY_ID,
 					validationFailureStatusCodes.getDefectExistsById()), HttpStatus.BAD_REQUEST);
 		}
@@ -137,31 +145,68 @@ public class DefectController {
 									if (statusService.existsById(defectDto.getStatusId())) {
 										Defect defect = mapper.map(defectDto, Defect.class);
 										defectService.updateDefect(defect);
-										return new ResponseEntity<Object>(Constants.DEFECT_UPDATED_SUCCESS,	HttpStatus.OK);
+										return new ResponseEntity<Object>(Constants.DEFECT_UPDATED_SUCCESS,
+												HttpStatus.OK);
 									}
-									return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.STATUS_NOT_EXISTS_BY_ID,
-										validationFailureStatusCodes.getStatusExistsById()), HttpStatus.BAD_REQUEST);
+									return new ResponseEntity<>(
+											new ValidationFailureResponse(ValidationConstance.STATUS_NOT_EXISTS_BY_ID,
+													validationFailureStatusCodes.getStatusExistsById()),
+											HttpStatus.BAD_REQUEST);
 								}
-								return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_NOT_EXISTS_BY_ID,
-									validationFailureStatusCodes.getProjectExistsById()), HttpStatus.BAD_REQUEST);
+								return new ResponseEntity<>(
+										new ValidationFailureResponse(ValidationConstance.PROJECT_NOT_EXISTS_BY_ID,
+												validationFailureStatusCodes.getProjectExistsById()),
+										HttpStatus.BAD_REQUEST);
 							}
-							return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PRIORITY_NOT_EXISTS_BY_ID,
-								validationFailureStatusCodes.getPriorityExistsById()), HttpStatus.BAD_REQUEST);
+							return new ResponseEntity<>(
+									new ValidationFailureResponse(ValidationConstance.PRIORITY_NOT_EXISTS_BY_ID,
+											validationFailureStatusCodes.getPriorityExistsById()),
+									HttpStatus.BAD_REQUEST);
 						}
-						return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SEVERITY_NOT_EXISTS_BY_ID,
-							validationFailureStatusCodes.getSeverityExistsById()), HttpStatus.BAD_REQUEST);
+						return new ResponseEntity<>(
+								new ValidationFailureResponse(ValidationConstance.SEVERITY_NOT_EXISTS_BY_ID,
+										validationFailureStatusCodes.getSeverityExistsById()),
+								HttpStatus.BAD_REQUEST);
 					}
 					return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.TYPE_NOT_EXISTS_BY_ID,
 							validationFailureStatusCodes.getTypeExistsById()), HttpStatus.BAD_REQUEST);
 				}
-				return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SUBMODULE_NOT_EXISTS_BY_ID,
-					validationFailureStatusCodes.getSubModuleExistsById()), HttpStatus.BAD_REQUEST);
+				return new ResponseEntity<>(
+						new ValidationFailureResponse(ValidationConstance.SUBMODULE_NOT_EXISTS_BY_ID,
+								validationFailureStatusCodes.getSubModuleExistsById()),
+						HttpStatus.BAD_REQUEST);
 			}
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_NOT_EXISTS_BY_ID,
 					validationFailureStatusCodes.getModuleExistsById()), HttpStatus.BAD_REQUEST);
 		}
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_NOT_EXISTS_BY_ID,
 				validationFailureStatusCodes.getDefectExistsById()), HttpStatus.BAD_REQUEST);
+	}
+
+	/*---------------------  GET ALL STATUS COUNT ------------------------------*/
+	@GetMapping(value = EndpointURI.COUNT_STATUS)
+	public ResponseEntity<Object> countDefectStatusAndProject(@PathVariable String projectName) {
+		if (projectService.existsByProjectName(projectName)) {
+			return new ResponseEntity<Object>(defectService.countByProjectStatus(projectName), HttpStatus.OK);
+		}
+		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_NOT_EXISTS_BY_NAME,
+				validationFailureStatusCodes.getProjectExistsByName()), HttpStatus.BAD_REQUEST);
+	}
+
+	/*---------------------  GET ALL DEFECT COUNT ------------------------------*/
+	@GetMapping(value = EndpointURI.COUNT_DEFECT)
+	public ResponseEntity<Object> countDefect() {
+		return new ResponseEntity<Object>(defectService.countDefect(), HttpStatus.OK);
+	}
+
+	/*---------------------  GET ALL PRIORITY COUNT ------------------------------*/
+	@GetMapping(value = EndpointURI.COUNT_PRIORITY)
+	public ResponseEntity<Object> countDefectPriorityAndProject(@PathVariable String projectName) {
+		if (projectService.existsByProjectName(projectName)) {
+			return new ResponseEntity<Object>(defectService.countByProjectPriority(projectName), HttpStatus.OK);
+		}
+		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_NOT_EXISTS_BY_NAME,
+				validationFailureStatusCodes.getProjectExistsByName()), HttpStatus.BAD_REQUEST);
 	}
 
 }

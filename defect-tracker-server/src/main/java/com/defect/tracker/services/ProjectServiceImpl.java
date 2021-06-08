@@ -17,7 +17,6 @@ public class ProjectServiceImpl implements ProjectService {
 	@Override
 	public boolean isProjectNameAlreadyExist(String projectName) {
 		return projectRepository.existsByName(projectName);
-
 	}
 
 	@Override
@@ -62,5 +61,15 @@ public class ProjectServiceImpl implements ProjectService {
 	@Override
 	public Optional<Project> findById(Long id) {
 		return projectRepository.findById(id);
+	}
+
+	@Override
+	public Project findByName(String projectName) {
+		return projectRepository.findByName(projectName);
+	}
+
+	@Override
+	public boolean existsByProjectName(String projectName) {
+		return projectRepository.existsByName(projectName);
 	}
 }

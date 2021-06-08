@@ -6,7 +6,7 @@ import javax.validation.constraints.NotNull;
 
 public class SeverityDto {
 	private Long id;
-	
+
 	@NotNull(message = "{severityDto.severityName.null}")
 	@NotEmpty(message = "{severityDto.severityName.empty}")
 	@NotBlank(message = "{severityDto.severityName.blank}")
