@@ -41,7 +41,7 @@ public class Constants {
 	// Project Allocation
 	public static final String PROJECT_ALLOCATION_ADDED_SUCCESS = "ProjectAllocation Added Successfully ";
 	public static final String PROJECT_ALLOCATION_UPDATED_SUCCESS = "ProjectAllocation Updated Successfully ";
-	public static final String PROJECT_ALLOCATION_DELETED_SUCCESS = "ProjectAllocation Deleted Succesfully";
+	public static final String PROJECT_ALLOCATION_DELETED_SUCCESS = "ProjectAllocation Deleted Successfully";
 
 	// Type
 	public static final String TYPE_ADDED_SUCCESS = "Type Added Sucessfully";
