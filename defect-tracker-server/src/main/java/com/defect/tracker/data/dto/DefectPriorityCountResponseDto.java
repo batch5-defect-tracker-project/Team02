@@ -3,7 +3,7 @@ package com.defect.tracker.data.dto;
 public class DefectPriorityCountResponseDto {
 	private Long priorityHigh;
 	private Long priorityMedium;
-	private Long priorityLaw;
+	private Long priorityLow;
 	private Long totalPriority;
 
 	public Long getPriorityHigh() {
@@ -22,12 +22,12 @@ public class DefectPriorityCountResponseDto {
 		this.priorityMedium = priorityMedium;
 	}
 
-	public Long getPriorityLaw() {
-		return priorityLaw;
+	public Long getPriorityLow() {
+		return priorityLow;
 	}
 
-	public void setPriorityLaw(Long priorityLaw) {
-		this.priorityLaw = priorityLaw;
+	public void setPriorityLow(Long priorityLow) {
+		this.priorityLow = priorityLow;
 	}
 
 	public Long getTotalPriority() {

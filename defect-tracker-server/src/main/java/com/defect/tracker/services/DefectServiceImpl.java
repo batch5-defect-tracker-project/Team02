@@ -199,14 +199,13 @@ public class DefectServiceImpl implements DefectService {
 
 			Priority High = priorityService.findByName("High");
 			Priority Medium = priorityService.findByName("Medium");
-			Priority Law = priorityService.findByName("Law");
+			Priority Low = priorityService.findByName("Low");
 
 			defectPriorityCountResponseDto.setPriorityHigh(defectRepository.countByPriorityAndProject(High, project));
 			defectPriorityCountResponseDto.setPriorityMedium(defectRepository.countByPriorityAndProject(Medium, project));
-			defectPriorityCountResponseDto.setPriorityLaw(defectRepository.countByPriorityAndProject(Law, project));
+			defectPriorityCountResponseDto.setPriorityLow(defectRepository.countByPriorityAndProject(Low, project));
 			defectPriorityCountResponseDto.setTotalPriority(defectRepository.countByProject(project));
 			return defectPriorityCountResponseDto;
 		}
-
 
 }
