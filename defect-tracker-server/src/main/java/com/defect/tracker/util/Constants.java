@@ -8,7 +8,7 @@ public class Constants {
 	public static final String PROJECT_DELETED_SUCCESS = "Project Deleted Successfully";
 
 	// Employee
-	public static final String EMPLOYEE_ADDED_SUCCESS = "Employee Added Successfully ";
+	public static final String EMPLOYEE_ADDED_SUCCESS = "Employee Register Successfully ";
 	public static final String EMPLOYEE_UPDATED_SUCCESS = "Employee Updated Successfully ";
 	public static final String EMPLOYEE_DELETED_SUCCESS = "Employee Deleted Successfully ";
 
@@ -34,17 +34,17 @@ public class Constants {
 	public static final String SUBMODULE_DELETED_SUCCESS = "SubModule Deleted Successfully";
 
 	// Defect
-	public static final String DEFECT_ADDED_SUCCESS = "Defect Added Sucessfully";
-	public static final String DEFECT_UPDATED_SUCCESS = "Defect Updated Sucessfully";
-	public static final String DEFECT_DELETED_SUCCESS = "Defect Deleted Sucessfully";
+	public static final String DEFECT_ADDED_SUCCESS = "Defect Added Successfully";
+	public static final String DEFECT_UPDATED_SUCCESS = "Defect Updated Successfully";
+	public static final String DEFECT_DELETED_SUCCESS = "Defect Deleted Successfully";
 
 	// Project Allocation
 	public static final String PROJECT_ALLOCATION_ADDED_SUCCESS = "ProjectAllocation Added Successfully ";
 	public static final String PROJECT_ALLOCATION_UPDATED_SUCCESS = "ProjectAllocation Updated Successfully ";
-	public static final String PROJECT_ALLOCATION_DELETED_SUCCESS = "ProjectAllocation Deleted Succesfully";
+	public static final String PROJECT_ALLOCATION_DELETED_SUCCESS = "ProjectAllocation Deleted Successfully";
 
 	// Type
-	public static final String TYPE_ADDED_SUCCESS = "Type Added Sucessfully";
+	public static final String TYPE_ADDED_SUCCESS = "Type Added Successfully";
 
 	// Severity
 	public static final String SEVERITY_ADDED_SUCCESS = "Severity Added Successfully";
@@ -53,7 +53,7 @@ public class Constants {
 	public static final String PRIORITY_ADDED_SUCCESS = "Priority Added Successfully";
 
 	// Status
-	public static final String STATUS_ADDED_SUCCESS = "Status Added Sucessfully";
+	public static final String STATUS_ADDED_SUCCESS = "Status Added Successfully";
 
 	// Encapsulate constructor to restrict modification from outside
 
