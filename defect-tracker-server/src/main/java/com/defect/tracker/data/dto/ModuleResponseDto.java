@@ -5,7 +5,7 @@ public class ModuleResponseDto {
 	private String name;
 	private Long projectId;
 	private String projectName;
-	private String projectAbbrevation;
+	private String projectAbbreviation;
 
 	public Long getId() {
 		return id;
@@ -39,12 +39,12 @@ public class ModuleResponseDto {
 		this.projectName = projectName;
 	}
 
-	public String getProjectAbbrevation() {
-		return projectAbbrevation;
+	public String getProjectAbbreviation() {
+		return projectAbbreviation;
 	}
 
-	public void setProjectAbbrevation(String projectAbbrevation) {
-		this.projectAbbrevation = projectAbbrevation;
+	public void setProjectAbbreviation(String projectAbbreviation) {
+		this.projectAbbreviation = projectAbbreviation;
 	}
 
 }
