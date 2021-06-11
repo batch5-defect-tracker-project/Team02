@@ -60,14 +60,8 @@ public class DefectServiceImpl implements DefectService {
 	}
 
 	@Override
-	public boolean isModuleIdAlreadyExist(Long moduleId) {
-		return defectRepository.existsById(moduleId);
-	}
-
-	@Override
 	public void updateDefect(Defect defect) throws UnsupportedEncodingException, MessagingException {
 		defectRepository.save(defect);
-		sendUpdateNotificationEmail(defect);
 	}
 
 	@Override
@@ -87,9 +81,9 @@ public class DefectServiceImpl implements DefectService {
 		String senderName = fromAddress.get().getName();
 
 		String subject = "Defect Added Newely";
-		String content = "Dear [[name]],<br><br>"
+		String content = "Dear [[name]],<br><br>" 
 				+ "Project Name : [[projectName]] <br>"
-				+ "Module Name : [[moduleName]] <br>" 
+				+ "Module Name : [[moduleName]] <br>"
 				+ "Defect Status :[[statusName]] <br><br>" 
 				+ "Thank you, <br>"
 				+ fromAddress.get().getName();
@@ -121,11 +115,11 @@ public class DefectServiceImpl implements DefectService {
 
 		String subject = "Please Check Your Status";
 		String content = "Dear [[name]],<br><br>" 
-						+ "Project Name : [[projectName]] <br>"
-						+ "Module Name : [[moduleName]] <br>" 
-						+ "Defect Status :[[statusName]] <br><br>" 
-						+ "Thank you, <br>"
-						+ "[[senderName]]";
+				+ "Project Name : [[projectName]] <br>"
+				+ "Module Name : [[moduleName]] <br>" 
+				+ "Defect Status :[[statusName]] <br><br>" 
+				+ "Thank you, <br>"
+				+ "[[senderName]]";
 
 		MimeMessage message = mailSender.createMimeMessage();
 		MimeMessageHelper helper = new MimeMessageHelper(message);
@@ -144,10 +138,11 @@ public class DefectServiceImpl implements DefectService {
 			content = content.replace("[[senderName]]", fromAddress.get().getName());
 			helper.setText(content, true);
 		}
-		if ("Open".equalsIgnoreCase(statusName.get().getName()) || "Fixed".equalsIgnoreCase(statusName.get().getName())
+		if ("Open".equalsIgnoreCase(statusName.get().getName())
+				|| "Fixed".equalsIgnoreCase(statusName.get().getName())
 				|| "Reject".equalsIgnoreCase(statusName.get().getName())) {
+			
 			String senderName = toAddress.get().getName();
-
 			helper.setFrom("meera10testmail@gmail.com", senderName);
 			helper.setTo(fromAddress.get().getEmail());
 			helper.setSubject(subject);
@@ -194,18 +189,25 @@ public class DefectServiceImpl implements DefectService {
 
 	@Override
 	public DefectPriorityCountResponseDto countByProjectPriority(String projectName) {
-			DefectPriorityCountResponseDto defectPriorityCountResponseDto = new DefectPriorityCountResponseDto();
-			Project project = projectService.findByName(projectName);
+		DefectPriorityCountResponseDto defectPriorityCountResponseDto = new DefectPriorityCountResponseDto();
+		Project project = projectService.findByName(projectName);
 
-			Priority High = priorityService.findByName("High");
-			Priority Medium = priorityService.findByName("Medium");
-			Priority Low = priorityService.findByName("Low");
+		Priority High = priorityService.findByName("High");
+		Priority Medium = priorityService.findByName("Medium");
+		Priority Low = priorityService.findByName("Low");
 
-			defectPriorityCountResponseDto.setPriorityHigh(defectRepository.countByPriorityAndProject(High, project));
-			defectPriorityCountResponseDto.setPriorityMedium(defectRepository.countByPriorityAndProject(Medium, project));
-			defectPriorityCountResponseDto.setPriorityLow(defectRepository.countByPriorityAndProject(Low, project));
-			defectPriorityCountResponseDto.setTotalPriority(defectRepository.countByProject(project));
-			return defectPriorityCountResponseDto;
+		defectPriorityCountResponseDto.setPriorityHigh(defectRepository.countByPriorityAndProject(High, project));
+		defectPriorityCountResponseDto.setPriorityMedium(defectRepository.countByPriorityAndProject(Medium, project));
+		defectPriorityCountResponseDto.setPriorityLow(defectRepository.countByPriorityAndProject(Low, project));
+		defectPriorityCountResponseDto.setTotalPriority(defectRepository.countByProject(project));
+		return defectPriorityCountResponseDto;
+	}
+
+	@Override
+	public boolean isUpdatedStatusAlreadyExist(Long id, Long statusId) {
+		if ((defectRepository.findById(id).get().getStatus().getId().equals(statusId))) {
+			return true;
 		}
-
+		return false;
+	}
 }
