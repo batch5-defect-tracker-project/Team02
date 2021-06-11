@@ -37,6 +37,7 @@ public class Constants {
 	public static final String DEFECT_ADDED_SUCCESS = "Defect Added Successfully";
 	public static final String DEFECT_UPDATED_SUCCESS = "Defect Updated Successfully";
 	public static final String DEFECT_DELETED_SUCCESS = "Defect Deleted Successfully";
+	public static final String DEFECT_UPDATED_MAIL_SEND_SUCCESS= " Updated Status Mail Send Successfully";
 
 	// Project Allocation
 	public static final String PROJECT_ALLOCATION_ADDED_SUCCESS = "ProjectAllocation Added Successfully ";
