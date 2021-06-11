@@ -21,8 +21,6 @@ public interface DefectService {
 
 	public Object getByIdDefect(Long id);
 
-	public boolean isModuleIdAlreadyExist(Long moduleId);
-
 	public void updateDefect(Defect defect) throws UnsupportedEncodingException, MessagingException;
 
 	public void sendNotificationEmail(Defect defect) throws UnsupportedEncodingException, MessagingException;
@@ -35,5 +33,6 @@ public interface DefectService {
 
 	public DefectPriorityCountResponseDto countByProjectPriority(String projectName);
 
+	public boolean isUpdatedStatusAlreadyExist(Long id, Long statusId);
 
 }
