@@ -22,4 +22,6 @@ public interface SubModuleService {
 
 	public boolean isUpdatedSubModuleNameAlreadyExist(Long id, String subModuleName);
 
+	public boolean existsById(Long subModuleId, Long moduleId);
+
 }
