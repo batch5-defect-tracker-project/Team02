@@ -27,6 +27,7 @@ public class ValidationConstance {
 	// SubModule
 	public static final String SUBMODULE_EXISTS = "SubModule Already Exists";
 	public static final String SUBMODULE_NOT_EXISTS_BY_ID = "SubModule Id Not Exists";
+	public static final String SUBMODULE_MODULE_NOT_MATCH = "SubModule And Module Not Match";
 
 	// Defect
 	public static final String DEFECT_EXISTS = "Defect Already Exists";
