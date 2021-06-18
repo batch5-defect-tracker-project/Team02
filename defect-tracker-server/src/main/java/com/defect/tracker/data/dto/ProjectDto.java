@@ -13,6 +13,8 @@ public class ProjectDto {
 	private String name;
 
 	@NotNull(message = "{projectDto.projectAbbreviation.null}")
+	@NotEmpty(message = "{projectDto.projectAbbreviation.empty}")
+	@NotBlank(message = "{projectDto.projectAbbreviation.blank}")
 	private String abbreviation;
 
 	public Long getId() {
