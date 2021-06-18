@@ -5,7 +5,6 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
 
 public class EmployeeDto {
 	private Long id;
@@ -13,6 +12,7 @@ public class EmployeeDto {
 	@NotNull(message = "{employeeDto.employeeName.null}")
 	@NotEmpty(message = "{employeeDto.employeeName.empty}")
 	@NotBlank(message = "{employeeDto.employeeName.blank}")
+	@Pattern(regexp = "^[a-zA-Z.\\-\\/+=@_ ]*$", message = "{employeeDto.employeeName.notAllowSpecialCharacters}")
 	private String name;
 
 	@NotNull(message = "{employeeDto.employeeContactNo.null}")
@@ -23,8 +23,8 @@ public class EmployeeDto {
 
 	@NotNull(message = "{employeeDto.employeeEmail.null}")
 	@NotEmpty(message = "{employeeDto.employeeEmail.empty}")
+	@NotBlank(message = "{employeeDto.employeeEmail.blank}")
 	@Email(message = "{employeeDto.employeeEmail.EnterAValidEmailAddress}")
-	@Size(min = 1, max = 100)
 	@Pattern(regexp = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$", message = "{employeeDto.employeeEmail.EmailAddressNotAllowed}")
 	private String email;
 
@@ -35,6 +35,8 @@ public class EmployeeDto {
 	private Long designationId;
 
 	@NotNull(message = "{employeeDto.password.null}")
+	@NotEmpty(message = "{employeeDto.password.empty}")
+	@NotBlank(message = "{employeeDto.password.blank}")
 	private String password;
 
 	private String verificationCode;

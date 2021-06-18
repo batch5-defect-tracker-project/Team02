@@ -51,6 +51,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public void updateEmployee(Employee employee) {
 		String encodedPassword = passwordEncoder.encode(employee.getPassword());
 		employee.setPassword(encodedPassword);
+		employee.setEnabled(true);
 		employeeRepository.save(employee);
 	}
 
@@ -130,9 +131,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	public boolean loginEmployee(LoginDto loginDto) {
-		String encodedPassword = passwordEncoder.encode(loginDto.getPassword());
-		loginDto.setPassword(encodedPassword);
 		Employee employee = (Employee) employeeRepository.findByEmail(loginDto.getEmail());
+		if(employee==null) {
+			return false;
+		}
 		if (loginDto.getEmail().equalsIgnoreCase(employee.getEmail())
 				&& passwordEncoder.matches(loginDto.getPassword(), employee.getPassword())) {
 			return true;

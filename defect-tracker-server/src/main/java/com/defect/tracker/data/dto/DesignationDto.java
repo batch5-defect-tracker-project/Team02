@@ -3,6 +3,7 @@ package com.defect.tracker.data.dto;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 public class DesignationDto {
 	private Long id;
@@ -10,6 +11,7 @@ public class DesignationDto {
 	@NotNull(message = "{designationDto.designationName.null}")
 	@NotEmpty(message = "{designationDto.designationName.empty}")
 	@NotBlank(message = "{designationDto.designationName.blank}")
+	@Pattern(regexp = "^[a-zA-Z.\\-\\/+=@_ ]*$", message = "{designationDto.designationName.notAllowSpecialCharacters}")
 	private String name;
 
 	public Long getId() {
