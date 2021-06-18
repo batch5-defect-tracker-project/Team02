@@ -10,7 +10,9 @@ public class LoginDto {
 	private Long id;
 
 	@NotNull(message = "{loginDto.login.null}")
-	@Email(message = "{loginDto.login.EnterAValidEmailAddress}")
+	@NotEmpty(message = "{loginDto.login.empty}")
+	@NotBlank(message = "{loginDto.login.blank}")
+	@Email(message = "{loginDto.login.enterAValidEmailAddress}")
 	@Pattern(regexp = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_&*-]+)*@(?:[a-zA-Z0-9-]+\\.[a-zA-Z]{2,7}$)", message = "{loginDto.login.emailAddressNotAllowed}")
 	private String email;
 

@@ -10,7 +10,7 @@ public class ValidationConstance {
 	// Employee
 	public static final String EMPLOYEE_EXISTS = "Employee Already Exists";
 	public static final String EMPLOYEE_NOT_EXISTS_BY_ID = "Employee Id Not Exists";
-	public static final String EMPLOYEE_NOT_REGISTER = "Please Register";
+	public static final String EMPLOYEE_NOT_REGISTER = "Please Register First OR/ Enter Correct Email Or Password";
 
 	// Gender
 	public static final String GENDER_EXISTS = "Gender Already Exists";
