@@ -69,6 +69,9 @@ public class ValidationFailureStatusCodes {
 	@Value("${validation.defect.ExistsById}")
 	private String defectExistsById;
 
+	@Value("${validation.defect.StatusNewNotExists}")
+	private String statusNewNotExists;
+
 	// Project Allocation
 	@Value("${validation.projectAllocation.AlreadyExists}")
 	private String employeeIdAlreadyExists;
@@ -103,7 +106,7 @@ public class ValidationFailureStatusCodes {
 
 	@Value("${validation.status.ExistsById}")
 	private String statusExistsById;
-
+	
 	// Getters Setters
 	public String getProjectNameAlreadyExists() {
 		return projectNameAlreadyExists;
@@ -231,6 +234,14 @@ public class ValidationFailureStatusCodes {
 
 	public void setDefectExistsById(String defectExistsById) {
 		this.defectExistsById = defectExistsById;
+	}
+
+	public String getStatusNewNotExists() {
+		return statusNewNotExists;
+	}
+
+	public void setStatusNewNotExists(String statusNewNotExists) {
+		this.statusNewNotExists = statusNewNotExists;
 	}
 
 	public String getEmployeeIdAlreadyExists() {

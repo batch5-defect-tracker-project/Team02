@@ -68,9 +68,13 @@ public class DefectController {
 						if (priorityService.existsById(defectDto.getPriorityId())) {
 							if (projectService.existsById(defectDto.getProjectId())) {
 								if (statusService.existsById(defectDto.getStatusId())) {
+									if (defectService.getStatusExists(defectDto.getStatusId())) {
 									Defect defect = mapper.map(defectDto, Defect.class);
 									defectService.createDefect(defect);
 									return new ResponseEntity<Object>(Constants.DEFECT_ADDED_SUCCESS, HttpStatus.OK);
+									}
+									return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.STATUS_NEW_ONLY,
+											validationFailureStatusCodes.getStatusNewNotExists()),HttpStatus.BAD_REQUEST);
 								}
 								return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.STATUS_NOT_EXISTS_BY_ID,
 										validationFailureStatusCodes.getStatusExistsById()),HttpStatus.BAD_REQUEST);

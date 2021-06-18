@@ -90,7 +90,7 @@ public class DefectServiceImpl implements DefectService {
 
 		MimeMessage message = mailSender.createMimeMessage();
 		MimeMessageHelper helper = new MimeMessageHelper(message);
-
+		
 		helper.setFrom("meera10testmail@gmail.com", senderName);
 		helper.setTo(toAddress.get().getEmail());
 
@@ -210,4 +210,14 @@ public class DefectServiceImpl implements DefectService {
 		}
 		return false;
 	}
+	
+	@Override
+	public boolean getStatusExists(Long statusId) {
+		Status New = statusService.findByName("New");
+		if ((defectRepository.findById(statusId).get().getStatus().equals(New))) {
+			return true;
+		}
+		return false;
+	}
+
 }
