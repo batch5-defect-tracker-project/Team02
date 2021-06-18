@@ -52,6 +52,7 @@ public class ValidationConstance {
 	// Status
 	public static final String STATUS_EXISTS = "Status Already Exists";
 	public static final String STATUS_NOT_EXISTS_BY_ID = "Status Id Not Exists";
+	public static final String STATUS_NEW_ONLY = "Status New Only";
 
 	private ValidationConstance() {
 	}

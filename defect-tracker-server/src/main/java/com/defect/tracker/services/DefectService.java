@@ -35,4 +35,6 @@ public interface DefectService {
 
 	public boolean isUpdatedStatusAlreadyExist(Long id, Long statusId);
 
+	public boolean getStatusExists(Long statusId);
+
 }
