@@ -42,5 +42,10 @@ public class ProjectAllocationServicelmpl implements ProjectAllocationService {
 	public Object getProjectAllocationById(Long id) {
 		return projectAllocationRepository.findById(id);
 	}
+	
+	@Override
+	public boolean existsByProjectAllocationId(Long projectId, Long employeeId, Long moduleId, Long subModuleId) {
+		return projectAllocationRepository.existsByProjectIdAndEmployeeIdAndModuleIdAndSubModuleId(projectId, employeeId, moduleId, subModuleId);
+	}
 
 }

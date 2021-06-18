@@ -71,7 +71,7 @@ public class ValidationFailureStatusCodes {
 
 	// Project Allocation
 	@Value("${validation.projectAllocation.AlreadyExists}")
-	private String employeeIdAlreadyExists;
+	private String projectAllocationAlreadyExists;
 
 	@Value("${validation.projectAllocation.ExistsById}")
 	private String projectAllocationExistsById;
@@ -232,13 +232,13 @@ public class ValidationFailureStatusCodes {
 	public void setDefectExistsById(String defectExistsById) {
 		this.defectExistsById = defectExistsById;
 	}
-
-	public String getEmployeeIdAlreadyExists() {
-		return employeeIdAlreadyExists;
+	
+	public String getProjectAllocationAlreadyExists() {
+		return projectAllocationAlreadyExists;
 	}
 
-	public void setEmployeeIdAlreadyExists(String employeeIdAlreadyExists) {
-		this.employeeIdAlreadyExists = employeeIdAlreadyExists;
+	public void setProjectAllocationAlreadyExists(String projectAllocationAlreadyExists) {
+		this.projectAllocationAlreadyExists = projectAllocationAlreadyExists;
 	}
 
 	public String getProjectAllocationExistsById() {
