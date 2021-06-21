@@ -212,8 +212,7 @@ public class DefectServiceImpl implements DefectService {
 	
 	@Override
 	public boolean getStatusExists(Long statusId) {
-		Status New = statusService.findByName("New");
-		if ((defectRepository.findById(statusId).get().getStatus().equals(New))) {
+		if ((statusService.findById(statusId).get().getName().equals("New"))) {
 			return true;
 		}
 		return false;

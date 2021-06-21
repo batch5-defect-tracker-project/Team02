@@ -25,4 +25,6 @@ public interface ModuleService {
 
 	public Optional<Module> findById(Long id);
 
+	public boolean existsById(Long moduleId, Long projectId);
+
 }

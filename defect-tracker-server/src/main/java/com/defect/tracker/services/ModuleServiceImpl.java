@@ -63,4 +63,12 @@ public class ModuleServiceImpl implements ModuleService {
 		return moduleRepository.findById(id);
 	}
 
+	@Override
+	public boolean existsById(Long moduleId, Long projectId) {
+		if ((moduleRepository.findById(moduleId).get().getId().equals(projectId))) {
+			return true;
+		}
+		return false;
+	}
+
 }

@@ -23,6 +23,7 @@ public class ValidationConstance {
 	// Module
 	public static final String MODULE_EXISTS = "Module Already Exists";
 	public static final String MODULE_NOT_EXISTS_BY_ID = "Module Id Not Exists";
+	public static final String MODULE_PROJECT_NOT_MATCH = "Module And Project Not Match";
 
 	// SubModule
 	public static final String SUBMODULE_EXISTS = "SubModule Already Exists";
@@ -32,6 +33,7 @@ public class ValidationConstance {
 	// Defect
 	public static final String DEFECT_EXISTS = "Defect Already Exists";
 	public static final String DEFECT_NOT_EXISTS_BY_ID = "Defect Id Not Exists";
+	public static final String DEFECT_STATUS_NEW_ONLY = "Status New Only";
 
 	// Project Allocation
 	public static final String PROJECT_ALLOCATION_EXISTS = "ProjectAllocation Already Exists";
@@ -52,7 +54,6 @@ public class ValidationConstance {
 	// Status
 	public static final String STATUS_EXISTS = "Status Already Exists";
 	public static final String STATUS_NOT_EXISTS_BY_ID = "Status Id Not Exists";
-	public static final String STATUS_NEW_ONLY = "Status New Only";
 
 	private ValidationConstance() {
 	}
