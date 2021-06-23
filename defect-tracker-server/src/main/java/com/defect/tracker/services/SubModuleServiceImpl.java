@@ -58,11 +58,8 @@ public class SubModuleServiceImpl implements SubModuleService {
 	}
 
 	@Override
-	public boolean existsById(Long subModuleId, Long moduleId) {
-		if ((subModuleRepository.findById(subModuleId).get().getId().equals(moduleId))) {
-			return true;
-		}
-		return false;
+	public boolean existsByIdAndModuleId(Long subModuleId, Long moduleId) {
+		return subModuleRepository.existsByIdAndModuleId(subModuleId, moduleId);
 	}
 
 }

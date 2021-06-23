@@ -60,8 +60,7 @@ public class DefectController {
 
 	/*------------------------------ ADD -------------------------------------*/
 	@PostMapping(value = EndpointURI.DEFECT)
-	public ResponseEntity<Object> addDefect(@Valid @RequestBody DefectDto defectDto)
-			throws UnsupportedEncodingException, MessagingException {
+	public ResponseEntity<Object> addDefect(@Valid @RequestBody DefectDto defectDto) throws UnsupportedEncodingException, MessagingException {
 		if (moduleService.existsById(defectDto.getModuleId())) {
 			if (subModuleService.existsById(defectDto.getSubModuleId())) {
 				if (typeService.existsById(defectDto.getTypeId())) {
@@ -70,17 +69,17 @@ public class DefectController {
 							if (projectService.existsById(defectDto.getProjectId())) {
 								if (statusService.existsById(defectDto.getStatusId())) {
 									if (defectService.getStatusExists(defectDto.getStatusId())) {
-										if (moduleService.existsById(defectDto.getModuleId(), defectDto.getProjectId())) {
-											if (subModuleService.existsById(defectDto.getSubModuleId(),	defectDto.getModuleId())) {
-											Defect defect = mapper.map(defectDto, Defect.class);
-											defectService.createDefect(defect);
-											return new ResponseEntity<Object>(Constants.DEFECT_ADDED_SUCCESS, HttpStatus.OK);
+										if (moduleService.existsByIdAndProjectId(defectDto.getModuleId(), defectDto.getProjectId())) {
+											if (subModuleService.existsByIdAndModuleId(defectDto.getSubModuleId(),	defectDto.getModuleId())) {
+												Defect defect = mapper.map(defectDto, Defect.class);
+												defectService.createDefect(defect);
+												return new ResponseEntity<Object>(Constants.DEFECT_ADDED_SUCCESS, HttpStatus.OK);
 											}
 											return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SUBMODULE_MODULE_NOT_MATCH,
-													validationFailureStatusCodes.getSubModuleExistsById()), HttpStatus.BAD_REQUEST);
+													validationFailureStatusCodes.getSubModuleAndModuleExistsById()), HttpStatus.BAD_REQUEST);
 											}
 										return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_PROJECT_NOT_MATCH,
-												validationFailureStatusCodes.getModuleExistsById()), HttpStatus.BAD_REQUEST);
+												validationFailureStatusCodes.getModuleAndProjectExistsById()), HttpStatus.BAD_REQUEST);
 										}
 									return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_STATUS_NEW_ONLY,
 										validationFailureStatusCodes.getStatusNewNotExists()), HttpStatus.BAD_REQUEST);
@@ -138,8 +137,7 @@ public class DefectController {
 
 	/*--------------------- UPDATE OR/ EDIT -----------------------------------*/
 	@PutMapping(value = EndpointURI.DEFECT)
-	public ResponseEntity<Object> updateDefect(@Valid @RequestBody DefectDto defectDto)
-			throws UnsupportedEncodingException, MessagingException {
+	public ResponseEntity<Object> updateDefect(@Valid @RequestBody DefectDto defectDto)	throws UnsupportedEncodingException, MessagingException {
 		if (defectService.existsById(defectDto.getId())) {
 			if (moduleService.existsById(defectDto.getModuleId())) {
 				if (subModuleService.existsById(defectDto.getSubModuleId())) {
@@ -148,23 +146,23 @@ public class DefectController {
 							if (priorityService.existsById(defectDto.getPriorityId())) {
 								if (projectService.existsById(defectDto.getProjectId())) {
 									if (statusService.existsById(defectDto.getStatusId())) {
-										if (moduleService.existsById(defectDto.getModuleId(), defectDto.getProjectId())) {
-											if (subModuleService.existsById(defectDto.getSubModuleId(), defectDto.getModuleId())) {
+										if (moduleService.existsByIdAndProjectId(defectDto.getModuleId(), defectDto.getProjectId())) {
+											if (subModuleService.existsByIdAndModuleId(defectDto.getSubModuleId(), defectDto.getModuleId())) {
 												if (defectService.isUpdatedStatusAlreadyExist(defectDto.getId(), defectDto.getStatusId())) {
+													Defect defect = mapper.map(defectDto, Defect.class);
+													defectService.updateDefect(defect);
+													return new ResponseEntity<Object>(Constants.DEFECT_UPDATED_SUCCESS,	HttpStatus.OK);
+													}
 												Defect defect = mapper.map(defectDto, Defect.class);
 												defectService.updateDefect(defect);
-												return new ResponseEntity<Object>(Constants.DEFECT_UPDATED_SUCCESS,	HttpStatus.OK);
-											}
-											Defect defect = mapper.map(defectDto, Defect.class);
-											defectService.updateDefect(defect);
-											defectService.sendUpdateNotificationEmail(defect);
-											return new ResponseEntity<Object>(Constants.DEFECT_UPDATED_MAIL_SEND_SUCCESS, HttpStatus.OK);
-											}
+												defectService.sendUpdateNotificationEmail(defect);
+												return new ResponseEntity<Object>(Constants.DEFECT_UPDATED_MAIL_SEND_SUCCESS, HttpStatus.OK);
+												}
 											return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SUBMODULE_MODULE_NOT_MATCH,
-													validationFailureStatusCodes.getSubModuleExistsById()),	HttpStatus.BAD_REQUEST);
+													validationFailureStatusCodes.getSubModuleAndModuleExistsById()), HttpStatus.BAD_REQUEST);
 											}
 										return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_PROJECT_NOT_MATCH,
-												validationFailureStatusCodes.getModuleExistsById()), HttpStatus.BAD_REQUEST);
+												validationFailureStatusCodes.getModuleAndProjectExistsById()), HttpStatus.BAD_REQUEST);
 										}
 									return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.STATUS_NOT_EXISTS_BY_ID,
 										validationFailureStatusCodes.getStatusExistsById()), HttpStatus.BAD_REQUEST);

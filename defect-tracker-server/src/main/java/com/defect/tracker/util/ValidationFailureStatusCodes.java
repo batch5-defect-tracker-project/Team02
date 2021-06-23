@@ -55,12 +55,18 @@ public class ValidationFailureStatusCodes {
 	@Value("${validation.module.ExistsById}")
 	private String moduleExistsById;
 
+	@Value("${validation.module.ExistsByModuleAndProjectId}")
+	private String moduleAndProjectExistsById;
+
 	// SubModule
 	@Value("${validation.subModule.AlreadyExists}")
 	private String subModuleNameAlreadyExists;
 
 	@Value("${validation.subModule.ExistsById}")
 	private String subModuleExistsById;
+
+	@Value("${validation.subModule.ExistsBySubModuleAndModuleId}")
+	private String subModuleAndModuleExistsById;
 
 	// Defect
 	@Value("${validation.defect.AlreadyExists}")
@@ -106,7 +112,7 @@ public class ValidationFailureStatusCodes {
 
 	@Value("${validation.status.ExistsById}")
 	private String statusExistsById;
-
+	
 	// Getters Setters
 	public String getProjectNameAlreadyExists() {
 		return projectNameAlreadyExists;
@@ -204,6 +210,14 @@ public class ValidationFailureStatusCodes {
 		this.moduleExistsById = moduleExistsById;
 	}
 
+	public String getModuleAndProjectExistsById() {
+		return moduleAndProjectExistsById;
+	}
+
+	public void setModuleAndProjectExistsById(String moduleAndProjectExistsById) {
+		this.moduleAndProjectExistsById = moduleAndProjectExistsById;
+	}
+
 	public String getSubModuleNameAlreadyExists() {
 		return subModuleNameAlreadyExists;
 	}
@@ -218,6 +232,14 @@ public class ValidationFailureStatusCodes {
 
 	public void setSubModuleExistsById(String subModuleExistsById) {
 		this.subModuleExistsById = subModuleExistsById;
+	}
+
+	public String getSubModuleAndModuleExistsById() {
+		return subModuleAndModuleExistsById;
+	}
+
+	public void setSubModuleAndModuleExistsById(String subModuleAndModuleExistsById) {
+		this.subModuleAndModuleExistsById = subModuleAndModuleExistsById;
 	}
 
 	public String getModuleIdAlreadyExists() {

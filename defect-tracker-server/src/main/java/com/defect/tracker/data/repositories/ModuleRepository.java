@@ -9,4 +9,6 @@ public interface ModuleRepository extends JpaRepository<Module, Long> {
 
 	public boolean existsByName(String moduleName);
 
+	public boolean existsByIdAndProjectId(Long moduleId, Long projectId);
+
 }
