@@ -111,7 +111,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 		content = content.replace("[[URL]]", verifyURL);
 		helper.setText(content, true);
 		mailSender.send(message);
-		System.out.println(verifyURL);
 	}
 
 	@Override
