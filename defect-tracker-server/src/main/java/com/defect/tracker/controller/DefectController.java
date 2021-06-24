@@ -23,6 +23,7 @@ import com.defect.tracker.data.entities.Defect;
 import com.defect.tracker.data.mapper.Mapper;
 import com.defect.tracker.data.response.ValidationFailureResponse;
 import com.defect.tracker.services.DefectService;
+import com.defect.tracker.services.EmployeeService;
 import com.defect.tracker.services.ModuleService;
 import com.defect.tracker.services.PriorityService;
 import com.defect.tracker.services.ProjectService;
@@ -38,23 +39,25 @@ import com.defect.tracker.util.ValidationFailureStatusCodes;
 @RestController
 public class DefectController {
 	@Autowired
-	private DefectService defectService;
+	DefectService defectService;
 	@Autowired
-	private ModuleService moduleService;
+	ModuleService moduleService;
 	@Autowired
-	private SubModuleService subModuleService;
+	SubModuleService subModuleService;
 	@Autowired
-	private TypeService typeService;
+	EmployeeService employeeService;
 	@Autowired
-	private SeverityService severityService;
+	TypeService typeService;
 	@Autowired
-	private PriorityService priorityService;
+	SeverityService severityService;
 	@Autowired
-	private ProjectService projectService;
+	PriorityService priorityService;
 	@Autowired
-	private StatusService statusService;
+	ProjectService projectService;
 	@Autowired
-	private ValidationFailureStatusCodes validationFailureStatusCodes;
+	StatusService statusService;
+	@Autowired
+	ValidationFailureStatusCodes validationFailureStatusCodes;
 	@Autowired
 	private Mapper mapper;
 
@@ -67,25 +70,29 @@ public class DefectController {
 					if (severityService.existsById(defectDto.getSeverityId())) {
 						if (priorityService.existsById(defectDto.getPriorityId())) {
 							if (projectService.existsById(defectDto.getProjectId())) {
-								if (statusService.existsById(defectDto.getStatusId())) {
-									if (defectService.getStatusExists(defectDto.getStatusId())) {
-										if (moduleService.existsByIdAndProjectId(defectDto.getModuleId(), defectDto.getProjectId())) {
-											if (subModuleService.existsByIdAndModuleId(defectDto.getSubModuleId(),	defectDto.getModuleId())) {
-												Defect defect = mapper.map(defectDto, Defect.class);
-												defectService.createDefect(defect);
-												return new ResponseEntity<Object>(Constants.DEFECT_ADDED_SUCCESS, HttpStatus.OK);
+								if (employeeService.existsById(defectDto.getAssignedById()) && employeeService.existsById(defectDto.getAssignedToId())) {
+									if (statusService.existsById(defectDto.getStatusId())) {
+										if (defectService.getStatusExists(defectDto.getStatusId())) {
+											if (moduleService.existsByIdAndProjectId(defectDto.getModuleId(), defectDto.getProjectId())) {
+												if (subModuleService.existsByIdAndModuleId(defectDto.getSubModuleId(),	defectDto.getModuleId())) {
+													Defect defect = mapper.map(defectDto, Defect.class);
+													defectService.createDefect(defect);
+													return new ResponseEntity<Object>(Constants.DEFECT_ADDED_SUCCESS, HttpStatus.OK);
+												}
+												return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SUBMODULE_MODULE_NOT_MATCH,
+														validationFailureStatusCodes.getSubModuleAndModuleExistsById()), HttpStatus.BAD_REQUEST);
 											}
-											return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SUBMODULE_MODULE_NOT_MATCH,
-													validationFailureStatusCodes.getSubModuleAndModuleExistsById()), HttpStatus.BAD_REQUEST);
-											}
-										return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_PROJECT_NOT_MATCH,
-												validationFailureStatusCodes.getModuleAndProjectExistsById()), HttpStatus.BAD_REQUEST);
+											return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_PROJECT_NOT_MATCH,
+													validationFailureStatusCodes.getModuleAndProjectExistsById()), HttpStatus.BAD_REQUEST);
 										}
-									return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_STATUS_NEW_ONLY,
-										validationFailureStatusCodes.getStatusNewNotExists()), HttpStatus.BAD_REQUEST);
+										return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_STATUS_NEW_ONLY,
+												validationFailureStatusCodes.getStatusNewNotExists()), HttpStatus.BAD_REQUEST);
+									}
+									return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.STATUS_NOT_EXISTS_BY_ID,
+											validationFailureStatusCodes.getStatusExistsById()), HttpStatus.BAD_REQUEST);
 								}
-								return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.STATUS_NOT_EXISTS_BY_ID,
-									 validationFailureStatusCodes.getStatusExistsById()), HttpStatus.BAD_REQUEST);
+								return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.ASSIGNEDTO_ASSIGNEDBY_NOT_EXISTS_BY_ID,
+										validationFailureStatusCodes.getEmployeeExistsById()), HttpStatus.BAD_REQUEST);
 							}
 							return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_NOT_EXISTS_BY_ID,
 								validationFailureStatusCodes.getProjectExistsById()), HttpStatus.BAD_REQUEST);
@@ -104,7 +111,6 @@ public class DefectController {
 		}
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_NOT_EXISTS_BY_ID,
 				validationFailureStatusCodes.getModuleExistsById()), HttpStatus.BAD_REQUEST);
-
 	}
 
 	/*--------------------- VIEW ALL OR/ GET ALL ------------------------------*/
@@ -145,27 +151,31 @@ public class DefectController {
 						if (severityService.existsById(defectDto.getSeverityId())) {
 							if (priorityService.existsById(defectDto.getPriorityId())) {
 								if (projectService.existsById(defectDto.getProjectId())) {
-									if (statusService.existsById(defectDto.getStatusId())) {
-										if (moduleService.existsByIdAndProjectId(defectDto.getModuleId(), defectDto.getProjectId())) {
-											if (subModuleService.existsByIdAndModuleId(defectDto.getSubModuleId(), defectDto.getModuleId())) {
-												if (defectService.isUpdatedStatusAlreadyExist(defectDto.getId(), defectDto.getStatusId())) {
+									if (employeeService.existsById(defectDto.getAssignedById()) && employeeService.existsById(defectDto.getAssignedToId())) {
+										if (statusService.existsById(defectDto.getStatusId())) {
+											if (moduleService.existsByIdAndProjectId(defectDto.getModuleId(), defectDto.getProjectId())) {
+												if (subModuleService.existsByIdAndModuleId(defectDto.getSubModuleId(), defectDto.getModuleId())) {
+													if (defectService.isUpdatedStatusAlreadyExist(defectDto.getId(), defectDto.getStatusId())) {
+														Defect defect = mapper.map(defectDto, Defect.class);
+														defectService.updateDefect(defect);
+														return new ResponseEntity<Object>(Constants.DEFECT_UPDATED_SUCCESS,	HttpStatus.OK);
+														}
 													Defect defect = mapper.map(defectDto, Defect.class);
 													defectService.updateDefect(defect);
-													return new ResponseEntity<Object>(Constants.DEFECT_UPDATED_SUCCESS,	HttpStatus.OK);
-													}
-												Defect defect = mapper.map(defectDto, Defect.class);
-												defectService.updateDefect(defect);
-												defectService.sendUpdateNotificationEmail(defect);
-												return new ResponseEntity<Object>(Constants.DEFECT_UPDATED_MAIL_SEND_SUCCESS, HttpStatus.OK);
+													defectService.sendUpdateNotificationEmail(defect);
+													return new ResponseEntity<Object>(Constants.DEFECT_UPDATED_MAIL_SEND_SUCCESS, HttpStatus.OK);
 												}
-											return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SUBMODULE_MODULE_NOT_MATCH,
-													validationFailureStatusCodes.getSubModuleAndModuleExistsById()), HttpStatus.BAD_REQUEST);
+												return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SUBMODULE_MODULE_NOT_MATCH,
+														validationFailureStatusCodes.getSubModuleAndModuleExistsById()), HttpStatus.BAD_REQUEST);
 											}
-										return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_PROJECT_NOT_MATCH,
-												validationFailureStatusCodes.getModuleAndProjectExistsById()), HttpStatus.BAD_REQUEST);
+											return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_PROJECT_NOT_MATCH,
+													validationFailureStatusCodes.getModuleAndProjectExistsById()), HttpStatus.BAD_REQUEST);
 										}
-									return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.STATUS_NOT_EXISTS_BY_ID,
-										validationFailureStatusCodes.getStatusExistsById()), HttpStatus.BAD_REQUEST);
+										return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.STATUS_NOT_EXISTS_BY_ID,
+												validationFailureStatusCodes.getStatusExistsById()), HttpStatus.BAD_REQUEST);
+									}
+									return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.ASSIGNEDTO_ASSIGNEDBY_NOT_EXISTS_BY_ID,
+											validationFailureStatusCodes.getEmployeeExistsById()), HttpStatus.BAD_REQUEST);
 								}
 								return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_NOT_EXISTS_BY_ID,
 									validationFailureStatusCodes.getProjectExistsById()), HttpStatus.BAD_REQUEST);
