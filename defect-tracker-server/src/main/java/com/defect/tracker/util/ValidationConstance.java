@@ -34,7 +34,8 @@ public class ValidationConstance {
 	public static final String DEFECT_EXISTS = "Defect Already Exists";
 	public static final String DEFECT_NOT_EXISTS_BY_ID = "Defect Id Not Exists";
 	public static final String DEFECT_STATUS_NEW_ONLY = "Status New Only";
-
+	public static final String ASSIGNEDTO_ASSIGNEDBY_NOT_EXISTS_BY_ID = "AssignedTo Id OR/ AssignedBy Id Not Exists";
+	
 	// Project Allocation
 	public static final String PROJECT_ALLOCATION_EXISTS = "ProjectAllocation Already Exists";
 	public static final String PROJECT_ALLOCATION_NOT_EXISTS_BY_ID = "ProjectAllocation Id Not Exists";
